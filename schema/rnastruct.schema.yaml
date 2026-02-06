@@ -1,0 +1,71 @@
+id: https://example.org/rnastruct
+name: rnastruct
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rnastruct: https://example.org/rnastruct/
+default_prefix: rnastruct
+default_range: string
+imports:
+  - linkml:types
+
+classes:
+  Dataset:
+    tree_root: true
+    attributes:
+      dataset_id:
+        required: true
+        pattern: "^rnastruct\\d+_.+"
+      organism:
+        required: true
+        range: Organism
+      data_type:
+        required: true
+        range: DataType
+      publication:
+        required: true
+        range: Publication
+      raw_data:
+        required: true
+        range: RawData
+
+  Organism:
+    attributes:
+      name:
+        required: true
+      cell_lines:
+        multivalued: true
+
+  DataType:
+    attributes:
+      method:
+        required: true
+      chemical:
+        required: true
+      principle:
+        required: true
+      context:
+        required: true
+      conditions:
+        multivalued: true
+      replicates_per_condition:
+        range: integer
+
+  Publication:
+    attributes:
+      doi:
+        required: true
+      year:
+        range: integer
+
+  RawData:
+    attributes:
+      repository:
+        required: true
+      accession:
+        required: true
+      landing_page:
+        range: uri
+      run_accessions:
+        required: true
+        multivalued: true
+        pattern: "^SRR\\d+$"

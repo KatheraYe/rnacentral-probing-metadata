@@ -1,0 +1,22 @@
+dataset_id: rnastruct00001
+
+organism:
+ name: Homo sapiens
+  cell_lines: [HEK293T, K562, HeLa, HepG2, H9]
+
+data_type:
+ method: icSHAPE
+ chemical: NAI-N3
+ principle: RT-stop
+ context: in_vivo
+ conditions: [untreated, treated]
+ replicates_per_condition: 1
+
+publication:
+ doi: 10.1038/s41422-021-00476-y
+ year: 2021
+
+raw_data:
+ repository: GEO
+ accession: GSE145805
+ fastq_link: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE145805

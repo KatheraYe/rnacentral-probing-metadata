@@ -66,6 +66,5 @@ classes:
       landing_page:
         range: uri
       run_accessions:
-        required: true
         multivalued: true
         pattern: "^SRR\\d+$"

@@ -1,3 +1,5 @@
+scripts/run_fetchngs_slurm.sh
+
 # macOS
 .DS_Store
 

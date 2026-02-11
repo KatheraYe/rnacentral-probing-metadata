@@ -12,7 +12,7 @@ The `accession` can be any of the identifiers supported in `nf-core/fetchngs` su
 
 The validator (`linkml-validate` against `schema/rnastruct.schema.yaml`) currently enforces:
 
-- `dataset_id` must match: `rnastruct<digits>_<suffix>` (for example `rnastruct00001_human`).
+- `dataset_id` must match: `rnastruct<digits>` (for example `rnastruct00001`).
 - `organism.name` must be a scientific name (for example `Homo sapiens`).
 - `data_type.method` must contain either `SHAPE` or `DMS`.
 - `data_type.principle` must be one of: `RT-stop`, `MaP`.

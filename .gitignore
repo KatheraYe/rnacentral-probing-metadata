@@ -1,4 +1,5 @@
 scripts/run_fetchngs_slurm.sh
+nextflow.config
 
 # macOS
 .DS_Store
@@ -35,3 +36,13 @@ dist/
 .env
 .env.*
 *.log
+
+# Nextflow runtime artifacts
+.nextflow/
+.nextflow.log*
+work/
+results/
+.timeline.html
+.report.html
+.trace
+.dag.*

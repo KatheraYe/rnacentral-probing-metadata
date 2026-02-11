@@ -3,7 +3,7 @@ set -euo pipefail
 
 schema="schema/rnastruct.schema.yaml"
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-output_dir="${repo_dir}/../ids"
+output_dir="${repo_dir}/ids"
 
 if ! command -v linkml-validate >/dev/null 2>&1; then
   echo "linkml-validate not found. Install with: pip install linkml" >&2
@@ -32,9 +32,13 @@ for yaml in "${yamls[@]}"; do
     echo "Skipping empty YAML ${yaml}"
     continue
   fi
+  if ! grep -q '[^[:space:]]' "${yaml}"; then
+    echo "Skipping whitespace-only YAML ${yaml}"
+    continue
+  fi
   base="$(basename "${yaml}" .yaml)"
   dir="$(basename "$(dirname "${yaml}")")"
-  output="${output_dir}/${dir}_${base}.txt"
+  output="${output_dir}/${dir}_${base}.csv"
 
   if [ -s "${output}" ] && [ "${output}" -nt "${yaml}" ]; then
     continue

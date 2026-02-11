@@ -32,6 +32,8 @@ classes:
     attributes:
       name:
         required: true
+        # Basic scientific-name shape (capitalized genus + species epithet).
+        pattern: "^[A-Z][a-z]+( [a-z][a-z-]+)+$"
       cell_lines:
         multivalued: true
 
@@ -39,12 +41,16 @@ classes:
     attributes:
       method:
         required: true
+        # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
+        pattern: "(?i)^.*(SHAPE|DMS).*$"
       chemical:
         required: true
       principle:
         required: true
+        range: PrincipleEnum
       context:
         required: true
+        range: ContextEnum
       conditions:
         multivalued: true
       replicates_per_condition:
@@ -54,6 +60,8 @@ classes:
     attributes:
       doi:
         required: true
+        # DOI format validation (existence check requires online lookup).
+        pattern: "^10\\.\\d{4,9}/[-._;()/:A-Za-z0-9]+$"
       year:
         range: integer
 
@@ -61,10 +69,33 @@ classes:
     attributes:
       repository:
         required: true
+        range: RepositoryEnum
       accession:
         required: true
+        # Broad accession pattern supported by nf-core/fetchngs.
+        pattern: "^(((SR|ER|DR)[APRSX])|(SAM(N|EA|D))|(PRJ(NA|EB|DB))|(GS[EM]))(\\d+)$"
       landing_page:
         range: uri
       run_accessions:
         multivalued: true
-        pattern: "^SRR\\d+$"
+        # Run-level accessions across SRA/ENA/DDBJ.
+        pattern: "^(SRR|ERR|DRR)\\d+$"
+
+enums:
+  PrincipleEnum:
+    permissible_values:
+      RT-stop:
+      MaP:
+
+  ContextEnum:
+    permissible_values:
+      in_vivo:
+      in_vitro:
+      ex_vivo:
+
+  RepositoryEnum:
+    permissible_values:
+      SRA:
+      ENA:
+      GEO:
+      DDBJ:

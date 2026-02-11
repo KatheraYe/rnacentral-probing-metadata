@@ -45,12 +45,12 @@ def extract_ids(data):
 def main():
     parser = argparse.ArgumentParser(
         description=(
-            "Extract IDs from a YAML file and write to a txt file. "
+            "Extract IDs from a YAML file and write to a single-column CSV file. "
             "Prefer run_accessions (subset mode), else use accession (full mode)."
         )
     )
     parser.add_argument("yaml_path", help="Path to input YAML file")
-    parser.add_argument("output_txt", help="Path to output txt file")
+    parser.add_argument("output_csv", help="Path to output CSV file")
     args = parser.parse_args()
 
     with open(args.yaml_path, "r", encoding="utf-8") as handle:
@@ -62,7 +62,7 @@ def main():
         return 1
     ids, source = result
 
-    with open(args.output_txt, "w", encoding="utf-8") as handle:
+    with open(args.output_csv, "w", encoding="utf-8") as handle:
         handle.write("\n".join(ids))
         handle.write("\n")
     sys.stderr.write(f"Wrote {len(ids)} IDs from {source}.\n")

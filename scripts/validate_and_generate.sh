@@ -3,7 +3,8 @@ set -euo pipefail
 
 schema="schema/rnastruct.schema.yaml"
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-output_dir="${repo_dir}/ids"
+# Allow callers (e.g. Slurm wrapper) to override where ID CSVs are written.
+output_dir="${IDS_DIR:-${repo_dir}/ids}"
 
 if ! command -v linkml-validate >/dev/null 2>&1; then
   echo "linkml-validate not found. Install with: pip install linkml" >&2

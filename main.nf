@@ -1,11 +1,11 @@
 nextflow.enable.dsl = 2
 
-params.repo_dir = "${projectDir}"
+params.repo_dir = "/hps/nobackup/agb/rnacentral/chemicalprob/rnacentral-probing-metadata"
 params.ids_dir = "/hps/nobackup/agb/rnacentral/chemicalprob/ids"
-params.outdir = "${projectDir}/results/fetchngs"
+params.outdir = "/hps/nobackup/agb/rnacentral/chemicalprob/FASTQ"
 params.fetchngs_revision = "1.12.0"
 params.fetchngs_profile = "slurm"
-params.nxf_singularity_cachedir = "${projectDir}/.singularity_cache"
+params.nxf_singularity_cachedir = "/hps/nobackup/agb/rnacentral/chemicalprob/.singularity_cache"
 
 process VALIDATE_AND_GENERATE {
   tag "validate-and-generate"

@@ -22,14 +22,16 @@ process VALIDATE_AND_GENERATE {
   """
   set -euo pipefail
 
-  cd "${repo_dir}"
   mkdir -p "${ids_dir}"
 
-  IDS_DIR="${ids_dir}" bash scripts/validate_and_generate.sh
+  (
+    cd "${repo_dir}"
+    IDS_DIR="${ids_dir}" bash scripts/validate_and_generate.sh
+  )
 
-  find "${ids_dir}" -maxdepth 1 -type f -name '*.csv' | sort > ids_manifest.txt
+  find "${ids_dir}" -maxdepth 1 -type f -name '*.csv' | sort > "${PWD}/ids_manifest.txt"
 
-  if [ ! -s ids_manifest.txt ]; then
+  if [ ! -s "${PWD}/ids_manifest.txt" ]; then
     echo "ERROR: no CSV files were generated in ${ids_dir}" >&2
     exit 1
   fi

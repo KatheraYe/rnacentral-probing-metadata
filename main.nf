@@ -59,27 +59,27 @@ process RUN_FETCHNGS {
   export NXF_SINGULARITY_CACHEDIR="${nxf_singularity_cachedir}"
 
   while IFS= read -r ids_file; do
-    [ -n "${ids_file}" ] || continue
+    [ -n "\${ids_file}" ] || continue
 
-    sample_name="$(basename "${ids_file}" .csv)"
-    sample_outdir="${outdir}/${sample_name}"
-    done_file="${sample_outdir}/.fetchngs.done"
+    sample_name="\$(basename "\${ids_file}" .csv)"
+    sample_outdir="${outdir}/\${sample_name}"
+    done_file="\${sample_outdir}/.fetchngs.done"
 
-    if [ -f "${done_file}" ] && [ "${done_file}" -nt "${ids_file}" ]; then
-      echo "Skipping ${ids_file}; output is up to date."
+    if [ -f "\${done_file}" ] && [ "\${done_file}" -nt "\${ids_file}" ]; then
+      echo "Skipping \${ids_file}; output is up to date."
       continue
     fi
 
-    mkdir -p "${sample_outdir}"
+    mkdir -p "\${sample_outdir}"
 
     nextflow run nf-core/fetchngs -r "${fetchngs_revision}" \
       -c "${repo_dir}/nextflow.config" \
       -profile "${fetchngs_profile}" \
-      --input "${ids_file}" \
-      --outdir "${sample_outdir}" \
+      --input "\${ids_file}" \
+      --outdir "\${sample_outdir}" \
       -resume
 
-    touch "${done_file}"
+    touch "\${done_file}"
   done < "${ids_manifest}"
 
   touch fetchngs.done
@@ -89,7 +89,7 @@ process RUN_FETCHNGS {
 workflow {
   validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir)
   RUN_FETCHNGS(
-    validate.out.ids_manifest,
+    validate.ids_manifest,
     params.repo_dir,
     params.outdir,
     params.fetchngs_revision,

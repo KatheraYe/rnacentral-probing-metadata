@@ -1,7 +1,7 @@
 nextflow.enable.dsl = 2
 
 params.repo_dir = "${projectDir}"
-params.ids_dir = "${projectDir}/ids"
+params.ids_dir = "/hps/nobackup/agb/rnacentral/chemicalprob/ids"
 params.outdir = "${projectDir}/results/fetchngs"
 params.fetchngs_revision = "1.12.0"
 params.fetchngs_profile = "slurm"

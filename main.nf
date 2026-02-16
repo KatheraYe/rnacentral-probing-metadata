@@ -14,6 +14,7 @@ process VALIDATE_AND_GENERATE {
   input:
   val repo_dir
   val ids_dir
+  path yaml_files
 
   output:
   path "ids_manifest.txt", emit: ids_manifest
@@ -41,6 +42,7 @@ process VALIDATE_AND_GENERATE {
 process RUN_FETCHNGS {
   tag "run-fetchngs"
   executor "local"
+  debug true
 
   input:
   path ids_manifest
@@ -79,6 +81,7 @@ process RUN_FETCHNGS {
       -profile "${fetchngs_profile}" \
       --input "\${ids_file}" \
       --outdir "\${sample_outdir}" \
+      -ansi-log false \
       -resume
 
     touch "\${done_file}"
@@ -89,7 +92,11 @@ process RUN_FETCHNGS {
 }
 
 workflow {
-  validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir)
+  yaml_files = Channel
+    .fromPath("${params.repo_dir}/{SHAPE,DMS}/*.yaml")
+    .ifEmpty { error "No YAML files found under ${params.repo_dir}/SHAPE or ${params.repo_dir}/DMS" }
+    .collect()
+  validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir, yaml_files)
   RUN_FETCHNGS(
     validate.ids_manifest,
     params.repo_dir,

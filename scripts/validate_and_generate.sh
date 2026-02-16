@@ -38,8 +38,7 @@ for yaml in "${yamls[@]}"; do
     continue
   fi
   base="$(basename "${yaml}" .yaml)"
-  dir="$(basename "$(dirname "${yaml}")")"
-  output="${output_dir}/${dir}_${base}.csv"
+  output="${output_dir}/${base}.csv"
 
   if [ -s "${output}" ] && [ "${output}" -nt "${yaml}" ]; then
     continue

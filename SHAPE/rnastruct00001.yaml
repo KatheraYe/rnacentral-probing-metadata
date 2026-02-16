@@ -8,7 +8,7 @@ data_type:
   method: icSHAPE
   chemical: NAI-N3
   principle: RT-stop
-  context: in_vivo
+  context: [in_vivo]
   conditions: [untreated, treated]
   replicates_per_condition: 1
 

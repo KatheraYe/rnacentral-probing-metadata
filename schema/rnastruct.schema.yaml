@@ -51,6 +51,7 @@ classes:
       context:
         required: true
         range: ContextEnum
+        multivalued: true
       conditions:
         multivalued: true
       replicates_per_condition:

@@ -42,7 +42,6 @@ process VALIDATE_AND_GENERATE {
 process RUN_FETCHNGS {
   tag "run-fetchngs"
   executor "local"
-  debug true
 
   input:
   path ids_manifest
@@ -81,7 +80,6 @@ process RUN_FETCHNGS {
       -profile "${fetchngs_profile}" \
       --input "\${ids_file}" \
       --outdir "\${sample_outdir}" \
-      -ansi-log false \
       -resume
 
     touch "\${done_file}"

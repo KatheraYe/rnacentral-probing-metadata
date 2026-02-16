@@ -38,8 +38,6 @@ classes:
         multivalued: true
 
   DataType:
-    slots:
-      - context
     attributes:
       method:
         required: true
@@ -47,6 +45,10 @@ classes:
         pattern: "(?i)^.*(SHAPE|DMS).*$"
       chemical:
         required: true
+      context:
+        required: true
+        range: ContextEnum
+        multivalued: true
       principle:
         required: true
         range: PrincipleEnum
@@ -79,12 +81,6 @@ classes:
         multivalued: true
         # Run-level accessions across SRA/ENA/DDBJ.
         pattern: "^(SRR|ERR|DRR)\\d+$"
-
-slots:
-  context:
-    required: true
-    range: ContextEnum
-    multivalued: true
 
 enums:
   PrincipleEnum:

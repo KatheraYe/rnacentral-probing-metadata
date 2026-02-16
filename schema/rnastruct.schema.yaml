@@ -38,6 +38,8 @@ classes:
         multivalued: true
 
   DataType:
+    slots:
+      - context
     attributes:
       method:
         required: true
@@ -48,10 +50,6 @@ classes:
       principle:
         required: true
         range: PrincipleEnum
-      context:
-        required: true
-        range: ContextEnum
-        multivalued: true
       conditions:
         multivalued: true
       replicates_per_condition:
@@ -81,6 +79,12 @@ classes:
         multivalued: true
         # Run-level accessions across SRA/ENA/DDBJ.
         pattern: "^(SRR|ERR|DRR)\\d+$"
+
+slots:
+  context:
+    required: true
+    range: ContextEnum
+    multivalued: true
 
 enums:
   PrincipleEnum:

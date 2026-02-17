@@ -6,7 +6,10 @@ organism:
 
 data_type:
   method: icSHAPE
-  chemical: NAI-N3
+  OBI: OBI:0001026
+  chemical: 
+    name: NAI-N3
+    concentration: 100 mM
   principle: RT-stop
   context: [in_vivo]
   conditions: [untreated, treated]
@@ -20,24 +23,26 @@ raw_data:
   repository: GEO
   accession: GSE145805
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE145805
+  # Each entry requires accession + sample_name. 
+  # The sample name should be biologically meaningful and should distinguish differences between the samples in the dataset.
   run_accessions:
-    - SRR11164860
-    - SRR11164861
-    - SRR11164862
-    - SRR11164863
-    - SRR11164864
-    - SRR11164865
-    - SRR11164866
-    - SRR11164867
-    - SRR11164868
-    - SRR11164869
-    - SRR11164870
-    - SRR11164871
-    - SRR11164872
-    - SRR11164873
-    - SRR11164874
-    - SRR11164875
-    - SRR11164876
-    - SRR11164877
-    - SRR11164878
-    - SRR11164879
+    - accession: GSM4333255
+      sample_name: HEK293T_untreated
+    - accession: GSM4333256
+      sample_name: HEK293T_treated
+    - accession: GSM4333257
+      sample_name: HeLa_untreated
+    - accession: GSM4333258
+      sample_name: HeLa_treated
+    - accession: GSM4333259
+      sample_name: K562_untreated
+    - accession: GSM4333260
+      sample_name: K562_treated
+    - accession: GSM4333261
+      sample_name: HepG2_untreated
+    - accession: GSM4333262
+      sample_name: HepG2_treated
+    - accession: GSM4333263
+      sample_name: H9_untreated
+    - accession: GSM4333264
+      sample_name: H9_treated

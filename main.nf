@@ -89,18 +89,83 @@ process RUN_FETCHNGS {
   """
 }
 
+process MERGE_FETCHNGS_METADATA {
+  tag "merge-fetchngs-metadata"
+  executor "local"
+
+  input:
+  path fetch_done
+  val repo_dir
+  val outdir
+  path yaml_files
+
+  output:
+  path "rnastruct_samplesheets_manifest.txt", emit: rnastruct_manifest
+
+  script:
+  """
+  set -euo pipefail
+
+  merged_dir="${outdir}/samplesheet"
+  mkdir -p "\${merged_dir}"
+
+  shopt -s nullglob
+  for yaml in "${repo_dir}"/SHAPE/*.yaml "${repo_dir}"/DMS/*.yaml; do
+    [ -s "\${yaml}" ] || continue
+
+    dataset_id="\$(basename "\${yaml}" .yaml)"
+    samplesheet_csv="${outdir}/\${dataset_id}/samplesheet/samplesheet.csv"
+
+    if [ ! -s "\${samplesheet_csv}" ]; then
+      alt_match="\$(find "${outdir}" -type f -name samplesheet.csv | grep "/\${dataset_id}/" | head -n 1 || true)"
+      if [ -n "\${alt_match}" ]; then
+        samplesheet_csv="\${alt_match}"
+      else
+        echo "ERROR: samplesheet.csv not found for \${dataset_id}. Expected \${samplesheet_csv}" >&2
+        exit 1
+      fi
+    fi
+
+    out_csv="\${merged_dir}/\${dataset_id}_samplesheet.csv"
+
+    if [ -s "\${out_csv}" ] && [ "\${out_csv}" -nt "\${samplesheet_csv}" ] && [ "\${out_csv}" -nt "\${yaml}" ]; then
+      echo "Skipping merge for \${dataset_id}; output is up to date."
+      continue
+    fi
+
+    python3 "${repo_dir}/scripts/merge_metadata.py" \
+      --samplesheet "\${samplesheet_csv}" \
+      --metadata "\${yaml}" \
+      --out "\${out_csv}"
+  done
+
+  find "\${merged_dir}" -maxdepth 1 -type f -name '*_samplesheet.csv' | sort > rnastruct_samplesheets_manifest.txt
+
+  if [ ! -s rnastruct_samplesheets_manifest.txt ]; then
+    echo "ERROR: no merged rnastruct samplesheets were generated in \${merged_dir}" >&2
+    exit 1
+  fi
+  """
+}
+
 workflow {
   yaml_files = Channel
     .fromPath("${params.repo_dir}/{SHAPE,DMS}/*.yaml")
     .ifEmpty { error "No YAML files found under ${params.repo_dir}/SHAPE or ${params.repo_dir}/DMS" }
     .collect()
   validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir, yaml_files)
-  RUN_FETCHNGS(
+  fetch = RUN_FETCHNGS(
     validate.ids_manifest,
     params.repo_dir,
     params.outdir,
     params.fetchngs_revision,
     params.fetchngs_profile,
     params.nxf_singularity_cachedir
+  )
+  MERGE_FETCHNGS_METADATA(
+    fetch,
+    params.repo_dir,
+    params.outdir,
+    yaml_files
   )
 }

@@ -43,8 +43,13 @@ classes:
         required: true
         # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
         pattern: "(?i)^.*(SHAPE|DMS).*$"
+      OBI:
+        required: true
+        # Ontology for Biomedical Investigations term, e.g. OBI:0001026
+        pattern: "^OBI:\\d{7}$"
       chemical:
         required: true
+        range: Chemical
       context:
         required: true
         range: ContextEnum
@@ -56,6 +61,13 @@ classes:
         multivalued: true
       replicates_per_condition:
         range: integer
+
+  Chemical:
+    attributes:
+      name:
+        required: true
+      concentration:
+        required: true
 
   Publication:
     attributes:
@@ -78,9 +90,20 @@ classes:
       landing_page:
         range: uri
       run_accessions:
+        required: true
         multivalued: true
-        # Run-level accessions across SRA/ENA/DDBJ.
-        pattern: "^(SRR|ERR|DRR)\\d+$"
+        range: RunAccessionName
+        description: Required list of accession-to-sample mappings.
+
+  RunAccessionName:
+    attributes:
+      accession:
+        required: true
+        # Accepted accession IDs (run/sample/experiment/study/project forms used by fetchngs metadata).
+        pattern: "^(((SR|ER|DR)R)|(GS[EM])|((SR|ER|DR)X)|((SR|ER|DR)S)|(SAM(N|EA|D))|((SR|ER|DR)P)|((SR|ER|DR)A)|(PRJ(NA|EB|DB)))(\\d+)$"
+      sample_name:
+        required: true
+        range: string
 
 enums:
   PrincipleEnum:

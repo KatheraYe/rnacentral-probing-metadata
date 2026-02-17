@@ -24,7 +24,7 @@ raw_data:
   accession: GSE45803
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45803
   run_accessions:
-    - accession: GSM1297493	
+    - accession: GSM1297493
       sample_name: K562_treated_vivo_200mM
     - accession: GSM1297494
       sample_name: K562_treated_vivo_300mM

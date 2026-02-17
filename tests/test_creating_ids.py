@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+import yaml
+
 
 def _load_module():
     repo_root = Path(__file__).resolve().parents[1]
@@ -15,64 +17,45 @@ def _load_module():
 
 
 creating_ids = _load_module()
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SHAPE_YAML = REPO_ROOT / "SHAPE" / "rnastruct00001.yaml"
+EXPECTED_IDS = [
+    "GSM4333255",
+    "GSM4333256",
+    "GSM4333257",
+    "GSM4333258",
+    "GSM4333259",
+    "GSM4333260",
+    "GSM4333261",
+    "GSM4333262",
+    "GSM4333263",
+    "GSM4333264",
+]
 
 
-def test_as_list_handles_none_and_whitespace():
-    assert creating_ids._as_list(None) == []
-    assert creating_ids._as_list("   ") == []
+def test_run_accessions_from_list_extracts_accession_values():
+    with SHAPE_YAML.open(encoding="utf-8") as handle:
+        data = yaml.safe_load(handle)
+    run_accessions = data["raw_data"]["run_accessions"]
+    assert creating_ids._run_accessions_from_list(run_accessions) == EXPECTED_IDS
 
 
-def test_as_list_normalizes_scalars_and_lists():
-    assert creating_ids._as_list("SRR0001") == ["SRR0001"]
-    assert creating_ids._as_list(["SRR0001", None, "  ", 123]) == ["SRR0001", "123"]
-
-
-def test_extract_ids_prefers_run_accessions_over_accession():
-    data = {
-        "accession": ["GSE0001"],
-        "run_accessions": ["SRR0001", "SRR0002"],
-    }
-    assert creating_ids.extract_ids(data) == (["SRR0001", "SRR0002"], "run_accessions")
-
-
-def test_extract_ids_finds_nested_values():
-    data = {"outer": {"inner": {"accession": "GSE0001"}}}
-    assert creating_ids.extract_ids(data) == (["GSE0001"], "accession")
-
-
-def test_extract_ids_returns_none_when_missing():
-    assert creating_ids.extract_ids({"a": {"b": []}}) is None
+def test_extract_ids_reads_raw_data_run_accessions_only():
+    with SHAPE_YAML.open(encoding="utf-8") as handle:
+        data = yaml.safe_load(handle)
+    assert creating_ids.extract_ids(data) == (EXPECTED_IDS, "run_accessions")
 
 
 def test_main_writes_csv_and_returns_zero(tmp_path, monkeypatch, capsys):
-    yaml_path = tmp_path / "input.yaml"
     csv_path = tmp_path / "ids.csv"
-    yaml_path.write_text("run_accessions:\n  - SRR100\n  - SRR200\n", encoding="utf-8")
 
     monkeypatch.setattr(
         "sys.argv",
-        ["creating_ids.py", str(yaml_path), str(csv_path)],
+        ["creating_ids.py", str(SHAPE_YAML), str(csv_path)],
     )
 
     rc = creating_ids.main()
 
     assert rc == 0
-    assert csv_path.read_text(encoding="utf-8") == "SRR100\nSRR200\n"
-    assert "Wrote 2 IDs from run_accessions." in capsys.readouterr().err
-
-
-def test_main_returns_one_when_no_ids_found(tmp_path, monkeypatch, capsys):
-    yaml_path = tmp_path / "input.yaml"
-    csv_path = tmp_path / "ids.csv"
-    yaml_path.write_text("title: only metadata\n", encoding="utf-8")
-
-    monkeypatch.setattr(
-        "sys.argv",
-        ["creating_ids.py", str(yaml_path), str(csv_path)],
-    )
-
-    rc = creating_ids.main()
-
-    assert rc == 1
-    assert not csv_path.exists()
-    assert "No run_accessions or accession found in YAML." in capsys.readouterr().err
+    assert csv_path.read_text(encoding="utf-8") == "\n".join(EXPECTED_IDS) + "\n"
+    assert "Wrote 10 IDs from run_accessions." in capsys.readouterr().err

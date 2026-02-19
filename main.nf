@@ -149,7 +149,7 @@ process MERGE_FETCHNGS_METADATA {
 }
 
 workflow {
-  yaml_files = Channel
+  yaml_files = channel
     .fromPath("${params.repo_dir}/{SHAPE,DMS}/*.yaml")
     .ifEmpty { error "No YAML files found under ${params.repo_dir}/SHAPE or ${params.repo_dir}/DMS" }
     .collect()

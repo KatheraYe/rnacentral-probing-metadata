@@ -55,6 +55,15 @@ def resolve_name_for_row(row: dict, run_name_map: dict[str, str]) -> str:
     return ""
 
 
+def normalize_method(method: str) -> str:
+    value = method.strip().upper()
+    if "SHAPE" in value:
+        return "SHAPE"
+    if "DMS" in value:
+        return "DMS"
+    raise ValueError(f"Unsupported method '{method}'. Expected a SHAPE- or DMS-based method.")
+
+
 def main() -> int:
     args = parse_args()
     samplesheet_path = Path(args.samplesheet)
@@ -69,6 +78,7 @@ def main() -> int:
     metadata = read_yaml(metadata_path)
     run_name_map = extract_run_name_map(metadata)
     dataset_id = metadata.get("dataset_id", "")
+    method = normalize_method(((metadata.get("data_type") or {}).get("method", "")))
     if out_path is None:
         if dataset_id:
             out_path = metadata_path.parent / f"{dataset_id}_samplesheet.csv"
@@ -91,7 +101,7 @@ def main() -> int:
                 "fastq_1": row.get("fastq_1", ""),
                 "fastq_2": row.get("fastq_2", ""),
                 "library_layout": row.get("library_layout", ""),
-                "method": (metadata.get("data_type") or {}).get("method", ""),
+                "method": method,
                 "principle": (metadata.get("data_type") or {}).get("principle", ""),
                 "organism": (metadata.get("organism") or {}).get("name", ""),
             }

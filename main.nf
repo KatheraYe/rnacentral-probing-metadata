@@ -14,7 +14,6 @@ process VALIDATE_AND_GENERATE {
   input:
   val repo_dir
   val ids_dir
-  path yaml_files
 
   output:
   path "ids_manifest.txt", emit: ids_manifest
@@ -52,7 +51,7 @@ process RUN_FETCHNGS {
   val nxf_singularity_cachedir
 
   output:
-  path "fetchngs.done"
+  val true, emit: fetch_complete
 
   script:
   """
@@ -66,10 +65,10 @@ process RUN_FETCHNGS {
 
     sample_name="\$(basename "\${ids_file}" .csv)"
     sample_outdir="${outdir}/\${sample_name}"
-    done_file="\${sample_outdir}/.fetchngs.done"
+    existing_samplesheet="\${sample_outdir}/samplesheet/samplesheet.csv"
 
-    if [ -f "\${done_file}" ] && [ "\${done_file}" -nt "\${ids_file}" ]; then
-      echo "Skipping \${ids_file}; output is up to date."
+    if [ -s "\${existing_samplesheet}" ]; then
+      echo "Skipping \${ids_file}; dataset already present at \${existing_samplesheet}."
       continue
     fi
 
@@ -81,11 +80,8 @@ process RUN_FETCHNGS {
       --input "\${ids_file}" \
       --outdir "\${sample_outdir}" \
       -resume
-
-    touch "\${done_file}"
   done < "${ids_manifest}"
 
-  touch fetchngs.done
   """
 }
 
@@ -94,66 +90,21 @@ process MERGE_FETCHNGS_METADATA {
   executor "local"
 
   input:
-  path fetch_done
+  val _fetch_done
   val repo_dir
   val outdir
-  path yaml_files
 
   output:
   path "rnastruct_samplesheets_manifest.txt", emit: rnastruct_manifest
 
   script:
   """
-  set -euo pipefail
-
-  merged_dir="${outdir}/samplesheet"
-  mkdir -p "\${merged_dir}"
-
-  shopt -s nullglob
-  for yaml in "${repo_dir}"/SHAPE/*.yaml "${repo_dir}"/DMS/*.yaml; do
-    [ -s "\${yaml}" ] || continue
-
-    dataset_id="\$(basename "\${yaml}" .yaml)"
-    samplesheet_csv="${outdir}/\${dataset_id}/samplesheet/samplesheet.csv"
-
-    if [ ! -s "\${samplesheet_csv}" ]; then
-      alt_match="\$(find "${outdir}" -type f -name samplesheet.csv | grep "/\${dataset_id}/" | head -n 1 || true)"
-      if [ -n "\${alt_match}" ]; then
-        samplesheet_csv="\${alt_match}"
-      else
-        echo "ERROR: samplesheet.csv not found for \${dataset_id}. Expected \${samplesheet_csv}" >&2
-        exit 1
-      fi
-    fi
-
-    out_csv="\${merged_dir}/\${dataset_id}_samplesheet.csv"
-
-    if [ -s "\${out_csv}" ] && [ "\${out_csv}" -nt "\${samplesheet_csv}" ] && [ "\${out_csv}" -nt "\${yaml}" ]; then
-      echo "Skipping merge for \${dataset_id}; output is up to date."
-      continue
-    fi
-
-    python3 "${repo_dir}/scripts/merge_metadata.py" \
-      --samplesheet "\${samplesheet_csv}" \
-      --metadata "\${yaml}" \
-      --out "\${out_csv}"
-  done
-
-  find "\${merged_dir}" -maxdepth 1 -type f -name '*_samplesheet.csv' | sort > rnastruct_samplesheets_manifest.txt
-
-  if [ ! -s rnastruct_samplesheets_manifest.txt ]; then
-    echo "ERROR: no merged rnastruct samplesheets were generated in \${merged_dir}" >&2
-    exit 1
-  fi
+  "${repo_dir}/scripts/merge_fetchngs_metadata.sh" "${repo_dir}" "${outdir}"
   """
 }
 
 workflow {
-  yaml_files = channel
-    .fromPath("${params.repo_dir}/{SHAPE,DMS}/*.yaml")
-    .ifEmpty { error "No YAML files found under ${params.repo_dir}/SHAPE or ${params.repo_dir}/DMS" }
-    .collect()
-  validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir, yaml_files)
+  validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir)
   fetch = RUN_FETCHNGS(
     validate.ids_manifest,
     params.repo_dir,
@@ -163,9 +114,8 @@ workflow {
     params.nxf_singularity_cachedir
   )
   MERGE_FETCHNGS_METADATA(
-    fetch,
+    fetch.fetch_complete,
     params.repo_dir,
-    params.outdir,
-    yaml_files
+    params.outdir
   )
 }

@@ -11,16 +11,16 @@ except Exception as exc:
     raise
 
 
-def _run_accessions_from_list(value):
-    return [str(item["accession"]).strip() for item in value]
-
-
 def extract_ids(data):
-    run_accessions = _run_accessions_from_list(data["raw_data"]["run_accessions"])
+    """Extract run accessions from parsed YAML metadata."""
+    run_accessions = [
+        str(item["accession"]).strip() for item in data["raw_data"]["run_accessions"]
+    ]
     return run_accessions, "run_accessions"
 
 
 def main():
+    """Parse arguments, extract IDs from YAML, and write a one-column CSV."""
     parser = argparse.ArgumentParser(
         description=(
             "Extract IDs from a YAML file and write to a single-column CSV file. "

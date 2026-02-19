@@ -33,13 +33,6 @@ EXPECTED_IDS = [
 ]
 
 
-def test_run_accessions_from_list_extracts_accession_values():
-    with SHAPE_YAML.open(encoding="utf-8") as handle:
-        data = yaml.safe_load(handle)
-    run_accessions = data["raw_data"]["run_accessions"]
-    assert creating_ids._run_accessions_from_list(run_accessions) == EXPECTED_IDS
-
-
 def test_extract_ids_reads_raw_data_run_accessions_only():
     with SHAPE_YAML.open(encoding="utf-8") as handle:
         data = yaml.safe_load(handle)

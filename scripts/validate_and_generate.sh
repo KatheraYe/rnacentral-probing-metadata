@@ -29,20 +29,8 @@ fi
 mkdir -p "${output_dir}"
 
 for yaml in "${yamls[@]}"; do
-  if [ ! -s "${yaml}" ]; then
-    echo "Skipping empty YAML ${yaml}"
-    continue
-  fi
-  if ! grep -q '[^[:space:]]' "${yaml}"; then
-    echo "Skipping whitespace-only YAML ${yaml}"
-    continue
-  fi
   base="$(basename "${yaml}" .yaml)"
   output="${output_dir}/${base}.csv"
-
-  if [ -s "${output}" ] && [ "${output}" -nt "${yaml}" ]; then
-    continue
-  fi
 
   echo "Validating ${yaml}"
   linkml-validate --schema "${schema}" "${yaml}"

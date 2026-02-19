@@ -15,6 +15,7 @@ import yaml
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments for metadata merge inputs and output path."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--samplesheet", required=True, help="Path to fetchngs samplesheet CSV")
     parser.add_argument("--metadata", required=True, help="Path to manual dataset metadata YAML")
@@ -26,7 +27,8 @@ def parse_args() -> argparse.Namespace:
 
 
 def read_yaml(path: Path) -> dict:
-    with path.open() as handle:
+    """Load metadata YAML and ensure the top-level object is a mapping."""
+    with path.open(encoding="utf-8") as handle:
         data = yaml.safe_load(handle)
     if not isinstance(data, dict):
         raise ValueError(f"Metadata YAML must be a mapping: {path}")
@@ -34,28 +36,15 @@ def read_yaml(path: Path) -> dict:
 
 
 def extract_run_name_map(metadata: dict) -> dict[str, str]:
+    """Map raw-data accession IDs to curated sample names from metadata."""
     return {
         str(item["accession"]).strip(): str(item["sample_name"]).strip()
         for item in metadata["raw_data"]["run_accessions"]
     }
 
 
-def resolve_name_for_row(row: dict, run_name_map: dict[str, str]) -> str:
-    lookup_keys = (
-        (row.get("run_accession") or "").strip(),
-        (row.get("sample_alias") or "").strip(),
-        (row.get("sample_accession") or "").strip(),
-        (row.get("experiment_accession") or "").strip(),
-        (row.get("study_accession") or "").strip(),
-        (row.get("study_alias") or "").strip(),
-    )
-    for key in lookup_keys:
-        if key and key in run_name_map:
-            return run_name_map[key]
-    return ""
-
-
 def normalize_method(method: str) -> str:
+    """Normalize method labels to SHAPE or DMS based on substring matching."""
     value = method.strip().upper()
     if "SHAPE" in value:
         return "SHAPE"
@@ -65,12 +54,13 @@ def normalize_method(method: str) -> str:
 
 
 def main() -> int:
+    """Merge fetchngs samplesheet rows with dataset metadata and write output CSV."""
     args = parse_args()
     samplesheet_path = Path(args.samplesheet)
     metadata_path = Path(args.metadata)
     out_path: Path | None = Path(args.out) if args.out else None
 
-    with samplesheet_path.open(newline="") as handle:
+    with samplesheet_path.open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     if not rows:
         raise ValueError(f"Empty samplesheet: {samplesheet_path}")
@@ -89,7 +79,7 @@ def main() -> int:
     missing_given_name = 0
     for row in rows:
         run_accession = (row.get("run_accession") or "").strip()
-        given_name = resolve_name_for_row(row, run_name_map)
+        given_name = run_name_map.get(run_accession, "")
         if not given_name:
             missing_given_name += 1
             continue
@@ -121,7 +111,7 @@ def main() -> int:
         "principle",
         "organism",
     ]
-    with out_path.open("w", newline="") as handle:
+    with out_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(out_rows)

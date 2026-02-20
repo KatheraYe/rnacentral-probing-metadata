@@ -3,6 +3,7 @@ dataset_id: rnastruct00002
 organism:
   name: Homo sapiens
   cell_lines: [K562, Primary fibroblasts]
+  genome_build: hg38
 
 data_type:
   method: DMS-seq
@@ -11,9 +12,14 @@ data_type:
     name: DMS
     concentration: 200-300 mM
   principle: RT-stop
+  reverse_transcriptase: superscript III
+  pH: 7.4
   context: [in_vivo, in_vitro]
   conditions: [untreated, treated, denatured]
   replicates_per_condition: 1
+  adapter_3p: null  # not known
+  adapter_5p: null  # not known
+  umi_pattern: null  
 
 publication:
   doi: 10.1038/nature12894

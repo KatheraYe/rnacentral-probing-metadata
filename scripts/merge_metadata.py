@@ -2,7 +2,7 @@
 """Build a pipeline samplesheet from fetchngs CSV + dataset YAML.
 
 Output format:
-sample,sample_id,fastq_1,fastq_2,library_layout,method,principle,organism
+sample,sample_id,fastq_1,fastq_2,method,principle,genome_build,adapter_3p,adapter_5p,umi_pattern
 """
 
 from __future__ import annotations
@@ -68,7 +68,8 @@ def main() -> int:
     metadata = read_yaml(metadata_path)
     run_name_map = extract_run_name_map(metadata)
     dataset_id = metadata.get("dataset_id", "")
-    method = normalize_method(((metadata.get("data_type") or {}).get("method", "")))
+    experiment = (metadata.get("experiment") or metadata.get("data_type") or {})
+    method = normalize_method((experiment.get("method", "")))
     if out_path is None:
         if dataset_id:
             out_path = metadata_path.parent / f"{dataset_id}_samplesheet.csv"
@@ -78,7 +79,10 @@ def main() -> int:
     out_rows = []
     missing_given_name = 0
     for row in rows:
-        run_accession = (row.get("run_accession") or "").strip()
+        run_accession = (
+            (row.get("run_accession") or row.get("accession") or row.get("sample_accession") or "")
+            .strip()
+        )
         given_name = run_name_map.get(run_accession, "")
         if not given_name:
             missing_given_name += 1
@@ -90,10 +94,12 @@ def main() -> int:
                 "sample_id": run_accession,
                 "fastq_1": row.get("fastq_1", ""),
                 "fastq_2": row.get("fastq_2", ""),
-                "library_layout": row.get("library_layout", ""),
                 "method": method,
-                "principle": (metadata.get("data_type") or {}).get("principle", ""),
-                "organism": (metadata.get("organism") or {}).get("name", ""),
+                "principle": experiment.get("principle", ""),
+                "genome_build": (metadata.get("organism") or {}).get("genome_build", ""),
+                "adapter_3p": experiment.get("adapter_3p", ""),
+                "adapter_5p": experiment.get("adapter_5p", ""),
+                "umi_pattern": experiment.get("umi_pattern", ""),
             }
         )
 
@@ -106,10 +112,12 @@ def main() -> int:
         "sample_id",
         "fastq_1",
         "fastq_2",
-        "library_layout",
         "method",
         "principle",
-        "organism",
+        "genome_build",
+        "adapter_3p",
+        "adapter_5p",
+        "umi_pattern",
     ]
     with out_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)

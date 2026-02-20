@@ -18,9 +18,10 @@ classes:
       organism:
         required: true
         range: Organism
+      experiment:
+        range: Experiment
       data_type:
-        required: true
-        range: DataType
+        range: Experiment
       publication:
         required: true
         range: Publication
@@ -36,8 +37,11 @@ classes:
         pattern: "^[A-Z][a-z]+( [a-z][a-z-]+)+$"
       cell_lines:
         multivalued: true
+      genome_build:
+        required: true
+        range: string
 
-  DataType:
+  Experiment:
     attributes:
       method:
         required: true
@@ -48,19 +52,27 @@ classes:
         # Ontology for Biomedical Investigations term, e.g. OBI:0001026
         pattern: "^OBI:\\d{7}$"
       chemical:
-        required: true
         range: Chemical
       context:
-        required: true
         range: ContextEnum
         multivalued: true
       principle:
         required: true
         range: PrincipleEnum
+      reverse_transcriptase:
+        range: string
+      pH:
+        range: float
       conditions:
         multivalued: true
       replicates_per_condition:
         range: integer
+      adapter_3p:
+        range: string
+      adapter_5p:
+        range: string
+      umi_pattern:
+        range: string
 
   Chemical:
     attributes:

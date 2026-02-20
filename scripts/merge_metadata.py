@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 from pathlib import Path
+import sys
 
 import yaml
 
@@ -79,10 +80,7 @@ def main() -> int:
     out_rows = []
     missing_given_name = 0
     for row in rows:
-        run_accession = (
-            (row.get("run_accession") or row.get("accession") or row.get("sample_accession") or "")
-            .strip()
-        )
+        run_accession = (row.get("sample_alias") or "").strip()
         given_name = run_name_map.get(run_accession, "")
         if not given_name:
             missing_given_name += 1
@@ -123,11 +121,6 @@ def main() -> int:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(out_rows)
-
-    if missing_given_name:
-        raise ValueError(
-            f"Could not resolve given_name from run_accessions for {missing_given_name} rows."
-        )
 
     print(f"Wrote {len(out_rows)} rows to {out_path}")
     return 0

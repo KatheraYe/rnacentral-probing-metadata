@@ -12,12 +12,11 @@ To reliably track sample metadata, include the individual `run_accession` for ea
 
 ## Metadata schema checks
 
-The validator (`linkml-validate` against `schema/rnastruct.schema.yaml`) makes sure the minimim requiered fields for running the pipeline end-to-end are present. 
-The requiered fields are: 
+The validator (`linkml-validate` against `schema/rnastruct.schema.yaml`) makes sure the minimum required fields for running the pipeline end-to-end are present. 
+The required fields are: 
 - dataset_id, which has to follow the `rnastruct00001.yaml` naming convention and must be unique (ideally +1 of the last one present in this repo).
-- organims name (e.g. Homo sapiens) and genome build (e.g. hg38)
+- organism name (e.g. Homo sapiens) and genome build (e.g. hg38)
 - publication (doi)
 - raw_data: repository (e.g. GEO), accession (global accession for that dataset) and run_accession (this has to have the individual sample accession, a sample_name, which is custom but should be descriptive, cell_line, condition (`untreated, treated or denatured`) and replicate).
 
 All other fields are optional and if not known can just be null.
-

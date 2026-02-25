@@ -16,6 +16,8 @@ def _load_module():
 
 
 merge_metadata = _load_module()
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SHAPE_YAML = REPO_ROOT / "SHAPE" / "rnastruct00001.yaml"
 
 
 def test_extract_run_metadata_map_includes_sample_fields():
@@ -47,41 +49,14 @@ def test_extract_run_metadata_map_includes_sample_fields():
 
 def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
     samplesheet_path = tmp_path / "fetchngs.csv"
-    metadata_path = tmp_path / "metadata.yaml"
     output_path = tmp_path / "merged.csv"
 
     samplesheet_path.write_text(
         (
             "sample_alias,fastq_1,fastq_2\n"
-            "GSM1,s1_R1.fastq.gz,s1_R2.fastq.gz\n"
-            "GSM2,s2_R1.fastq.gz,s2_R2.fastq.gz\n"
+            "GSM4333255,s1_R1.fastq.gz,s1_R2.fastq.gz\n"
+            "GSM4333259,s2_R1.fastq.gz,s2_R2.fastq.gz\n"
             "GSMX,sx_R1.fastq.gz,sx_R2.fastq.gz\n"
-        ),
-        encoding="utf-8",
-    )
-    metadata_path.write_text(
-        (
-            "dataset_id: rnastruct99999\n"
-            "organism:\n"
-            "  name: Homo sapiens\n"
-            "  genome_build: hg38\n"
-            "experiment:\n"
-            "  method: icSHAPE\n"
-            "  principle: RT-stop\n"
-            "raw_data:\n"
-            "  repository: GEO\n"
-            "  accession: GSE1\n"
-            "  run_accessions:\n"
-            "    - accession: GSM1\n"
-            "      sample_name: HeLa_treated_r1\n"
-            "      cell_line: HeLa\n"
-            "      condition: treated\n"
-            "      replicate: 1\n"
-            "    - accession: GSM2\n"
-            "      sample_name: K562_untreated_r1\n"
-            "      cell_line: K562\n"
-            "      condition: untreated\n"
-            "      replicate: 1\n"
         ),
         encoding="utf-8",
     )
@@ -93,7 +68,7 @@ def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
             "--samplesheet",
             str(samplesheet_path),
             "--metadata",
-            str(metadata_path),
+            str(SHAPE_YAML),
             "--out",
             str(output_path),
         ],
@@ -112,9 +87,9 @@ def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
         rows = list(csv.DictReader(handle))
 
     assert len(rows) == 2
-    assert rows[0]["sample"] == "HeLa_treated_r1"
-    assert rows[0]["cell_line"] == "HeLa"
-    assert rows[0]["condition"] == "treated"
+    assert rows[0]["sample"] == "HEK293T_untreated_r1"
+    assert rows[0]["cell_line"] == "HEK293T"
+    assert rows[0]["condition"] == "untreated"
     assert rows[0]["replicate"] == "1"
     assert rows[1]["sample"] == "K562_untreated_r1"
     assert rows[1]["cell_line"] == "K562"

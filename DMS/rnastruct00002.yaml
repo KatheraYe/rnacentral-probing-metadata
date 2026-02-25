@@ -2,7 +2,6 @@ dataset_id: rnastruct00002
 
 organism:
   name: Homo sapiens
-  cell_lines: [K562, Primary fibroblasts]
   genome_build: hg38
 
 data_type:
@@ -15,11 +14,9 @@ data_type:
   reverse_transcriptase: superscript III
   pH: 7.4
   context: [in_vivo, in_vitro]
-  conditions: [untreated, treated, denatured]
-  replicates_per_condition: 1
   adapter_3p: null  # not known
   adapter_5p: null  # not known
-  umi_pattern: null  
+  umi_pattern: null  # not used
 
 publication:
   doi: 10.1038/nature12894
@@ -31,16 +28,37 @@ raw_data:
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45803
   run_accessions:
     - accession: GSM1297493
-      sample_name: K562_treated_vivo_200mM
+      sample_name: K562_treated_vivo_200mM_r1
+      cell_line: K562
+      condition: treated
+      replicate: 1
     - accession: GSM1297494
-      sample_name: K562_treated_vivo_300mM
+      sample_name: K562_treated_vivo_300mM_r1 # Made sure name differentiates from the previous sample
+      cell_line: K562
+      condition: treated
+      replicate: 1
     - accession: GSM1297495
-      sample_name: K562_denatured_vitro
+      sample_name: K562_denatured_vitro_r1
+      cell_line: K562
+      condition: denatured
+      replicate: 1
     - accession: GSM1297496
-      sample_name: K562_untreated_vitro
+      sample_name: K562_untreated_vitro_r1
+      cell_line: K562
+      condition: untreated
+      replicate: 1
     - accession: GSM1297506
-      sample_name: Fibroblast_treated_vivo_200mM
+      sample_name: Fibroblast_treated_vivo_200mM_r1
+      cell_line: Primary fibroblasts
+      condition: treated
+      replicate: 1
     - accession: GSM1297507
-      sample_name: Fibroblast_untreated_vitro
+      sample_name: Fibroblast_untreated_vitro_r1
+      cell_line: Primary fibroblasts
+      condition: untreated
+      replicate: 1
     - accession: GSM1297508
-      sample_name: Fibroblast_denatured_vitro
+      sample_name: Fibroblast_denatured_vitro_r1
+      cell_line: Primary fibroblasts
+      condition: denatured
+      replicate: 1

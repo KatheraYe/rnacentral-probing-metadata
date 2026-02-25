@@ -33,10 +33,6 @@ classes:
     attributes:
       name:
         required: true
-        # Basic scientific-name shape (capitalized genus + species epithet).
-        pattern: "^[A-Z][a-z]+( [a-z][a-z-]+)+$"
-      cell_lines:
-        multivalued: true
       genome_build:
         required: true
         range: string
@@ -48,9 +44,7 @@ classes:
         # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
         pattern: "(?i)^.*(SHAPE|DMS).*$"
       OBI:
-        required: true
-        # Ontology for Biomedical Investigations term, e.g. OBI:0001026
-        pattern: "^OBI:\\d{7}$"
+        range: string
       chemical:
         range: Chemical
       context:
@@ -63,23 +57,12 @@ classes:
         range: string
       pH:
         range: float
-      conditions:
-        multivalued: true
-      replicates_per_condition:
-        range: integer
       adapter_3p:
         range: string
       adapter_5p:
         range: string
       umi_pattern:
         range: string
-
-  Chemical:
-    attributes:
-      name:
-        required: true
-      concentration:
-        required: true
 
   Publication:
     attributes:
@@ -116,6 +99,15 @@ classes:
       sample_name:
         required: true
         range: string
+      cell_line:
+        required: true
+        range: string
+      condition:
+        required: true
+        range: string
+      replicate:
+        required: true
+        range: integer
 
 enums:
   PrincipleEnum:

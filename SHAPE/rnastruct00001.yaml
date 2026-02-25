@@ -2,7 +2,6 @@ dataset_id: rnastruct00001
 
 organism:
   name: Homo sapiens
-  cell_lines: [HEK293T, K562, HeLa, HepG2, H9]
   genome_build: hg38
 
 experiment:
@@ -12,11 +11,9 @@ experiment:
     name: NAI-N3
     concentration: 100 mM
   principle: RT-stop
-  reverse_transcriptase: superScript III
+  reverse_transcriptase: superscript III
   pH: 7.5
   context: [in_vivo]
-  conditions: [untreated, treated]
-  replicates_per_condition: 1
   adapter_3p: AGATCGGAAGAGCACACGTCT
   adapter_5p: null  # varies by sample; set when known
   umi_pattern: DDDNNNNNNNNNN  # D=A/G/T, N=A/C/G/T
@@ -33,22 +30,52 @@ raw_data:
   # The sample name should be biologically meaningful and should distinguish differences between the samples in the dataset.
   run_accessions:
     - accession: GSM4333255
-      sample_name: HEK293T_untreated
+      sample_name: HEK293T_untreated_r1
+      cell_line: HEK293T
+      condition: untreated
+      replicate: 1
     - accession: GSM4333256
-      sample_name: HEK293T_treated
+      sample_name: HEK293T_treated_r1
+      cell_line: HEK293T
+      condition: treated
+      replicate: 1
     - accession: GSM4333257
-      sample_name: HeLa_untreated
+      sample_name: HeLa_untreated_r1
+      cell_line: HeLa
+      condition: untreated
+      replicate: 1
     - accession: GSM4333258
-      sample_name: HeLa_treated
+      sample_name: HeLa_treated_r1
+      cell_line: HeLa
+      condition: treated
+      replicate: 1
     - accession: GSM4333259
-      sample_name: K562_untreated
+      sample_name: K562_untreated_r1
+      cell_line: K562
+      condition: untreated
+      replicate: 1
     - accession: GSM4333260
-      sample_name: K562_treated
+      sample_name: K562_treated_r1
+      cell_line: K562
+      condition: treated
+      replicate: 1
     - accession: GSM4333261
-      sample_name: HepG2_untreated
+      sample_name: HepG2_untreated_r1
+      cell_line: HepG2
+      condition: untreated
+      replicate: 1
     - accession: GSM4333262
-      sample_name: HepG2_treated
+      sample_name: HepG2_treated_r1
+      cell_line: HepG2
+      condition: treated
+      replicate: 1
     - accession: GSM4333263
-      sample_name: H9_untreated
+      sample_name: H9_untreated_r1
+      cell_line: H9
+      condition: untreated
+      replicate: 1
     - accession: GSM4333264
-      sample_name: H9_treated
+      sample_name: H9_treated_r1
+      cell_line: H9
+      condition: treated
+      replicate: 1

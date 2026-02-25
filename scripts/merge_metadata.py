@@ -2,7 +2,7 @@
 """Build a pipeline samplesheet from fetchngs CSV + dataset YAML.
 
 Output format:
-sample,sample_id,fastq_1,fastq_2,method,principle,genome_build,adapter_3p,adapter_5p,umi_pattern
+sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,genome_build,adapter_3p,adapter_5p,umi_pattern
 """
 
 from __future__ import annotations
@@ -10,7 +10,6 @@ from __future__ import annotations
 import argparse
 import csv
 from pathlib import Path
-import sys
 
 import yaml
 
@@ -36,10 +35,15 @@ def read_yaml(path: Path) -> dict:
     return data
 
 
-def extract_run_name_map(metadata: dict) -> dict[str, str]:
-    """Map raw-data accession IDs to curated sample names from metadata."""
+def extract_run_metadata_map(metadata: dict) -> dict[str, dict[str, str]]:
+    """Map raw-data accession IDs to per-sample metadata from manual YAML."""
     return {
-        str(item["accession"]).strip(): str(item["sample_name"]).strip()
+        str(item["accession"]).strip(): {
+            "sample_name": str(item["sample_name"]).strip(),
+            "cell_line": str(item.get("cell_line", "")).strip(),
+            "condition": str(item.get("condition", "")).strip(),
+            "replicate": str(item.get("replicate", "")).strip(),
+        }
         for item in metadata["raw_data"]["run_accessions"]
     }
 
@@ -67,7 +71,7 @@ def main() -> int:
         raise ValueError(f"Empty samplesheet: {samplesheet_path}")
 
     metadata = read_yaml(metadata_path)
-    run_name_map = extract_run_name_map(metadata)
+    run_metadata_map = extract_run_metadata_map(metadata)
     dataset_id = metadata.get("dataset_id", "")
     experiment = (metadata.get("experiment") or metadata.get("data_type") or {})
     method = normalize_method((experiment.get("method", "")))
@@ -81,15 +85,18 @@ def main() -> int:
     missing_given_name = 0
     for row in rows:
         run_accession = (row.get("sample_alias") or "").strip()
-        given_name = run_name_map.get(run_accession, "")
-        if not given_name:
+        run_metadata = run_metadata_map.get(run_accession)
+        if not run_metadata:
             missing_given_name += 1
             continue
 
         out_rows.append(
             {
-                "sample": given_name,
+                "sample": run_metadata["sample_name"],
                 "sample_id": run_accession,
+                "cell_line": run_metadata["cell_line"],
+                "condition": run_metadata["condition"],
+                "replicate": run_metadata["replicate"],
                 "fastq_1": row.get("fastq_1", ""),
                 "fastq_2": row.get("fastq_2", ""),
                 "method": method,
@@ -112,6 +119,9 @@ def main() -> int:
         "fastq_2",
         "method",
         "principle",
+        "cell_line",
+        "condition",
+        "replicate",
         "genome_build",
         "adapter_3p",
         "adapter_5p",

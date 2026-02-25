@@ -7,6 +7,7 @@ on:
       - "DMS/*.yaml"
       - "schema/*.yaml"
       - "scripts/creating_ids.py"
+      - "scripts/check_metadata_uniqueness.py"
       - "requirements.txt"
       - ".github/workflows/validate-metadata.yml"
   workflow_dispatch:
@@ -71,3 +72,9 @@ jobs:
             echo "Validating schema: ${yaml_file}"
             linkml-validate --schema schema/rnastruct.schema.yaml "${yaml_file}"
           done < changed_yamls.txt
+
+      - name: Validate uniqueness across metadata files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/check_metadata_uniqueness.py

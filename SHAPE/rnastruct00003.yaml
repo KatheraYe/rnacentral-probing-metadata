@@ -1,0 +1,41 @@
+dataset_id: rnastruct00003
+
+organism:
+  name: Mus musculus
+  genome_build: mm39
+
+experiment:
+  method: icSHAPE
+  OBI: OBI:0001026
+  chemical: 
+    name: NAI-N3
+    concentration: 100 mM
+  principle: RT-stop
+  reverse_transcriptase: superscript III
+  pH: 7.5
+  context: [in_vivo]
+  adapter_3p: AGATCGGAAGAGCACACGTCT
+  adapter_5p: null  # varies by sample; set when known
+  umi_pattern: DDDNNNNNNNNNN  # D=A/G/T, N=A/C/G/T
+
+publication:
+  doi: 10.1038/s41422-021-00476-y
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE145805
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE145805
+  # Each entry requires accession + sample_name. 
+  # The sample name should be biologically meaningful and should distinguish differences between the samples in the dataset.
+  run_accessions:
+    - accession: GSM4333265
+      sample_name: mES_untreated_r1
+      cell_line: mES
+      condition: untreated
+      replicate: 1
+    - accession: GSM4333266
+      sample_name: mES_treated_r1
+      cell_line: mES
+      condition: treated
+      replicate: 1

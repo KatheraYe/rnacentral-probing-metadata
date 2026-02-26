@@ -108,6 +108,7 @@ process MERGE_FETCHNGS_METADATA {
   script:
   """
   "${repo_dir}/scripts/merge_fetchngs_metadata.sh" "${repo_dir}" "${outdir}"
+  cp "${outdir}/samplesheet/rnastruct_samplesheets_manifest.txt" rnastruct_samplesheets_manifest.txt
   """
 }
 

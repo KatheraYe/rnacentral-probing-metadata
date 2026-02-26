@@ -4,7 +4,7 @@ organism:
   name: Homo sapiens
   genome_build: hg38
 
-data_type:
+experiment:
   method: DMS-seq
   OBI: OBI:0001015
   chemical:

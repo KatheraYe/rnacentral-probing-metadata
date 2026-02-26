@@ -73,7 +73,7 @@ def main() -> int:
     metadata = read_yaml(metadata_path)
     run_metadata_map = extract_run_metadata_map(metadata)
     dataset_id = metadata.get("dataset_id", "")
-    experiment = (metadata.get("experiment") or metadata.get("data_type") or {})
+    experiment = (metadata.get("experiment") or {})
     method = normalize_method((experiment.get("method", "")))
     if out_path is None:
         if dataset_id:

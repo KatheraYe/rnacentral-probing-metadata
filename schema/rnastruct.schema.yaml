@@ -14,7 +14,7 @@ classes:
     attributes:
       dataset_id:
         required: true
-        pattern: "^rnastruct\\d+$"
+        pattern: "^rnastruct\\d{5}$"
       organism:
         required: true
         range: Organism

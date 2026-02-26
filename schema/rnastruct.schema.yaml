@@ -104,7 +104,7 @@ classes:
         range: string
       condition:
         required: true
-        range: string
+        range: ConditionEnum
       replicate:
         required: true
         range: integer
@@ -120,6 +120,12 @@ enums:
       in_vivo:
       in_vitro:
       ex_vivo:
+
+  ConditionEnum:
+    permissible_values:
+      treated:
+      untreated:
+      denatured:
 
   RepositoryEnum:
     permissible_values:

@@ -2,7 +2,7 @@
 
 Metadata for structural chemical probing experiments for RNAcentral.
 
-This repository stores metadata YAML files for chemical probing datasets (for example in `SHAPE/` and `DMS/`) that are validated with LinkML via GitHub Actions. Once a YAML file is accepted, the pipeline downloads FASTQ files using `nf-core/fetchngs` and creates a final `samplesheet.csv` that can be used as input for `nf-core/rnastructurome`.
+This repository stores metadata YAML files for chemical probing datasets (for example in `SHAPE/` and `DMS/`) that are validated with [LinkML](https://linkml.io) via GitHub Actions. Once a YAML file is accepted, the pipeline downloads FASTQ files using `nf-core/fetchngs` and creates a final `samplesheet.csv` that can be used as input for `nf-core/rnastructurome`.
 
 Each YAML file must follow the provided schema (see example `rnastruct00001.yaml`). If multiple organisms are used in the same dataset, create a separate YAML file per organism (for example, one for human and one for mouse).
 

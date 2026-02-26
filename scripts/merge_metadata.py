@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import sys
 from pathlib import Path
 
 import yaml
@@ -82,12 +83,12 @@ def main() -> int:
             out_path = metadata_path.parent / "merged_samplesheet.csv"
 
     out_rows = []
-    missing_given_name = 0
+    missing_given_name = []
     for row in rows:
         run_accession = (row.get("sample_alias") or "").strip()
         run_metadata = run_metadata_map.get(run_accession)
         if not run_metadata:
-            missing_given_name += 1
+            missing_given_name.append(run_accession)
             continue
 
         out_rows.append(
@@ -106,6 +107,13 @@ def main() -> int:
                 "adapter_5p": experiment.get("adapter_5p", ""),
                 "umi_pattern": experiment.get("umi_pattern", ""),
             }
+        )
+
+    if missing_given_name:
+        print(
+            f"WARNING: {len(missing_given_name)} fetchngs row(s) had no matching YAML accession "
+            f"and were skipped: {', '.join(missing_given_name)}",
+            file=sys.stderr,
         )
 
     if not out_rows:

@@ -19,8 +19,7 @@ classes:
         required: true
         range: Organism
       experiment:
-        range: Experiment
-      data_type:
+        required: true
         range: Experiment
       publication:
         required: true

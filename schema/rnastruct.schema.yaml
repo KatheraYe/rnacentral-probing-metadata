@@ -64,6 +64,14 @@ classes:
       umi_pattern:
         range: string
 
+  Chemical:
+    attributes:
+      name:
+        required: true
+        range: string
+      concentration:
+        range: string
+
   Publication:
     attributes:
       doi:

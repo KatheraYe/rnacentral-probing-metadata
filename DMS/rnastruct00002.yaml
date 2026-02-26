@@ -6,7 +6,7 @@ organism:
 
 experiment:
   method: DMS-seq
-  OBI: OBI:0001015
+  obi: OBI:0001015
   chemical:
     name: DMS
     concentration: 200-300 mM

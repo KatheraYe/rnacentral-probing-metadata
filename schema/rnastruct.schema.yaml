@@ -42,7 +42,7 @@ classes:
         required: true
         # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
         pattern: "(?i)^.*(SHAPE|DMS).*$"
-      OBI:
+      obi:
         range: string
       chemical:
         range: Chemical

@@ -10,6 +10,20 @@ For raw data download, provide an `accession` supported by `nf-core/fetchngs` (f
 
 To reliably track sample metadata, include the individual `run_accession` for each sample and a biologically meaningful sample name (for example `<cell_line>_<condition>_<replicate>`).
 
+## Installation
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) then run:
+
+```bash
+uv sync --dev
+```
+
+To run the tests:
+
+```bash
+uv run pytest
+```
+
 ## Metadata schema checks
 
 The validator (`linkml-validate` against `schema/rnastruct.schema.yaml`) makes sure the minimum required fields for running the pipeline end-to-end are present. 

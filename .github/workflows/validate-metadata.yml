@@ -6,10 +6,9 @@ on:
       - "SHAPE/*.yaml"
       - "DMS/*.yaml"
       - "schema/*.yaml"
-      - "scripts/*.py"
-      - "tests/*.py"
+      - "scripts/creating_ids.py"
+      - "scripts/check_metadata_uniqueness.py"
       - "requirements.txt"
-      - "pyproject.toml"
       - ".github/workflows/validate-metadata.yml"
   workflow_dispatch:
 

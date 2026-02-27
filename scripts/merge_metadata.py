@@ -29,8 +29,11 @@ def parse_args() -> argparse.Namespace:
 
 def read_yaml(path: Path) -> dict:
     """Load metadata YAML and ensure the top-level object is a mapping."""
-    with path.open(encoding="utf-8") as handle:
-        data = yaml.safe_load(handle)
+    try:
+        with path.open(encoding="utf-8") as handle:
+            data = yaml.safe_load(handle)
+    except yaml.YAMLError as exc:
+        raise ValueError(f"Failed to parse YAML file {path}: {exc}") from exc
     if not isinstance(data, dict):
         raise ValueError(f"Metadata YAML must be a mapping: {path}")
     return data
@@ -38,6 +41,12 @@ def read_yaml(path: Path) -> dict:
 
 def extract_run_metadata_map(metadata: dict) -> dict[str, dict[str, str]]:
     """Map raw-data accession IDs to per-sample metadata from manual YAML."""
+    raw_data = metadata.get("raw_data")
+    if not isinstance(raw_data, dict):
+        raise ValueError("Metadata YAML is missing a 'raw_data' mapping.")
+    run_accessions = raw_data.get("run_accessions")
+    if not isinstance(run_accessions, list):
+        raise ValueError("'raw_data.run_accessions' must be a list.")
     return {
         str(item["accession"]).strip(): {
             "sample_name": str(item["sample_name"]).strip(),
@@ -45,7 +54,7 @@ def extract_run_metadata_map(metadata: dict) -> dict[str, dict[str, str]]:
             "condition": str(item.get("condition", "")).strip(),
             "replicate": str(item.get("replicate", "")).strip(),
         }
-        for item in metadata["raw_data"]["run_accessions"]
+        for item in run_accessions
     }
 
 
@@ -83,12 +92,12 @@ def main() -> int:
             out_path = metadata_path.parent / "merged_samplesheet.csv"
 
     out_rows = []
-    missing_given_name = []
+    missing_run_accessions = []
     for row in rows:
         run_accession = (row.get("sample_alias") or "").strip()
         run_metadata = run_metadata_map.get(run_accession)
         if not run_metadata:
-            missing_given_name.append(run_accession)
+            missing_run_accessions.append(run_accession)
             continue
 
         out_rows.append(
@@ -109,15 +118,15 @@ def main() -> int:
             }
         )
 
-    if missing_given_name:
+    if missing_run_accessions:
         print(
-            f"WARNING: {len(missing_given_name)} fetchngs row(s) had no matching YAML accession "
-            f"and were skipped: {', '.join(missing_given_name)}",
+            f"WARNING: {len(missing_run_accessions)} fetchngs row(s) had no matching YAML accession "
+            f"and were skipped: {', '.join(missing_run_accessions)}",
             file=sys.stderr,
         )
 
     if not out_rows:
-        raise ValueError("No rows produced. Check run_accessions accessions and fetchngs IDs.")
+        raise ValueError("No rows produced. Check run_accessions and fetchngs IDs.")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = [

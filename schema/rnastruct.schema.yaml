@@ -14,13 +14,12 @@ classes:
     attributes:
       dataset_id:
         required: true
-        pattern: "^rnastruct\\d+$"
+        pattern: "^rnastruct\\d{5}$"
       organism:
         required: true
         range: Organism
       experiment:
-        range: Experiment
-      data_type:
+        required: true
         range: Experiment
       publication:
         required: true
@@ -43,7 +42,7 @@ classes:
         required: true
         # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
         pattern: "(?i)^.*(SHAPE|DMS).*$"
-      OBI:
+      obi:
         range: string
       chemical:
         range: Chemical
@@ -62,6 +61,14 @@ classes:
       adapter_5p:
         range: string
       umi_pattern:
+        range: string
+
+  Chemical:
+    attributes:
+      name:
+        required: true
+        range: string
+      concentration:
         range: string
 
   Publication:
@@ -104,7 +111,7 @@ classes:
         range: string
       condition:
         required: true
-        range: string
+        range: ConditionEnum
       replicate:
         required: true
         range: integer
@@ -120,6 +127,12 @@ enums:
       in_vivo:
       in_vitro:
       ex_vivo:
+
+  ConditionEnum:
+    permissible_values:
+      treated:
+      untreated:
+      denatured:
 
   RepositoryEnum:
     permissible_values:

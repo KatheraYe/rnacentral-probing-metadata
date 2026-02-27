@@ -6,7 +6,7 @@ organism:
 
 experiment:
   method: icSHAPE
-  OBI: OBI:0001026
+  obi: OBI:0001026
   chemical: 
     name: NAI-N3
     concentration: 100 mM

@@ -37,9 +37,10 @@ for yaml in "${repo_dir}"/SHAPE/*.yaml "${repo_dir}"/DMS/*.yaml; do
     --out "${out_csv}"
 done
 
-find "${merged_dir}" -maxdepth 1 -type f -name '*_samplesheet.csv' | sort > rnastruct_samplesheets_manifest.txt
+manifest="${merged_dir}/rnastruct_samplesheets_manifest.txt"
+find "${merged_dir}" -maxdepth 1 -type f -name '*_samplesheet.csv' | sort > "${manifest}"
 
-if [ ! -s rnastruct_samplesheets_manifest.txt ]; then
+if [ ! -s "${manifest}" ]; then
   echo "ERROR: no merged rnastruct samplesheets were generated in ${merged_dir}" >&2
   exit 1
 fi

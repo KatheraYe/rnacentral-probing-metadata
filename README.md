@@ -2,13 +2,27 @@
 
 Metadata for structural chemical probing experiments for RNAcentral.
 
-This repository stores metadata YAML files for chemical probing datasets (for example in `SHAPE/` and `DMS/`) that are validated with LinkML via GitHub Actions. Once a YAML file is accepted, the pipeline downloads FASTQ files using `nf-core/fetchngs` and creates a final `samplesheet.csv` that can be used as input for `nf-core/rnastructurome`.
+This repository stores metadata YAML files for chemical probing datasets (for example in `SHAPE/` and `DMS/`) that are validated with [LinkML](https://linkml.io) via GitHub Actions. Once a YAML file is accepted, the pipeline downloads FASTQ files using `nf-core/fetchngs` and creates a final `samplesheet.csv` that can be used as input for `nf-core/rnastructurome`.
 
 Each YAML file must follow the provided schema (see example `rnastruct00001.yaml`). If multiple organisms are used in the same dataset, create a separate YAML file per organism (for example, one for human and one for mouse).
 
 For raw data download, provide an `accession` supported by `nf-core/fetchngs` (for example SRA, ENA, DDBJ, GEO). The full list is available here: https://nf-co.re/fetchngs/1.12.0/docs/usage
 
 To reliably track sample metadata, include the individual `run_accession` for each sample and a biologically meaningful sample name (for example `<cell_line>_<condition>_<replicate>`).
+
+## Installation
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) then run:
+
+```bash
+uv sync --dev
+```
+
+To run the tests:
+
+```bash
+uv run pytest
+```
 
 ## Metadata schema checks
 

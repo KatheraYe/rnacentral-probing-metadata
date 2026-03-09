@@ -1,8 +1,6 @@
 dataset_id: rnastruct00001
 
-organism:
-  name: Homo sapiens
-  genome_build: hg38
+organism: Homo sapiens
 
 experiment:
   method: icSHAPE

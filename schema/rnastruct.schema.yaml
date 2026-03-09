@@ -17,7 +17,9 @@ classes:
         pattern: "^rnastruct\\d{5}$"
       organism:
         required: true
-        range: Organism
+        range: string
+        # Binomial/trinomial Latin names, e.g. Homo sapiens or Mus musculus castaneus.
+        pattern: "^[A-Z][a-z]+ [a-z]+(?: [a-z]+)?$"
       experiment:
         required: true
         range: Experiment
@@ -27,14 +29,6 @@ classes:
       raw_data:
         required: true
         range: RawData
-
-  Organism:
-    attributes:
-      name:
-        required: true
-      genome_build:
-        required: true
-        range: string
 
   Experiment:
     attributes:

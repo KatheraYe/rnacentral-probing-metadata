@@ -29,7 +29,7 @@ uv run pytest
 The validator (`linkml-validate` against `schema/rnastruct.schema.yaml`) makes sure the minimum required fields for running the pipeline end-to-end are present. 
 The required fields are: 
 - dataset_id, which has to follow the `rnastruct00001.yaml` naming convention and must be unique (ideally +1 of the last one present in this repo).
-- organism name (e.g. Homo sapiens) and genome build (e.g. hg38)
+- organism in Latin name format (e.g. Homo sapiens)
 - publication (doi)
 - raw_data: repository (e.g. GEO), accession (global accession for that dataset) and run_accession (this has to have the individual sample accession, a sample_name, which is custom but should be descriptive, cell_line, condition (`untreated, treated or denatured`) and replicate).
 

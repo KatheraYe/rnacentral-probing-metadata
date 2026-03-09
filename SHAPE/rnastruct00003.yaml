@@ -1,8 +1,6 @@
 dataset_id: rnastruct00003
 
-organism:
-  name: Mus musculus
-  genome_build: mm39
+organism: Mus musculus
 
 experiment:
   method: icSHAPE

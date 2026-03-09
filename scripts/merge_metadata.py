@@ -2,7 +2,7 @@
 """Build a pipeline samplesheet from fetchngs CSV + dataset YAML.
 
 Output format:
-sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,genome_build,adapter_3p,adapter_5p,umi_pattern
+sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,organism,adapter_3p,adapter_5p,umi_pattern
 """
 
 from __future__ import annotations
@@ -68,6 +68,16 @@ def normalize_method(method: str) -> str:
     raise ValueError(f"Unsupported method '{method}'. Expected a SHAPE- or DMS-based method.")
 
 
+def extract_organism_name(metadata: dict) -> str:
+    """Return organism name from either current string or legacy mapping metadata."""
+    organism = metadata.get("organism")
+    if isinstance(organism, str):
+        return organism.strip()
+    if isinstance(organism, dict):
+        return str(organism.get("name", "")).strip()
+    return ""
+
+
 def main() -> int:
     """Merge fetchngs samplesheet rows with dataset metadata and write output CSV."""
     args = parse_args()
@@ -84,6 +94,7 @@ def main() -> int:
     run_metadata_map = extract_run_metadata_map(metadata)
     dataset_id = metadata.get("dataset_id", "")
     experiment = (metadata.get("experiment") or {})
+    organism = extract_organism_name(metadata)
     method = normalize_method((experiment.get("method", "")))
     if out_path is None:
         if dataset_id:
@@ -111,7 +122,7 @@ def main() -> int:
                 "fastq_2": row.get("fastq_2", ""),
                 "method": method,
                 "principle": experiment.get("principle", ""),
-                "genome_build": (metadata.get("organism") or {}).get("genome_build", ""),
+                "organism": organism,
                 "adapter_3p": experiment.get("adapter_3p", ""),
                 "adapter_5p": experiment.get("adapter_5p", ""),
                 "umi_pattern": experiment.get("umi_pattern", ""),
@@ -139,7 +150,7 @@ def main() -> int:
         "cell_line",
         "condition",
         "replicate",
-        "genome_build",
+        "organism",
         "adapter_3p",
         "adapter_5p",
         "umi_pattern",

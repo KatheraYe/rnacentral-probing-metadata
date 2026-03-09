@@ -31,9 +31,7 @@ def _write_yaml(path: Path, dataset_id: str, run_accessions: list[str]) -> None:
     path.write_text(
         (
             f"dataset_id: {dataset_id}\n"
-            "organism:\n"
-            "  name: Homo sapiens\n"
-            "  genome_build: hg38\n"
+            "organism: Homo sapiens\n"
             "publication:\n"
             "  doi: 10.1000/test\n"
             "raw_data:\n"

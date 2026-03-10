@@ -120,7 +120,7 @@ enums:
     permissible_values:
       in_vivo:
       in_vitro:
-      ex_vivo:
+      denatured:
 
   ConditionEnum:
     permissible_values:

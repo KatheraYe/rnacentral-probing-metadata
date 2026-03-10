@@ -34,3 +34,4 @@ The required fields are:
 - raw_data: repository (e.g. GEO), accession (global accession for that dataset) and run_accession (this has to have the individual sample accession, a sample_name, which is custom but should be descriptive, cell_line, condition (`untreated, treated or denatured`) and replicate).
 
 All other fields are optional and if not known can just be null.
+The optional field experiment.context, when provided, must use the schema enum values: `in_vivo`, `in_vitro`, or `denatured`.

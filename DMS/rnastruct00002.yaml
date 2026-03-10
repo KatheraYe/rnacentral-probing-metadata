@@ -11,7 +11,7 @@ experiment:
   principle: RT-stop
   reverse_transcriptase: superscript III
   pH: 7.4
-  context: [in_vivo, in_vitro]
+  context: [in_vivo, in_vitro, denatured]
   adapter_3p: null  # not known
   adapter_5p: null  # not known
   umi_pattern: null  # not used
@@ -36,14 +36,14 @@ raw_data:
       condition: treated
       replicate: 1
     - accession: GSM1297495
-      sample_name: K562_denatured_vitro_r1
+      sample_name: K562_treated_denatured_r1  # read paper carefully and found all samples are in fact treated
       cell_line: K562
-      condition: denatured
+      condition: treated
       replicate: 1
     - accession: GSM1297496
-      sample_name: K562_untreated_vitro_r1
+      sample_name: K562_treated_vitro_r1
       cell_line: K562
-      condition: untreated
+      condition: treated
       replicate: 1
     - accession: GSM1297506
       sample_name: Fibroblast_treated_vivo_200mM_r1
@@ -51,12 +51,12 @@ raw_data:
       condition: treated
       replicate: 1
     - accession: GSM1297507
-      sample_name: Fibroblast_untreated_vitro_r1
+      sample_name: Fibroblast_treated_vitro_r1
       cell_line: Primary fibroblasts
-      condition: untreated
+      condition: treated
       replicate: 1
     - accession: GSM1297508
-      sample_name: Fibroblast_denatured_vitro_r1
+      sample_name: Fibroblast_treated_denatured_r1
       cell_line: Primary fibroblasts
-      condition: denatured
+      condition: treated
       replicate: 1

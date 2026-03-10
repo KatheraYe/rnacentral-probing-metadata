@@ -36,7 +36,7 @@ EXPECTED_IDS = [
 def test_extract_ids_reads_raw_data_run_accessions_only():
     with SHAPE_YAML.open(encoding="utf-8") as handle:
         data = yaml.safe_load(handle)
-    assert creating_ids.extract_ids(data) == (EXPECTED_IDS, "run_accessions")
+    assert creating_ids.extract_ids(data) == EXPECTED_IDS
 
 
 def test_main_writes_csv_and_returns_zero(tmp_path, monkeypatch, capsys):
@@ -51,4 +51,4 @@ def test_main_writes_csv_and_returns_zero(tmp_path, monkeypatch, capsys):
 
     assert rc == 0
     assert csv_path.read_text(encoding="utf-8") == "\n".join(EXPECTED_IDS) + "\n"
-    assert "Wrote 10 IDs from run_accessions." in capsys.readouterr().err
+    assert f"Wrote 10 IDs to {csv_path}." in capsys.readouterr().err

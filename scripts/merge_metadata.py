@@ -2,13 +2,14 @@
 """Build a pipeline samplesheet from fetchngs CSV + dataset YAML.
 
 Output format:
-sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,genome_build,adapter_3p,adapter_5p,umi_pattern
+sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,organism,adapter_3p,adapter_5p,umi_pattern
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import sys
 from pathlib import Path
 
 import yaml
@@ -28,8 +29,11 @@ def parse_args() -> argparse.Namespace:
 
 def read_yaml(path: Path) -> dict:
     """Load metadata YAML and ensure the top-level object is a mapping."""
-    with path.open(encoding="utf-8") as handle:
-        data = yaml.safe_load(handle)
+    try:
+        with path.open(encoding="utf-8") as handle:
+            data = yaml.safe_load(handle)
+    except yaml.YAMLError as exc:
+        raise ValueError(f"Failed to parse YAML file {path}: {exc}") from exc
     if not isinstance(data, dict):
         raise ValueError(f"Metadata YAML must be a mapping: {path}")
     return data
@@ -37,6 +41,12 @@ def read_yaml(path: Path) -> dict:
 
 def extract_run_metadata_map(metadata: dict) -> dict[str, dict[str, str]]:
     """Map raw-data accession IDs to per-sample metadata from manual YAML."""
+    raw_data = metadata.get("raw_data")
+    if not isinstance(raw_data, dict):
+        raise ValueError("Metadata YAML is missing a 'raw_data' mapping.")
+    run_accessions = raw_data.get("run_accessions")
+    if not isinstance(run_accessions, list):
+        raise ValueError("'raw_data.run_accessions' must be a list.")
     return {
         str(item["accession"]).strip(): {
             "sample_name": str(item["sample_name"]).strip(),
@@ -44,7 +54,7 @@ def extract_run_metadata_map(metadata: dict) -> dict[str, dict[str, str]]:
             "condition": str(item.get("condition", "")).strip(),
             "replicate": str(item.get("replicate", "")).strip(),
         }
-        for item in metadata["raw_data"]["run_accessions"]
+        for item in run_accessions
     }
 
 
@@ -56,6 +66,16 @@ def normalize_method(method: str) -> str:
     if "DMS" in value:
         return "DMS"
     raise ValueError(f"Unsupported method '{method}'. Expected a SHAPE- or DMS-based method.")
+
+
+def extract_organism_name(metadata: dict) -> str:
+    """Return organism name from either current string or legacy mapping metadata."""
+    organism = metadata.get("organism")
+    if isinstance(organism, str):
+        return organism.strip()
+    if isinstance(organism, dict):
+        return str(organism.get("name", "")).strip()
+    return ""
 
 
 def main() -> int:
@@ -73,7 +93,8 @@ def main() -> int:
     metadata = read_yaml(metadata_path)
     run_metadata_map = extract_run_metadata_map(metadata)
     dataset_id = metadata.get("dataset_id", "")
-    experiment = (metadata.get("experiment") or metadata.get("data_type") or {})
+    experiment = (metadata.get("experiment") or {})
+    organism = extract_organism_name(metadata)
     method = normalize_method((experiment.get("method", "")))
     if out_path is None:
         if dataset_id:
@@ -82,12 +103,12 @@ def main() -> int:
             out_path = metadata_path.parent / "merged_samplesheet.csv"
 
     out_rows = []
-    missing_given_name = 0
+    missing_run_accessions = []
     for row in rows:
         run_accession = (row.get("sample_alias") or "").strip()
         run_metadata = run_metadata_map.get(run_accession)
         if not run_metadata:
-            missing_given_name += 1
+            missing_run_accessions.append(run_accession)
             continue
 
         out_rows.append(
@@ -101,15 +122,22 @@ def main() -> int:
                 "fastq_2": row.get("fastq_2", ""),
                 "method": method,
                 "principle": experiment.get("principle", ""),
-                "genome_build": (metadata.get("organism") or {}).get("genome_build", ""),
+                "organism": organism,
                 "adapter_3p": experiment.get("adapter_3p", ""),
                 "adapter_5p": experiment.get("adapter_5p", ""),
                 "umi_pattern": experiment.get("umi_pattern", ""),
             }
         )
 
+    if missing_run_accessions:
+        print(
+            f"WARNING: {len(missing_run_accessions)} fetchngs row(s) had no matching YAML accession "
+            f"and were skipped: {', '.join(missing_run_accessions)}",
+            file=sys.stderr,
+        )
+
     if not out_rows:
-        raise ValueError("No rows produced. Check run_accessions accessions and fetchngs IDs.")
+        raise ValueError("No rows produced. Check run_accessions and fetchngs IDs.")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = [
@@ -122,7 +150,7 @@ def main() -> int:
         "cell_line",
         "condition",
         "replicate",
-        "genome_build",
+        "organism",
         "adapter_3p",
         "adapter_5p",
         "umi_pattern",

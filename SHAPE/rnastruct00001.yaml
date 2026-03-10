@@ -1,12 +1,10 @@
 dataset_id: rnastruct00001
 
-organism:
-  name: Homo sapiens
-  genome_build: hg38
+organism: Homo sapiens
 
 experiment:
   method: icSHAPE
-  OBI: OBI:0001026
+  obi: OBI:0001026
   chemical: 
     name: NAI-N3
     concentration: 100 mM

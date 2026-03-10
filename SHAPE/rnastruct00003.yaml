@@ -1,12 +1,10 @@
 dataset_id: rnastruct00003
 
-organism:
-  name: Mus musculus
-  genome_build: mm39
+organism: Mus musculus
 
 experiment:
   method: icSHAPE
-  OBI: OBI:0001026
+  obi: OBI:0001026
   chemical: 
     name: NAI-N3
     concentration: 100 mM

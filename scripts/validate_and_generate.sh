@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-schema="schema/rnastruct.schema.yaml"
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "${repo_dir}"
+
+schema="schema/rnastruct.schema.yaml"
 # Allow callers (e.g. Slurm wrapper) to override where ID CSVs are written.
 output_dir="${IDS_DIR:-${repo_dir}/ids}"
 

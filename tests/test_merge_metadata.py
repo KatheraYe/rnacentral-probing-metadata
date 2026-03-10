@@ -80,7 +80,7 @@ def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
     header = output_path.read_text(encoding="utf-8").splitlines()[0]
     assert header == (
         "sample,sample_id,fastq_1,fastq_2,method,principle,"
-        "cell_line,condition,replicate,genome_build,adapter_3p,adapter_5p,umi_pattern"
+        "cell_line,condition,replicate,organism,adapter_3p,adapter_5p,umi_pattern"
     )
 
     with output_path.open(newline="", encoding="utf-8") as handle:
@@ -91,6 +91,7 @@ def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
     assert rows[0]["cell_line"] == "HEK293T"
     assert rows[0]["condition"] == "untreated"
     assert rows[0]["replicate"] == "1"
+    assert rows[0]["organism"] == "Homo sapiens"
     assert rows[1]["sample"] == "K562_untreated_r1"
     assert rows[1]["cell_line"] == "K562"
     assert rows[1]["condition"] == "untreated"

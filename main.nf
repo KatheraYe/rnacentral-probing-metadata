@@ -1,11 +1,19 @@
 nextflow.enable.dsl = 2
 
-params.repo_dir = "/hps/nobackup/agb/rnacentral/chemicalprob/rnacentral-probing-metadata"
-params.ids_dir = "/hps/nobackup/agb/rnacentral/chemicalprob/ids"
-params.outdir = "/hps/nobackup/agb/rnacentral/chemicalprob/FASTQ"
+params.repo_dir = null
+params.ids_dir = null
+params.outdir = null
 params.fetchngs_revision = "1.12.0"
 params.fetchngs_profile = "slurm"
-params.nxf_singularity_cachedir = "/hps/nobackup/agb/rnacentral/chemicalprob/.singularity_cache"
+params.nxf_singularity_cachedir = null
+
+// Fail early with clear messages if required paths are not provided.
+def requiredParams = ["repo_dir", "ids_dir", "outdir", "nxf_singularity_cachedir"]
+requiredParams.each { param ->
+    if (!params[param]) {
+        error "Missing required parameter: --${param}. Copy nextflow.config.example to nextflow.config and fill in the paths."
+    }
+}
 
 process VALIDATE_AND_GENERATE {
   tag "validate-and-generate"
@@ -100,6 +108,7 @@ process MERGE_FETCHNGS_METADATA {
   script:
   """
   "${repo_dir}/scripts/merge_fetchngs_metadata.sh" "${repo_dir}" "${outdir}"
+  cp "${outdir}/samplesheet/rnastruct_samplesheets_manifest.txt" rnastruct_samplesheets_manifest.txt
   """
 }
 

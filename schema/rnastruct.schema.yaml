@@ -14,13 +14,14 @@ classes:
     attributes:
       dataset_id:
         required: true
-        pattern: "^rnastruct\\d+$"
+        pattern: "^rnastruct\\d{5}$"
       organism:
         required: true
-        range: Organism
+        range: string
+        # Binomial/trinomial Latin names, e.g. Homo sapiens or Mus musculus castaneus.
+        pattern: "^[A-Z][a-z]+ [a-z]+(?: [a-z]+)?$"
       experiment:
-        range: Experiment
-      data_type:
+        required: true
         range: Experiment
       publication:
         required: true
@@ -29,21 +30,13 @@ classes:
         required: true
         range: RawData
 
-  Organism:
-    attributes:
-      name:
-        required: true
-      genome_build:
-        required: true
-        range: string
-
   Experiment:
     attributes:
       method:
         required: true
         # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
         pattern: "(?i)^.*(SHAPE|DMS).*$"
-      OBI:
+      obi:
         range: string
       chemical:
         range: Chemical
@@ -62,6 +55,14 @@ classes:
       adapter_5p:
         range: string
       umi_pattern:
+        range: string
+
+  Chemical:
+    attributes:
+      name:
+        required: true
+        range: string
+      concentration:
         range: string
 
   Publication:
@@ -104,7 +105,7 @@ classes:
         range: string
       condition:
         required: true
-        range: string
+        range: ConditionEnum
       replicate:
         required: true
         range: integer
@@ -119,7 +120,13 @@ enums:
     permissible_values:
       in_vivo:
       in_vitro:
-      ex_vivo:
+      denatured:
+
+  ConditionEnum:
+    permissible_values:
+      treated:
+      untreated:
+      denatured:
 
   RepositoryEnum:
     permissible_values:

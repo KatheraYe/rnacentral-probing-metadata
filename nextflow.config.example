@@ -1,0 +1,22 @@
+// Copy this file to nextflow.config and fill in the paths for your environment.
+// nextflow.config is gitignored and must be created locally before running the pipeline.
+
+params {
+    // Absolute path to the root of this repository on your system.
+    repo_dir = "/path/to/rnacentral-probing-metadata"
+
+    // Directory where per-dataset accession ID CSV files will be written.
+    ids_dir = "/path/to/ids"
+
+    // Directory where fetchngs FASTQ output will be written.
+    outdir = "/path/to/FASTQ"
+
+    // Local cache directory for Singularity images used by nf-core/fetchngs.
+    nxf_singularity_cachedir = "/path/to/.singularity_cache"
+
+    // nf-core/fetchngs version to run.
+    fetchngs_revision = "1.12.0"
+
+    // Nextflow profile to use for fetchngs (e.g. "slurm", "lsf", "local").
+    fetchngs_profile = "slurm"
+}

@@ -1,0 +1,117 @@
+dataset_id: rnastruct00004
+
+organism: Saccharomyces cerevisiae
+
+experiment:
+  method: DMS-seq
+  obi: OBI:0001015
+  chemical:
+    name: DMS
+    concentration: 300-600 mM
+  principle: RT-stop
+  reverse_transcriptase: superscript III
+  pH: 7.4
+  context: [in_vivo, in_vitro, denatured]
+  adapter_3p: null  # not known
+  adapter_5p: null  # not known
+  umi_pattern: null  # not used
+
+publication:
+  doi: 10.1038/nature12894
+  year: 2014
+
+raw_data:
+  repository: GEO
+  accession: GSE45803
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45803
+  run_accessions:
+    - accession: GSM1115749
+      sample_name: BY4741_treated_vivo_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115750
+      sample_name: BY4741_treated_vivo_r2
+      cell_line: BY4741
+      condition: treated
+      replicate: 2
+    - accession: GSM1115751
+      sample_name: BY4741_treated_vivo_r3
+      cell_line: BY4741
+      condition: treated
+      replicate: 3
+    - accession: GSM1115752
+      sample_name: BY4741_treated_vivo_r4
+      cell_line: BY4741
+      condition: treated
+      replicate: 4
+    - accession: GSM1115753
+      sample_name: BY4741_denatured_95C_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115754
+      sample_name: BY4741_denatured_95C_r2
+      cell_line: BY4741
+      condition: treated
+      replicate: 2
+    - accession: GSM1115755
+      sample_name: BY4741_denatured_95C_r3
+      cell_line: BY4741
+      condition: treated
+      replicate: 3
+    - accession: GSM1115756
+      sample_name: BY4741_treated_vitro_30C_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115757
+      sample_name: BY4741_treated_vitro_30C_r2
+      cell_line: BY4741
+      condition: treated
+      replicate: 2
+    - accession: GSM1115758
+      sample_name: BY4741_treated_vitro_30C_r3
+      cell_line: BY4741
+      condition: treated
+      replicate: 3
+    - accession: GSM1115759
+      sample_name: BY4741_treated_vitro_30C_2.5pctDMS_3min_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115760
+      sample_name: BY4741_treated_vitro_30C_2.5pctDMS_5min_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115761
+      sample_name: BY4741_treated_vitro_30C_4pctDMS_5min_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115762
+      sample_name: BY4741_treated_vitro_45C_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115763
+      sample_name: BY4741_treated_vitro_60C_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1115764
+      sample_name: BY4741_treated_vitro_75C_r1
+      cell_line: BY4741
+      condition: treated
+      replicate: 1
+    - accession: GSM1297509
+      sample_name: S288C_treated_noATP_r1
+      cell_line: S288C
+      condition: treated
+      replicate: 1
+    - accession: GSM1297510
+      sample_name: S288C_treated_10C_DMS_r1
+      cell_line: S288C
+      condition: treated
+      replicate: 1

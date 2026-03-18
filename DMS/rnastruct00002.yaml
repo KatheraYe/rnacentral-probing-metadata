@@ -5,11 +5,8 @@ organism: Homo sapiens
 experiment:
   method: DMS-seq
   obi: OBI:0001015
-  chemical:
-    name: DMS
-    concentration: 200-300 mM
+  chemical: DMS
   principle: RT-stop
-  reverse_transcriptase: superscript III
   pH: 7.4
   context: [in_vivo, in_vitro, denatured]
   adapter_3p: null  # not known

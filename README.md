@@ -10,6 +10,8 @@ For raw data download, provide an `accession` supported by `nf-core/fetchngs` (f
 
 To reliably track sample metadata, include the individual `run_accession` for each sample and a biologically meaningful sample name (for example `<cell_line>_<condition>_<replicate>`).
 
+If you provide `experiment.obi` in a YAML file, use an OBI term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi).
+
 ## Installation
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) then run:

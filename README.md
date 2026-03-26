@@ -4,13 +4,29 @@ Metadata for structural chemical probing experiments for RNAcentral.
 
 This repository stores metadata YAML files for chemical probing datasets (for example in `SHAPE/` and `DMS/`) that are validated with [LinkML](https://linkml.io) via GitHub Actions. Once a YAML file is accepted, the pipeline downloads FASTQ files using `nf-core/fetchngs` and creates a final `samplesheet.csv` that can be used as input for `nf-core/rnastructurome`.
 
-Each YAML file must follow the provided schema (see example `rnastruct00001.yaml`). If multiple organisms are used in the same dataset, create a separate YAML file per organism (for example, one for human and one for mouse).
+## Adding a new dataset YAML via pull request
 
-For raw data download, provide an `accession` supported by `nf-core/fetchngs` (for example SRA, ENA, DDBJ, GEO). The full list is available here: https://nf-co.re/fetchngs/1.12.0/docs/usage
+To add a new dataset to this repository:
 
-To reliably track sample metadata, include the individual `run_accession` for each sample and a biologically meaningful sample name (for example `<cell_line>_<condition>_<replicate>`).
+1. Create a new YAML file (see section below) in the appropriate directory (for example `SHAPE/` or `DMS/`) and populate it according to the schema requirements above.
+2. Open a pull request with that new YAML file.
+3. Wait for the GitHub Actions checks to validate the YAML.
+4. If the checks pass, someone from RNAcentral will review and merge the pull request.
+5. If the checks fail, inspect the GitHub Actions logs, fix the reported issue in the YAML, and update the pull request.
 
-If you provide `experiment.obi` in a YAML file, use an OBI term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi).
+## Creating a new YAML file
+
+1. Start from the template: use the example file (rnastruct00001.yaml) as a guide. Your YAML should follow the same structure. If your dataset includes multiple organisms, create one YAML file per organism (e.g. one for Homo sapiens, one for Mus musculus).
+
+2. Choose a dataset id that is a consecutive number from the last one in the repo (e.g. rnastruct00010). Check both DMS/ and SHAPE/ to find the latest id number.
+
+3. You must also include the organism in Latin name (e.g. Homo sapiens), the method (which can be SHAPE or DMS variants) and principal (RT-stop or MaP) of this experiement, a publication DOI, and fill out the raw_data section.
+
+4. Each sample listed under run_accessions should include a biologically meaningful and distinguishable sample_name, along with cell_line, condition (one of untreated, treated, or denatured), and replicate (just a number). The sample accession id must be supported by nf-core/fetchngs (e.g. SRA, ENA, DDBJ, GEO; [see the fetchngs documentation for the full list](https://nf-co.re/fetchngs/1.12.0/docs/usage)).
+
+5. If including an OBI id, use a valid term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi). If the experimental context is provided, it must be one of in_vivo, in_vitro, or denatured.
+
+6. All other fields are optional and can be set to null if not available.
 
 ## Installation
 
@@ -30,10 +46,14 @@ uv run pytest
 
 The validator (`linkml-validate` against `schema/rnastruct.schema.yaml`) makes sure the minimum required fields for running the pipeline end-to-end are present. 
 The required fields are: 
-- dataset_id, which has to follow the `rnastruct00001.yaml` naming convention and must be unique (ideally +1 of the last one present in this repo).
-- organism in Latin name format (e.g. Homo sapiens)
-- publication (doi)
-- raw_data: repository (e.g. GEO), accession (global accession for that dataset) and run_accession (this has to have the individual sample accession, a sample_name, which is custom but should be descriptive, cell_line, condition (`untreated, treated or denatured`) and replicate).
+- `dataset_id`, which must match the `rnastruct00001` naming convention
+- `organism` in Latin name format
+- `experiment.method`, which must contain `SHAPE` or `DMS`
+- `experiment.principle`, which must be `RT-stop` or `MaP`
+- `publication.doi`
+- `raw_data.repository`, which must be one of `SRA`, `ENA`, `GEO`, or `DDBJ`
+- `raw_data.accession`
+- `raw_data.run_accessions`, where each item must include `accession`, `sample_name`, `cell_line`, `condition`, and `replicate`
 
-All other fields are optional and if not known can just be null.
-The optional field experiment.context, when provided, must use the schema enum values: `in_vivo`, `in_vitro`, or `denatured`.
+All other fields are optional and, if not known, can be `null`.
+The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, or `denatured`.

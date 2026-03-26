@@ -8,11 +8,13 @@ This repository stores metadata YAML files for chemical probing datasets (for ex
 
 To add a new dataset to this repository:
 
-1. Create a new YAML file (see section below) in the appropriate directory (for example `SHAPE/` or `DMS/`) and populate it according to the schema requirements detailed below.
-2. Open a pull request with that new YAML file.
-3. Wait for the GitHub Actions checks to validate the YAML.
-4. If the checks pass, someone from RNAcentral will review and merge the pull request.
-5. If the checks fail, inspect the GitHub Actions logs, fix the reported issue in the YAML, and update the pull request.
+1. Clone this repository to your local machine.
+2. Create a new branch from master with a descriptive name including “Add” (e.g. Add-new-shape-dataset).
+3. Create a new YAML file (see section below) in the appropriate directory (for example `SHAPE/` or `DMS/`) and populate it according to the schema requirements.
+4. Open a pull request with that new YAML file.
+5. Wait for the GitHub Actions checks to validate the YAML.
+6. If the checks pass, someone from RNAcentral will review and merge the pull request.
+7. If the checks fail, inspect the GitHub Actions logs, fix the reported issue in the YAML, and update the pull request.
 
 ## Creating a new YAML file
 

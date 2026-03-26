@@ -1,4 +1,4 @@
-# RNAcentral probing metadata
+# RNAcentral chemical probing metadata
 
 Metadata for structural chemical probing experiments for RNAcentral.
 

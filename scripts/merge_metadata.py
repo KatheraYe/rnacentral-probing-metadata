@@ -58,14 +58,14 @@ def extract_run_metadata_map(metadata: dict) -> dict[str, dict[str, str]]:
     }
 
 
-def normalize_method(method: str) -> str:
-    """Normalize method labels to SHAPE or DMS based on substring matching."""
-    value = method.strip().upper()
-    if "SHAPE" in value:
-        return "SHAPE"
-    if "DMS" in value:
+DMS_CHEMICAL = "DMS"
+
+
+def normalize_method(chemical: str) -> str:
+    """Return 'DMS' if chemical is DMS, otherwise 'SHAPE' for any other ChemicalEnum value."""
+    if chemical.strip() == DMS_CHEMICAL:
         return "DMS"
-    raise ValueError(f"Unsupported method '{method}'. Expected a SHAPE- or DMS-based method.")
+    return "SHAPE"
 
 
 def extract_organism_name(metadata: dict) -> str:
@@ -95,7 +95,7 @@ def main() -> int:
     dataset_id = metadata.get("dataset_id", "")
     experiment = (metadata.get("experiment") or {})
     organism = extract_organism_name(metadata)
-    method = normalize_method((experiment.get("method", "")))
+    method = normalize_method(experiment.get("chemical", ""))
     if out_path is None:
         if dataset_id:
             out_path = metadata_path.parent / f"{dataset_id}_samplesheet.csv"

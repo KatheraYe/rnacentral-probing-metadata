@@ -1,18 +1,20 @@
-# rnacentral-probing-metadata
+# RNAcentral chemical probing metadata
 
 Metadata for structural chemical probing experiments for RNAcentral.
 
 This repository stores metadata YAML files for chemical probing datasets (for example in `SHAPE/` and `DMS/`) that are validated with [LinkML](https://linkml.io) via GitHub Actions. Once a YAML file is accepted, the pipeline downloads FASTQ files using `nf-core/fetchngs` and creates a final `samplesheet.csv` that can be used as input for `nf-core/rnastructurome`.
 
-## Adding a new dataset YAML via pull request
+## Adding a new metadata YAML via pull request
 
 To add a new dataset to this repository:
 
-1. Create a new YAML file (see section below) in the appropriate directory (for example `SHAPE/` or `DMS/`) and populate it according to the schema requirements above.
-2. Open a pull request with that new YAML file.
-3. Wait for the GitHub Actions checks to validate the YAML.
-4. If the checks pass, someone from RNAcentral will review and merge the pull request.
-5. If the checks fail, inspect the GitHub Actions logs, fix the reported issue in the YAML, and update the pull request.
+1. Clone this repository to your local machine.
+2. Create a new branch from master with a descriptive name including “Add” (e.g. Add-new-shape-dataset).
+3. Create a new YAML file (see section below) in the appropriate directory (for example `SHAPE/` or `DMS/`) and populate it according to the schema requirements.
+4. Open a pull request with that new YAML file.
+5. Wait for the GitHub Actions checks to validate the YAML.
+6. If the checks pass, someone from RNAcentral will review and merge the pull request.
+7. If the checks fail, inspect the GitHub Actions logs, fix the reported issue in the YAML, and update the pull request.
 
 ## Creating a new YAML file
 

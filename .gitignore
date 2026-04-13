@@ -25,6 +25,7 @@ htmlcov/
 *.egg-info/
 build/
 dist/
+uv.lock
 
 # Editors / IDEs
 .vscode/

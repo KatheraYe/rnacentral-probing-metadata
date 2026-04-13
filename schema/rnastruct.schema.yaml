@@ -34,12 +34,11 @@ classes:
     attributes:
       method:
         required: true
-        # Allow method names such as icSHAPE, SHAPE-MaP, DMS-MaPseq, etc.
-        pattern: "(?i)^.*(SHAPE|DMS).*$"
       obi:
         range: string
       chemical:
-        range: string
+        required: true
+        range: ChemicalEnum
       context:
         range: ContextEnum
         multivalued: true
@@ -117,6 +116,23 @@ enums:
       treated:
       untreated:
       denatured:
+
+  ChemicalEnum:
+    permissible_values:
+      DMS:
+      1M7:
+      NAI:
+      NAI-N3:
+      2A3:
+      I5:
+      1M4:
+      6A3:
+      B5:
+      NIC:
+      BzCN:
+      1M6:
+      NMIA:
+      5NIA:
 
   RepositoryEnum:
     permissible_values:

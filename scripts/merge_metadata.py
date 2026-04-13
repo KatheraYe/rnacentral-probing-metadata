@@ -2,7 +2,7 @@
 """Build a pipeline samplesheet from fetchngs CSV + dataset YAML.
 
 Output format:
-sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,organism,adapter_3p,adapter_5p,umi_pattern
+sample,sample_id,fastq_1,fastq_2,method,principle,cell_line,condition,replicate,organism,pH,adapter_3p,adapter_5p,umi_pattern
 """
 
 from __future__ import annotations
@@ -123,6 +123,7 @@ def main() -> int:
                 "method": method,
                 "principle": experiment.get("principle", ""),
                 "organism": organism,
+                "pH": experiment.get("pH", ""),
                 "adapter_3p": experiment.get("adapter_3p", ""),
                 "adapter_5p": experiment.get("adapter_5p", ""),
                 "umi_pattern": experiment.get("umi_pattern", ""),
@@ -151,6 +152,7 @@ def main() -> int:
         "condition",
         "replicate",
         "organism",
+        "pH",
         "adapter_3p",
         "adapter_5p",
         "umi_pattern",

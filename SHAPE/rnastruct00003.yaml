@@ -4,7 +4,7 @@ organism: Mus musculus
 
 experiment:
   method: icSHAPE
-  obi: OBI:0001026
+  obi: OBI:0003887
   chemical: NAI-N3
   principle: RT-stop
   pH: 7.5

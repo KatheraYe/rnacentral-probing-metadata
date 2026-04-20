@@ -92,6 +92,7 @@ classes:
       cell_line:
         required: true
         range: string
+        pattern: "^\\S+$"
       condition:
         required: true
         range: ConditionEnum

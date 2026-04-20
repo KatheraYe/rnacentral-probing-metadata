@@ -24,7 +24,7 @@ To add a new dataset to this repository:
 
 3. You must also include the organism in Latin name (e.g. Homo sapiens), the method (which can be SHAPE or DMS variants) and principal (RT-stop or MaP) of this experiement, a publication DOI, and fill out the raw_data section.
 
-4. Each sample listed under run_accessions should include a biologically meaningful and distinguishable sample_name, along with cell_line, condition (one of untreated, treated, or denatured), and replicate (just a number). The sample accession id must be supported by nf-core/fetchngs (e.g. SRA, ENA, DDBJ, GEO; [see the fetchngs documentation for the full list](https://nf-co.re/fetchngs/1.12.0/docs/usage)).
+4. Each sample listed under run_accessions should include a biologically meaningful and distinguishable sample_name, along with cell_line (no white spaces), condition (one of untreated, treated, or denatured), and replicate (just a number). The sample accession id must be supported by nf-core/fetchngs (e.g. SRA, ENA, DDBJ, GEO; [see the fetchngs documentation for the full list](https://nf-co.re/fetchngs/1.12.0/docs/usage)).
 
 5. If including an OBI id, use a valid term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi). If the experimental context is provided, it must be one of in_vivo, in_vitro, or denatured.
 

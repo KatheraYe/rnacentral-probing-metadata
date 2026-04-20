@@ -44,16 +44,16 @@ raw_data:
       replicate: 1
     - accession: GSM1297506
       sample_name: Fibroblast_treated_vivo_200mM_r1
-      cell_line: Primary fibroblasts
+      cell_line: Primaryfibroblasts
       condition: treated
       replicate: 1
     - accession: GSM1297507
       sample_name: Fibroblast_treated_vitro_r1
-      cell_line: Primary fibroblasts
+      cell_line: Primaryfibroblasts
       condition: treated
       replicate: 1
     - accession: GSM1297508
       sample_name: Fibroblast_treated_denatured_r1
-      cell_line: Primary fibroblasts
+      cell_line: Primaryfibroblasts
       condition: treated
       replicate: 1

@@ -24,36 +24,36 @@ raw_data:
   run_accessions:
     - accession: GSM1297493
       sample_name: K562_treated_vivo_200mM_r1
-      cell_line: K562
+      cell_line: K562_vivo
       condition: treated
       replicate: 1
     - accession: GSM1297494
       sample_name: K562_treated_vivo_300mM_r1 # Made sure name differentiates from the previous sample
-      cell_line: K562
+      cell_line: K562_vivo
       condition: treated
-      replicate: 1
+      replicate: 2
     - accession: GSM1297495
       sample_name: K562_treated_denatured_r1  # read paper carefully and found all samples are in fact treated
-      cell_line: K562
+      cell_line: K562_denatured
       condition: treated
       replicate: 1
     - accession: GSM1297496
       sample_name: K562_treated_vitro_r1
-      cell_line: K562
+      cell_line: K562_vitro
       condition: treated
       replicate: 1
     - accession: GSM1297506
       sample_name: Fibroblast_treated_vivo_200mM_r1
-      cell_line: Primaryfibroblasts
+      cell_line: Primaryfibroblasts_vivo
       condition: treated
       replicate: 1
     - accession: GSM1297507
       sample_name: Fibroblast_treated_vitro_r1
-      cell_line: Primaryfibroblasts
+      cell_line: Primaryfibroblasts_vitro
       condition: treated
       replicate: 1
     - accession: GSM1297508
       sample_name: Fibroblast_treated_denatured_r1
-      cell_line: Primaryfibroblasts
+      cell_line: Primaryfibroblasts_denatured
       condition: treated
       replicate: 1

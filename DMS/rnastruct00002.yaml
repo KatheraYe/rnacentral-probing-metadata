@@ -24,7 +24,7 @@ raw_data:
   run_accessions:
     - accession: GSM1297493
       sample_name: K562_treated_vivo_200mM_r1
-      cell_line: K562_vivo
+      cell_line: K562_vivo # needed to differentiate otherwise all K562 samples get grouped together
       condition: treated
       replicate: 1
     - accession: GSM1297494

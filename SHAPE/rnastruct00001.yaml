@@ -11,7 +11,7 @@ experiment:
   context: [in_vivo]
   adapter_3p: AGATCGGAAGAGCACACGTCT
   adapter_5p: null  # varies by sample; set when known
-  umi_pattern: DDDNNNNNNNNNN  # D=A/G/T, N=A/C/G/T
+  umi_pattern: null
 
 publication:
   doi: 10.1038/s41422-021-00476-y

@@ -1,0 +1,54 @@
+dataset_id: rnastruct00027
+
+organism: SARS-CoV-2
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vivo, denatured]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41467-021-25357-1
+  year: 2022
+
+raw_data:
+  repository: GEO
+  accession: GSE165005
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165005
+  run_accessions:
+  - accession: GSM5024392
+    sample_name: SHAPE-map_wt_NAI
+    cell_line: Wuhan-Hu-1
+    condition: treated
+    replicate: 1
+  - accession: GSM5024393
+    sample_name: SHAPE-map_wt_denatured
+    cell_line: Wuhan-Hu-1
+    condition: denatured
+    replicate: 1
+  - accession: GSM5024394
+    sample_name: SHAPE-map_wt_dmso
+    cell_line: Wuhan-Hu-1
+    condition: untreated
+    replicate: 1
+  - accession: GSM5024395
+    sample_name: SHAPE-map_delta_NAI
+    cell_line: delta382
+    condition: treated
+    replicate: 1
+  - accession: GSM5024396
+    sample_name: SHAPE-map_delta_denatured
+    cell_line: delta382
+    condition: denatured
+    replicate: 1
+  - accession: GSM5024397
+    sample_name: SHAPE-map_delta_dmso
+    cell_line: delta382
+    condition: untreated
+    replicate: 1

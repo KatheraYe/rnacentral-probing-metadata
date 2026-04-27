@@ -1,0 +1,34 @@
+dataset_id: rnastruct00016
+
+organism: Influenza A virus
+
+experiment:
+  method: icSHAPE
+  principle: RT-stop
+  obi: OBI:0003887
+  chemical: NAI-N3
+  context: [in_vivo, in_virio]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1016/j.celrep.2024.113833
+  year: 2024
+
+raw_data:
+  repository: SRA
+  accession: PRJNA1080059
+  landing_page: https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA1080059
+  run_accessions:
+  - accession: SRX23731230
+    sample_name: SHAPE_in_vivo
+    cell_line: WSN
+    condition: treated
+    replicate: 1
+  - accession: SRX23731231
+    sample_name: SHAPE_in_virio
+    cell_line: WSN
+    condition: treated
+    replicate: 1

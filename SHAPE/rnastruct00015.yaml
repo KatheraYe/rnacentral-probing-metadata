@@ -1,0 +1,44 @@
+dataset_id: rnastruct00015
+
+organism: Influenza A virus
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003885
+  chemical: 1M7
+  context: [in_virio]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41564-019-0513-7
+  year: 2019
+
+raw_data:
+  repository: SRA
+  accession: SRP150677
+  landing_page: https://www.ncbi.nlm.nih.gov/sra?term=SRP150677
+  run_accessions:
+  - accession: SRX4223900
+    sample_name: PR8_SHAPE_MaP_1M7
+    cell_line: PR8
+    condition: treated
+    replicate: 1
+  - accession: SRX4223899
+    sample_name: PR8_SHAPE_MaP_DMSO
+    cell_line: PR8
+    condition: untreated
+    replicate: 1
+  - accession: SRX4223898
+    sample_name: Udorn_SHAPE_MaP_1M7
+    cell_line: Udorn
+    condition: treated
+    replicate: 1
+  - accession: SRX4223897
+    sample_name: Udorn_SHAPE_MaP_DMSO
+    cell_line: Udorn
+    condition: untreated
+    replicate: 1

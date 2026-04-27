@@ -1,0 +1,99 @@
+dataset_id: rnastruct00005
+
+organism: Danio rerio
+
+experiment:
+  method: DMS-seq
+  principle: RT-stop
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, in_vitro]
+  pH: 7.4
+  adapter_3p: ACTGTAGGCACCATCAAT
+  adapter_5p: null
+  umi_pattern: NN
+
+publication:
+  doi: 10.1038/s41594-018-0091-z
+  year: 2018
+
+raw_data:
+  repository: SRA
+  accession: SRP114782
+  landing_page: https://www.ncbi.nlm.nih.gov/sra/?term=SRP114782
+  run_accessions:
+  - accession: SAMN07447837
+    sample_name: WT_64c_DMScontrol_in_vitro
+    cell_line: embryonic cells
+    condition: untreated
+    replicate: 1
+  - accession: SAMN07447838
+    sample_name: WT_64c_in_vivo_r1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447841
+    sample_name: WT_64c_in_vivo_r2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2
+  - accession: SAMN07447839
+    sample_name: WT_sphere_in_vivo_r1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447843
+    sample_name: WT_sphere_in_vivo_r2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2
+  - accession: SAMN07447840
+    sample_name: WT_shield_in_vivo_r1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447842
+    sample_name: WT_shield_in_vivo_r2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2
+  - accession: SAMN07447845
+    sample_name: IVT_64c_B1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447844
+    sample_name: IVT_64c_B2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2
+  - accession: SAMN07447846
+    sample_name: WT_64c_CHX_B1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447847
+    sample_name: WT_64c_CHX_B2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2
+  - accession: SAMN07447852
+    sample_name: WT_64c_DMS_B1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447853
+    sample_name: WT_64c_DMS_B2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2
+  - accession: SAMN07447854
+    sample_name: WT_64c_PatA_DMS_B1
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 1
+  - accession: SAMN07447855
+    sample_name: WT_64c_PatA_DMS_B2
+    cell_line: embryonic cells
+    condition: treated
+    replicate: 2

@@ -1,0 +1,79 @@
+SAMEA104444868dataset_id: rnastruct00035
+
+organism: Saccharomyces cerevisiae
+
+experiment:
+  method: DMS-MaPseq
+  principle: MaP
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, denatured]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/nmeth.4057
+  year: 2017
+
+raw_data:
+  repository: GEO
+  accession: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84537
+  landing_page: GSE84537
+  run_accessions:
+  - accession: GSM2241644
+    sample_name: TGIRT_DMSvivo_Rep1
+    cell_line: BY4741
+    condition: treated
+    replicate: 1
+  - accession: GSM2241645
+    sample_name: TGIRT_DMSvivo_Rep2
+    cell_line: BY4741
+    condition: treated
+    replicate: 2
+  - accession: GSM2241646
+    sample_name: TGIRT_DMSvivo_Rep2_additionalSequencing
+    cell_line: BY4741
+    condition: treated
+    replicate: 1
+  - accession: GSM2241647
+    sample_name: SSii_DMSvivo_Rep1
+    cell_line: BY4741
+    condition: treated
+    replicate: 1
+  - accession: GSM2241648
+    sample_name: SSii_DMSvivo_Rep2
+    cell_line: BY4741
+    condition: treated
+    replicate: 2
+  - accession: GSM2241649
+    sample_name: TGIRT_Untreated
+    cell_line: BY4741
+    condition: untreated
+    replicate: 1
+  - accession: GSM2241650
+    sample_name: SSii_Untreated
+    cell_line: BY4741
+    condition: untreated
+    replicate: 1
+  - accession: GSM2310330
+    sample_name: TGIRT_2andHalf_percent_DMS_vivo_MiSeq
+    cell_line: BY4741
+    condition: treated
+    replicate: 1
+  - accession: GSM2310331
+    sample_name: TGIRT_5percent_DMS_vivo_MiSeq
+    cell_line: BY4741
+    condition: treated
+    replicate: 1
+  - accession: GSM2310332
+    sample_name: SSII_DMS_denatured
+    cell_line: BY4741
+    condition: denatured
+    replicate: 1
+  - accession: GSM2310333
+    sample_name: TGIRT_DMS_denatured
+    cell_line: BY4741
+    condition: denatured
+    replicate: 1

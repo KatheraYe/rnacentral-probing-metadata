@@ -1,0 +1,34 @@
+dataset_id: rnastruct00021
+
+organism: Arabidopsis thaliana
+
+experiment:
+  method: Nuc-SHAPE-Structure-Seq
+  principle: RT-stop
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vivo]
+  pH: 7.5
+  adapter_3p: AGATCGGAAGAGCACACGTCTG
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1186/s13059-020-02236-4
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE135711
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE135711
+  run_accessions:
+  - accession: GSM4026531
+    sample_name: nuclear_mRNA_control
+    cell_line: seedling
+    condition: untreated
+    replicate: 1
+  - accession: GSM4026532
+    sample_name: nuclear_mRNA_NAI_treatment
+    cell_line: seedling
+    condition: treated
+    replicate: 1

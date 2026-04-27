@@ -1,0 +1,123 @@
+dataset_id: rnastruct00006
+
+organism: Danio rerio
+
+experiment:
+  method: icSHAPE
+  principle: RT-stop
+  obi: OBI:0003887
+  chemical: NAI-N3
+  context: [in_vivo]
+  pH: 8.0
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: NNNNNNNNNNNNN
+
+publication:
+  doi: 10.1186/s13059-020-02022-2
+  year: 2020
+raw_data:
+  repository: GEO
+  accession: GSE120724
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120724
+  run_accessions:
+  - accession: GSM3409376
+    sample_name: fertilized_egg_DMSO_icSHAPE
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM3409377
+    sample_name: fertilized_egg_NAIN3_icSHAPE
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM3409378
+    sample_name: 1_cell_DMSO_icSHAPE
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM3409379
+    sample_name: 1_cell_NAIN3_icSHAPE
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM3409380
+    sample_name: 4_cell_DMSO_icSHAPE
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM3409381
+    sample_name: 4_cell_NAIN3_icSHAPE
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM3409382
+    sample_name: 64_cell_DMSO_icSHAPE
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM3409383
+    sample_name: 64_cell_NAIN3_icSHAPE
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM3409384
+    sample_name: sphere_DMSO_icSHAPE
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM3409385
+    sample_name: sphere_NAIN3_icSHAPE
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM3409386
+    sample_name: shield_DMSO_icSHAPE
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM3409387
+    sample_name: shield_NAIN3_icSHAPE
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM4473285
+    sample_name: Sphere_Elavl1a_MO_DMSO_r1
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM4473286
+    sample_name: Sphere_Elavl1a_MO_DMSO_r2
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 2
+  - accession: GSM4473287
+    sample_name: Sphere_Elavl1a_MO_NAIN3_r1
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM4473288
+    sample_name: Sphere_Elavl1a_MO_NAIN3_r2
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 2
+  - accession: GSM4473289
+    sample_name: Shield_Elavl1a_MO_DMSO_r1
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 1
+  - accession: GSM4473290
+    sample_name: Shield_Elavl1a_MO_DMSO_r2
+    cell_line: widetype AB strain
+    condition: untreated
+    replicate: 2
+  - accession: GSM4473291
+    sample_name: Shield_Elavl1a_MO_NAIN3_r1
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 1
+  - accession: GSM4473292
+    sample_name: Shield_Elavl1a_MO_NAIN3_r2
+    cell_line: widetype AB strain
+    condition: treated
+    replicate: 2

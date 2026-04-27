@@ -1,0 +1,64 @@
+dataset_id: rnastruct00022
+
+organism: Escherichia coli
+
+experiment:
+  method: DMS-seq
+  principle: RT-stop
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, in_vitro]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.7554/eLife.22037
+  year: 2017
+
+raw_data:
+  repository: GEO
+  accession: GSE77617
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE77617
+  run_accessions:
+  - accession: GSM2055261
+    sample_name: 37degree_invitro_WT
+    cell_line: MG1655
+    condition: treated
+    replicate: 1
+  - accession: GSM2055262
+    sample_name: 95degree_invitro_WT
+    cell_line: MG1655
+    condition: treated
+    replicate: 1
+  - accession: GSM2055274
+    sample_name: 37degree_invivo_deltagcvB_Ksg
+    cell_line: MG1655
+    condition: treated
+    replicate: 1
+  - accession: GSM2055273
+    sample_name: 37degree_invivo_deltagcvB
+    cell_line: MG1655
+    condition: treated
+    replicate: 1
+  - accession: GSM2055271
+    sample_name: 37degree_invivo_dusB_M3_mutant
+    cell_line: MG1655
+    condition: treated
+    replicate: 1
+  - accession: GSM2055272
+    sample_name: 37degree_invivo_dusB_M3_mutant2
+    cell_line: MG1655
+    condition: treated
+    replicate: 2
+  - accession: GSM2055260
+    sample_name: 37degree_invivo_WT1
+    cell_line: MG1655
+    condition: treated
+    replicate: 1
+  - accession: GSM2055270
+    sample_name: 37degree_invivo_WT2
+    cell_line: MG1655
+    condition: treated
+    replicate: 2

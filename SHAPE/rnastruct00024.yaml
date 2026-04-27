@@ -1,0 +1,99 @@
+dataset_id: rnastruct00024
+
+organism: Rotavirus
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003896
+  chemical: 5NIA
+  context: [in_vitro]
+  pH: 7.5
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1093/nar/gkac738
+  year: 2022
+
+raw_data:
+  repository: SRA
+  accession: PRJNA791398
+  landing_page: https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=791398
+  run_accessions:
+  - accession: SRX13476233
+    sample_name: S1011_DMSO
+    cell_line: RF
+    condition: untreated
+    replicate: 1
+  - accession: SRX13476232
+    sample_name: S1011_20um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476231
+    sample_name: S1011_10um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476230
+    sample_name: S1011_5um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476229
+    sample_name: S1011_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476228
+    sample_name: Total_DMSO
+    cell_line: RF
+    condition: untreated
+    replicate: 1
+  - accession: SRX13476227
+    sample_name: Total_20um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476226
+    sample_name: Total_10um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476225
+    sample_name: S56_DMSO
+    cell_line: RF
+    condition: untreated
+    replicate: 1
+  - accession: SRX13476224
+    sample_name: S56_20um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476223
+    sample_name: S56_10um_5NIA 
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476222
+    sample_name: S56_5um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476221
+    sample_name: S56_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476220
+    sample_name: Total_5um_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1
+  - accession: SRX13476219
+    sample_name: Total_5NIA
+    cell_line: RF
+    condition: treated
+    replicate: 1

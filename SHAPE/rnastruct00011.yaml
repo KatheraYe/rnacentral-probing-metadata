@@ -1,0 +1,29 @@
+dataset_id: rnastruct00011
+
+organism: HIV
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003895
+  chemical: 1M6
+  context: [in_vivo]
+  pH: 8.0
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/nmeth.3029
+  year: 2014
+
+raw_data:
+  repository: SRA
+  accession: PRJNA248760
+  landing_page: https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=248760
+  run_accessions:
+  - accession: SRX663474
+    sample_name: folded_1M6
+    cell_line: Human immunodeficiency virus 1
+    condition: treated
+    replicate: 1

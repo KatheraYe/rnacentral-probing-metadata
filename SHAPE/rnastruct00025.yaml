@@ -1,0 +1,69 @@
+dataset_id: rnastruct00025
+
+organism: SARS-CoV-2
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vivo, in_vitro]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1093/nar/gkaa1053
+  year: 2020
+
+raw_data:
+  repository: GEO
+  accession: GSE151327
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE151327
+  run_accessions:
+  - accession: GSM4892124
+    sample_name: in_vivo_NAI_r1
+    cell_line: Leiden-0002
+    condition: treated
+    replicate: 1
+  - accession: GSM4892125
+    sample_name: in_vivo_NAI_r2
+    cell_line: Leiden-0002
+    condition: treated
+    replicate: 2
+  - accession: GSM4892123
+    sample_name: in_vivo_DMSO_r2
+    cell_line: Leiden-0002
+    condition: untreated
+    replicate: 1
+  - accession: GSM4572509
+    sample_name: in_vitro_DMSO_odd
+    cell_line: Leiden-0002
+    condition: untreated
+    replicate: 1
+  - accession: GSM4572511
+    sample_name: in_vitro_NAI_odd_r1
+    cell_line: Leiden-0002
+    condition: treated
+    replicate: 1
+  - accession: GSM4572513
+    sample_name: in_vitro_NAI_odd_r2
+    cell_line: Leiden-0002
+    condition: treated
+    replicate: 2
+  - accession: GSM4572510
+    sample_name: in_vitro_DMSO_even
+    cell_line: Leiden-0002
+    condition: untreated
+    replicate: 1
+  - accession: GSM4572512
+    sample_name: in_vitro_NAI_even_r1
+    cell_line: Leiden-0002
+    condition: treated
+    replicate: 1
+  - accession: GSM4572514
+    sample_name: in_vitro_NAI_even_r2
+    cell_line: Leiden-0002
+    condition: treated
+    replicate: 2

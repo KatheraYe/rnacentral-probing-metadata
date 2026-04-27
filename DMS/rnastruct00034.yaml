@@ -1,0 +1,49 @@
+dataset_id: rnastruct00034
+
+organism: Saccharomyces cerevisiae
+
+experiment:
+  method: DMS-seq
+  principle: RT-stop
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, in_vitro]
+  pH: 7.0
+  adapter_3p: TCGTATGCCGTCTTCTGCTTG
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1126/science.aaf5371
+  year: 2016
+
+raw_data:
+  repository: GEO
+  accession: GSE83617
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83617
+  run_accessions:
+  - accession: GSM2211021
+    sample_name: Yeast_untreated_K
+    cell_line: budding yeast
+    condition: untreated
+    replicate: 1
+  - accession: GSM2211022
+    sample_name: Yeast_untreated_Na
+    cell_line: budding yeast
+    condition: untreated
+    replicate: 1
+  - accession: GSM2211023
+    sample_name: Yeast_DMS_vitro_K150
+    cell_line: budding yeast
+    condition: treated
+    replicate: 1
+  - accession: GSM2211024
+    sample_name: Yeast_DMS_vitro_K10
+    cell_line: budding yeast
+    condition: treated
+    replicate: 1
+  - accession: GSM2211025
+    sample_name: Yeast_DMS_vivo
+    cell_line: budding yeast
+    condition: treated
+    replicate: 1

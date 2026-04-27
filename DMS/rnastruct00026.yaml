@@ -1,0 +1,39 @@
+dataset_id: rnastruct00026
+
+organism: SARS-CoV-2
+
+experiment:
+  method: DMS-MaPseq
+  principle: MaP
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41467-022-28603-2
+  year: 2022
+
+raw_data:
+  repository: GEO
+  accession: GSE153851
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE153851
+  run_accessions:
+  - accession: GSM4656059
+    sample_name: usa_wa1_treated_r1
+    cell_line: USA-WA1
+    condition: treated
+    replicate: 1
+  - accession: GSM4656060
+    sample_name: usa_wa1_treated_r2
+    cell_line: USA-WA1
+    condition: treated
+    replicate: 2
+  - accession: GSM4656061
+    sample_name: usa_wa1_untreated
+    cell_line: USA-WA1
+    condition: untreated
+    replicate: 1

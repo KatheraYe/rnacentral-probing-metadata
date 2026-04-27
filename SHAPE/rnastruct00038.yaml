@@ -1,0 +1,104 @@
+dataset_id: rnastruct00038
+
+organism: Homo sapiens
+
+experiment:
+  method: smartSHAPE
+  principle: MaP
+  obi: OBI:0003887
+  chemical: NAI-N3
+  context: [in_vivo]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1016/j.fmre.2021.12.007
+  year: 2022
+
+raw_data:
+  repository: GEO
+  accession: GSE155961
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE155961
+  run_accessions:
+  - accession: GSM4717164
+    sample_name: 1ng_NAIN3_r1
+    cell_line: HEK293T
+    condition: treated
+    replicate: 1
+  - accession: GSM4717165
+    sample_name: 1ng_NAIN3_r2
+    cell_line: HEK293T
+    condition: treated
+    replicate: 2
+  - accession: GSM4717166
+    sample_name: 5ng-NAIN3-r1
+    cell_line: HEK293T
+    condition: treated
+    replicate: 1
+  - accession: GSM4717167
+    sample_name: 5ng-NAIN3-r2
+    cell_line: HEK293T
+    condition: treated
+    replicate: 2
+  - accession: GSM4717168
+    sample_name: 25ng_NAIN3_r1
+    cell_line: HEK293T
+    condition: treated
+    replicate: 1
+  - accession: GSM4717169
+    sample_name: 25ng_NAIN3_r2
+    cell_line: HEK293T
+    condition: treated
+    replicate: 2
+  - accession: GSM4717170
+    sample_name: 125ng_NAIN3_r1
+    cell_line: HEK293T
+    condition: treated
+    replicate: 1
+  - accession: GSM4717171
+    sample_name: 25ng_NAIN3_r2
+    cell_line: HEK293T
+    condition: treated
+    replicate: 2
+  - accession: GSM4717172
+    sample_name: 1ng_DMSO_r1
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 1
+  - accession: GSM4717173
+    sample_name: 1ng_DMSO_r2
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 2
+  - accession: GSM4717174
+    sample_name: 5ng_DMSO_r1
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 1
+  - accession: GSM4717175
+    sample_name: 5ng_DMSO_r2
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 2
+  - accession: GSM4717176
+    sample_name: 25ng_DMSO_r1
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 1
+  - accession: GSM4717177
+    sample_name: 25ng_DMSO_r2
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 2
+  - accession: GSM4717178
+    sample_name: 125ng_DMSO_r1
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 1
+  - accession: GSM4717179
+    sample_name: 125ng_DMSO_r2
+    cell_line: HEK293T
+    condition: untreated
+    replicate: 2

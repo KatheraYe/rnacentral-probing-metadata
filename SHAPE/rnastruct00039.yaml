@@ -1,0 +1,64 @@
+dataset_id: rnastruct00039
+
+organism: Homo sapiens
+
+experiment:
+  method: icSHAPE
+  principle: RT-stop
+  obi: OBI:0003887
+  chemical: NAI-N3
+  context: [in_vivo, in_vitro]
+  pH: 8.0
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1093/nar/gkab885
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE132099
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE132099
+  run_accessions:
+  - accession: GSM3842460
+    sample_name: DMSO_r1
+    cell_line: K562
+    condition: untreated
+    replicate: 1
+  - accession: GSM3842461
+    sample_name: DMSO_r2
+    cell_line: K562
+    condition: untreated
+    replicate: 2
+  - accession: GSM3842462
+    sample_name: DMSO_r3
+    cell_line: K562
+    condition: untreated
+    replicate: 3
+  - accession: GSM3842463
+    sample_name: icSHAPE_in_vitro_r1
+    cell_line: K562
+    condition: treated
+    replicate: 1
+  - accession: GSM3842464
+    sample_name: icSHAPE_in_vitro_r2
+    cell_line: K562
+    condition: treated
+    replicate: 2
+  - accession: GSM3842465
+    sample_name: icSHAPE_in_vivo_r1
+    cell_line: K562
+    condition: treated
+    replicate: 1
+  - accession: GSM3842466
+    sample_name: icSHAPE_in_vivo_r2
+    cell_line: K562
+    condition: treated
+    replicate: 2
+  - accession: GSM3842467
+    sample_name: icSHAPE_in_vivo_r3
+    cell_line: K562
+    condition: treated
+    replicate: 3

@@ -1,0 +1,44 @@
+dataset_id: rnastruct00031
+
+organism: SARS-CoV-2
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vivo]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1016/j.molcel.2020.12.041
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE154171
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154171
+  run_accessions:
+  - accession: GSM4665449
+    sample_name: SARS-CoV-2_Mod_Rep1
+    cell_line: USA-WA1/2020
+    condition: treated
+    replicate: 1
+  - accession: GSM4665451
+    sample_name: SARS-CoV-2_Mod_Rep2
+    cell_line: USA-WA1/2020
+    condition: treated
+    replicate: 2
+  - accession: GSM4665450
+    sample_name: SARS-CoV-2_Unmod_Rep1
+    cell_line: USA-WA1/2020
+    condition: untreated
+    replicate: 1
+  - accession: GSM4665452
+    sample_name: SARS-CoV-2_Unmod_Rep2
+    cell_line: USA-WA1/2020
+    condition: untreated
+    replicate: 2

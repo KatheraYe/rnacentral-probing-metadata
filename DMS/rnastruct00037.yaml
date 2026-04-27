@@ -1,0 +1,44 @@
+dataset_id: rnastruct00037
+
+organism: Saccharomyces cerevisiae
+
+experiment:
+  method: DMS-MaPseq
+  principle: MaP
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41586-018-0258-0
+  year: 2018
+
+raw_data:
+  repository: GEO
+  accession: GSE93959
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE93959
+  run_accessions:
+  - accession: GSM2465731
+    sample_name: WT_r1
+    cell_line: wild-type DED1
+    condition: treated
+    replicate: 1
+  - accession: GSM2465733
+    sample_name: WT_r2
+    cell_line: wild-type DED1
+    condition: treated
+    replicate: 2
+  - accession: GSM2465732
+    sample_name: ded1_95_r1
+    cell_line: thermo-sensitive ded1-95
+    condition: treated
+    replicate: 1
+  - accession: GSM2465734
+    sample_name: ded1_95_r2
+    cell_line: thermo-sensitive ded1-95
+    condition: treated
+    replicate: 2

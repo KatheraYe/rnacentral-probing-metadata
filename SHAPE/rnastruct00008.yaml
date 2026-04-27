@@ -1,0 +1,34 @@
+dataset_id: rnastruct00008
+
+organism: Zika virus
+
+experiment:
+  method: NAI-MaP
+  principle: MaP
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vitro]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41467-019-09391-8
+  year: 2019
+
+raw_data:
+  repository: GEO
+  accession: GSE106483
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE106483
+  run_accessions:
+  - accession: GSM2838809
+    sample_name: Zika_French_Polynesia_IN_VITRO_NAI_Map_NAI
+    cell_line: Zika virus
+    condition: treated
+    replicate: 1
+  - accession: GSM2838810
+    sample_name: Zika_French_Polynesia_IN_VITRO_NAI_Map_DMSO
+    cell_line: Zika virus
+    condition: untreated
+    replicate: 1

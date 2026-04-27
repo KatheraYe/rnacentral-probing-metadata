@@ -1,6 +1,6 @@
 dataset_id: rnastruct00007
 
-organism: Synechococcus sp.
+organism: Parasynechococcus marenigrum
 
 experiment:
   method: DMS-seq
@@ -21,24 +21,17 @@ raw_data:
   repository: GEO
   accession: GSE83617
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83617
+  # Excluded from this curation:
+  # - GSM2211037 (Synechococcus_untreated_Na): Na+ RT-cation control, not the selected K+ condition.
+  # - GSM2211039 (Synechococcus_DMS_vitro_K0): 0 mM K+ comparison, not the selected K150 condition.
   run_accessions:
   - accession: GSM2211036
-    sample_name: Synechococcus_untreated_K
-    cell_line: Parasynechococcus marenigrum WH 8102
-    condition: untreated
-    replicate: 1
-  - accession: GSM2211037
-    sample_name: Synechococcus_untreated_Na
-    cell_line: Parasynechococcus marenigrum WH 8102
+    sample_name: Synechococcus_untreated_K150
+    cell_line: Parasynechococcus_marenigrum_WH_8102
     condition: untreated
     replicate: 1
   - accession: GSM2211038
     sample_name: Synechococcus_DMS_vitro_K150
-    cell_line: Parasynechococcus marenigrum WH 8102
-    condition: treated
-    replicate: 1
-  - accession: GSM2211039
-    sample_name: Synechococcus_DMS_vitro_K0
-    cell_line: Parasynechococcus marenigrum WH 8102
+    cell_line: Parasynechococcus_marenigrum_WH_8102
     condition: treated
     replicate: 1

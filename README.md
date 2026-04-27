@@ -56,6 +56,7 @@ The required fields are:
 - `raw_data.repository`, which must be one of `SRA`, `ENA`, `GEO`, or `DDBJ`
 - `raw_data.accession`
 - `raw_data.run_accessions`, where each item must include `accession`, `sample_name`, `cell_line`, `condition`, and `replicate`
+  - `cell_line` must not contain white spaces — use underscores instead (e.g. `embryonic_cells`, not `embryonic cells`)
 
 All other fields are optional and, if not known, can be `null`.
-The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, or `denatured`.
+The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, `ex_vivo`, `in_virio`, `ex_virio`, or `denatured`.

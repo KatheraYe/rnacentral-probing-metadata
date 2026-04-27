@@ -21,84 +21,67 @@ raw_data:
   repository: GEO
   accession: GSE155961
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE155961
+  # Excluded from this curation:
+  # - GSM4717164/GSM4717165 (1ng_NAIN3_r1/r2): 1 ng low-input benchmark libraries with reduced complexity.
+  # - GSM4717172/GSM4717173 (1ng_DMSO_r1/r2): matched 1 ng DMSO controls excluded with the 1 ng treated libraries.
   run_accessions:
-  - accession: GSM4717164
-    sample_name: 1ng_NAIN3_r1
-    cell_line: HEK293T
-    condition: treated
-    replicate: 1
-  - accession: GSM4717165
-    sample_name: 1ng_NAIN3_r2
-    cell_line: HEK293T
-    condition: treated
-    replicate: 2
   - accession: GSM4717166
-    sample_name: 5ng-NAIN3-r1
+    sample_name: 5ng-NAIN3-r1  # 5 ng RNA input
     cell_line: HEK293T
     condition: treated
     replicate: 1
   - accession: GSM4717167
-    sample_name: 5ng-NAIN3-r2
+    sample_name: 5ng-NAIN3-r2  
     cell_line: HEK293T
     condition: treated
     replicate: 2
   - accession: GSM4717168
-    sample_name: 25ng_NAIN3_r1
+    sample_name: 25ng_NAIN3_r1  # 25 ng RNA input
     cell_line: HEK293T
     condition: treated
-    replicate: 1
+    replicate: 3
   - accession: GSM4717169
-    sample_name: 25ng_NAIN3_r2
+    sample_name: 25ng_NAIN3_r2  
     cell_line: HEK293T
     condition: treated
-    replicate: 2
+    replicate: 4
   - accession: GSM4717170
-    sample_name: 125ng_NAIN3_r1
+    sample_name: 125ng_NAIN3_r1  # 125 ng RNA input
     cell_line: HEK293T
     condition: treated
-    replicate: 1
+    replicate: 5
   - accession: GSM4717171
-    sample_name: 25ng_NAIN3_r2
+    sample_name: 125ng_NAIN3_r2  
     cell_line: HEK293T
     condition: treated
-    replicate: 2
-  - accession: GSM4717172
-    sample_name: 1ng_DMSO_r1
-    cell_line: HEK293T
-    condition: untreated
-    replicate: 1
-  - accession: GSM4717173
-    sample_name: 1ng_DMSO_r2
-    cell_line: HEK293T
-    condition: untreated
-    replicate: 2
+    replicate: 6
   - accession: GSM4717174
-    sample_name: 5ng_DMSO_r1
+    sample_name: 5ng_DMSO_r1  # 5 ng RNA input, DMSO control
     cell_line: HEK293T
     condition: untreated
     replicate: 1
   - accession: GSM4717175
-    sample_name: 5ng_DMSO_r2
+    sample_name: 5ng_DMSO_r2  
     cell_line: HEK293T
     condition: untreated
     replicate: 2
   - accession: GSM4717176
-    sample_name: 25ng_DMSO_r1
+    sample_name: 25ng_DMSO_r1  # 25 ng RNA input, DMSO control
     cell_line: HEK293T
     condition: untreated
-    replicate: 1
+    replicate: 3
   - accession: GSM4717177
-    sample_name: 25ng_DMSO_r2
+    sample_name: 25ng_DMSO_r2  
     cell_line: HEK293T
     condition: untreated
-    replicate: 2
+    replicate: 4
   - accession: GSM4717178
-    sample_name: 125ng_DMSO_r1
+    sample_name: 125ng_DMSO_r1  # 125 ng RNA input, DMSO control
     cell_line: HEK293T
     condition: untreated
-    replicate: 1
+    replicate: 5
   - accession: GSM4717179
-    sample_name: 125ng_DMSO_r2
+    sample_name: 125ng_DMSO_r2  
     cell_line: HEK293T
     condition: untreated
-    replicate: 2
+    replicate: 6

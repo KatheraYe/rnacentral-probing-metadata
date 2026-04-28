@@ -23,22 +23,22 @@ raw_data:
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE197245
   run_accessions:
   - accession: GSM5911559
-    sample_name: genome_without_DMS
-    cell_line: seedling
+    sample_name: Oryza_sativa_untreated
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 1
   - accession: GSM5911560
-    sample_name: genome_with_DMS_r1
-    cell_line: seedling
+    sample_name: Oryza_sativa_treated_r1
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 1
   - accession: GSM5911561
-    sample_name: genome_with_DMS_r2
-    cell_line: seedling
+    sample_name: Oryza_sativa_treated_r2
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 2
   - accession: GSM5911562
-    sample_name: genome_with_DMS_r3
-    cell_line: seedling
+    sample_name: Oryza_sativa_treated_r3
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 3

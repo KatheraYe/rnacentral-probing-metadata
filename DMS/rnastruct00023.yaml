@@ -21,29 +21,22 @@ raw_data:
   repository: GEO
   accession: GSE83617
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83617
+  # Excluded from this curation:
+  # - GSM2211027 (Ecoli_untreated_Na): Na+ RT-cation control, not the selected K+ condition.
+  # - GSM2211029 (Ecoli_DMS_vitro_K0): 0 mM K+ comparison, not the selected K150 condition.
   run_accessions:
   - accession: GSM2211026
-    sample_name: Ecoli_untreated_K
-    cell_line: None
-    condition: untreated
-    replicate: 1
-  - accession: GSM2211027
-    sample_name: Ecoli_untreated_Na
-    cell_line: Escherichia coli
+    sample_name: Ecoli_untreated_K150
+    cell_line: Escherichia_coli_vitro
     condition: untreated
     replicate: 1
   - accession: GSM2211028
     sample_name: Ecoli_DMS_vitro_K150
-    cell_line: Escherichia coli
-    condition: treated
-    replicate: 1
-  - accession: GSM2211029
-    sample_name: Ecoli_DMS_vitro_K0
-    cell_line: Escherichia coli
+    cell_line: Escherichia_coli_vitro
     condition: treated
     replicate: 1
   - accession: GSM2211030
     sample_name: Ecoli_DMS_vivo
-    cell_line: Escherichia coli
-    condition: treated  
+    cell_line: Escherichia_coli_vivo
+    condition: treated
     replicate: 1

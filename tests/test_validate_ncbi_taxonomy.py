@@ -31,6 +31,12 @@ def test_candidate_taxonomy_names_includes_ncbi_aliases():
     )
 
 
+def test_taxonomy_names_to_try_adds_species_level_alias_for_sars_cov_2():
+    assert "Severe acute respiratory syndrome coronavirus 2" in (
+        validate_ncbi_taxonomy.taxonomy_names_to_try("SARS-CoV-2", "USA-WA1/2020")
+    )
+
+
 def test_validate_metadata_file_passes_when_viral_strain_resolves(tmp_path):
     yaml_path = tmp_path / "rnastruct00014.yaml"
     yaml_path.write_text(
@@ -49,6 +55,25 @@ def test_validate_metadata_file_passes_when_viral_strain_resolves(tmp_path):
     def fake_search(name: str) -> list[str]:
         if name == "Influenza A virus (A/Puerto Rico/8/1934(H1N1))":
             return ["211044"]
+        return []
+
+    assert validate_ncbi_taxonomy.validate_metadata_file(yaml_path, search=fake_search) == []
+
+
+def test_validate_metadata_file_accepts_sars_cov_2_species_level_taxon(tmp_path):
+    yaml_path = tmp_path / "rnastruct00026.yaml"
+    yaml_path.write_text(
+        (
+            "dataset_id: rnastruct00026\n"
+            "organism: SARS-CoV-2\n"
+            "strain: USA-WA1/2020\n"
+        ),
+        encoding="utf-8",
+    )
+
+    def fake_search(name: str) -> list[str]:
+        if name == "Severe acute respiratory syndrome coronavirus 2":
+            return ["2697049"]
         return []
 
     assert validate_ncbi_taxonomy.validate_metadata_file(yaml_path, search=fake_search) == []

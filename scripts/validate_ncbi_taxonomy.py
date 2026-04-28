@@ -27,8 +27,24 @@ NCBI_ORGANISM_ALIASES = {
     "HIV": "Human immunodeficiency virus 1",
 }
 
+# NCBI Taxonomy does not consistently model these isolate/strain names as
+# separate taxonomy names. Still require strain metadata, but validate the
+# species-level taxon when exact strain candidates do not resolve.
+SPECIES_LEVEL_TAXONOMY_ORGANISMS = {
+    "SARS-CoV-2",
+}
+
 NCBI_ESEARCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 NCBI_REQUEST_DELAY_SECONDS = 0.34
+
+
+def base_taxonomy_names(organism: str) -> list[str]:
+    """Return exact NCBI Taxonomy names for the organism itself."""
+    bases = [organism]
+    alias = NCBI_ORGANISM_ALIASES.get(organism)
+    if alias and alias not in bases:
+        bases.append(alias)
+    return bases
 
 
 def candidate_taxonomy_names(organism: str, strain: str) -> list[str]:
@@ -37,13 +53,8 @@ def candidate_taxonomy_names(organism: str, strain: str) -> list[str]:
     if organism == "Influenza A virus":
         return [f"{organism} ({strain})"]
 
-    bases = [organism]
-    alias = NCBI_ORGANISM_ALIASES.get(organism)
-    if alias and alias not in bases:
-        bases.append(alias)
-
     candidates: list[str] = []
-    for base in bases:
+    for base in base_taxonomy_names(organism):
         candidates.extend(
             [
                 f"{base} {strain}",
@@ -52,6 +63,14 @@ def candidate_taxonomy_names(organism: str, strain: str) -> list[str]:
                 f"{base} strain {strain}",
             ]
         )
+    return list(dict.fromkeys(candidates))
+
+
+def taxonomy_names_to_try(organism: str, strain: str) -> list[str]:
+    """Return all exact NCBI Taxonomy names to try for one viral dataset."""
+    candidates = candidate_taxonomy_names(organism, strain)
+    if organism in SPECIES_LEVEL_TAXONOMY_ORGANISMS:
+        candidates.extend(base_taxonomy_names(organism))
     return list(dict.fromkeys(candidates))
 
 
@@ -80,7 +99,7 @@ def resolve_viral_taxonomy(
     search: TaxonomySearch = search_ncbi_taxonomy,
 ) -> tuple[str, list[str]] | None:
     """Return the matched candidate name and taxon IDs, or None if unresolved."""
-    for candidate in candidate_taxonomy_names(organism, strain):
+    for candidate in taxonomy_names_to_try(organism, strain):
         taxon_ids = search(candidate)
         if taxon_ids:
             return candidate, taxon_ids
@@ -112,7 +131,7 @@ def validate_metadata_file(
 
     resolved = resolve_viral_taxonomy(organism, strain, search=search)
     if resolved is None:
-        tried = "; ".join(candidate_taxonomy_names(organism, strain))
+        tried = "; ".join(taxonomy_names_to_try(organism, strain))
         return [
             f"{path}: organism '{organism}' with strain '{strain}' did not resolve "
             f"to NCBI Taxonomy. Tried: {tried}"

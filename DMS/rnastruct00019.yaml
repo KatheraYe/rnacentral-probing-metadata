@@ -21,29 +21,22 @@ raw_data:
   repository: GEO
   accession: GSE83617
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83617
+  # Excluded from this curation:
+  # - GSM2211032 (Pputida_untreated_Na): Na+ RT-cation control, not the selected K+ condition.
+  # - GSM2211034 (Pputida_DMS_vitro_K0): 0 mM K+ comparison, not the selected K150 condition.
   run_accessions:
   - accession: GSM2211031
-    sample_name: Pputida_untreated_K
-    cell_line: Pseudomonas putida
-    condition: untreated
-    replicate: 1
-  - accession: GSM2211032
-    sample_name: Pputida_untreated_Na
-    cell_line: Pseudomonas putida
-    condition: untreated
+    sample_name: Pputida_untreated_K150
+    cell_line: Pseudomonas_putida
+    condition: untreated_vitro
     replicate: 1
   - accession: GSM2211033
     sample_name: Pputida_DMS_vitro_K150
-    cell_line: Pseudomonas putida
-    condition: treated
-    replicate: 1
-  - accession: GSM2211034
-    sample_name: Pputida_DMS_vitro_K0
-    cell_line: Pseudomonas putida
-    condition: treated
+    cell_line: Pseudomonas_putida
+    condition: treated_vitro
     replicate: 1
   - accession: GSM2211035
-    sample_name: Pputida_DMS_vivo
-    cell_line: Pseudomonas putida
-    condition: treated
+    sample_name: Pputida_DMS_vivo_K150
+    cell_line: Pseudomonas_putida
+    condition: treated_vivo
     replicate: 1

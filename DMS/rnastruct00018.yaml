@@ -22,83 +22,88 @@ raw_data:
   accession: GSE95514
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE95514
   run_accessions:
+  # Excluded GEO samples are protocol controls/optimization libraries:
+  # GSM2515736/GSM2515750 biotin-only controls (no streptavidin purification); GSM2515741/GSM2515755 Ex Taq;
+  # GSM2515742 Circligase; GSM2515743/GSM2515756 low RT denaturation;
+  # GSM2515744/GSM2515757 low RT reaction temperature;
+  # GSM2515745/GSM2515758 agarose purification.
   - accession: GSM2515732
-    sample_name: Standard_primer_without_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Standard_primer_untreated_r1
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 1
   - accession: GSM2515733
-    sample_name: Standard_primer_without_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Standard_primer_untreated_r2
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 2
   - accession: GSM2515734
-    sample_name: Standard_primer_with_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Standard_primer_DMS_r1
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 1
   - accession: GSM2515735
-    sample_name: Standard_primer_with_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Standard_primer_DMS_r2
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 2
   - accession: GSM2515737
-    sample_name: Standard_primer_biotinvar_without_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Standard_primer_biotin_untreated_r1
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 1
   - accession: GSM2515738
-    sample_name: Standard_primer_biotinvar_without_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Standard_primer_biotin_untreated_r2
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 2
   - accession: GSM2515739
-    sample_name: Standard_primer_biotinvar_with_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Standard_primer_biotin_DMS_r1
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 1
   - accession: GSM2515740
-    sample_name: Standard_primer_biotinvar_with_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Standard_primer_biotin_DMS_r2
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 2
   - accession: GSM2515746
-    sample_name: Custom_primer_without_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Custom_primer_untreated_r1
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 1
   - accession: GSM2515747
-    sample_name: Custom_primer_without_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Custom_primer_untreated_r2
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 2
   - accession: GSM2515748
-    sample_name: Custom_primer_with_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Custom_primer_DMS_r1
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 1
   - accession: GSM2515749
-    sample_name: Custom_primer_with_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Custom_primer_DMS_r2
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 2
   - accession: GSM2515751
-    sample_name: Custom_primer_biotinvar_without_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Custom_primer_biotin_untreated_r1
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 1
   - accession: GSM2515752
-    sample_name: Custom_primer_biotinvar_without_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Custom_primer_biotin_untreated_r2
+    cell_line: Oryza_sativa
     condition: untreated
     replicate: 2
   - accession: GSM2515753
-    sample_name: Custom_primer_biotinvar_with_DMS_r1
-    cell_line: shoot tissue
+    sample_name: Custom_primer_biotin_DMS_r1
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 1
   - accession: GSM2515754
-    sample_name: Custom_primer_biotinvar_with_DMS_r2
-    cell_line: shoot tissue
+    sample_name: Custom_primer_biotin_DMS_r2
+    cell_line: Oryza_sativa
     condition: treated
     replicate: 2

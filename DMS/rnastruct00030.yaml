@@ -1,6 +1,7 @@
 dataset_id: rnastruct00030
 
 organism: SARS-CoV-2
+strain: Leiden-0002  # Paper reports SARS-CoV-2/Leiden-0002, GenBank MT510999.
 
 experiment:
   method: DMS-MaPseq
@@ -21,34 +22,35 @@ raw_data:
   repository: GEO
   accession: GSE151327
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE151327
+  # Odd/even/extra are amplicon tiling pools from the same in vitro DMS condition, treat them as the same sample and group them by replicate.
   run_accessions:
   - accession: GSM4892117
-    sample_name: in_vitro_DMS_odd_r1
-    cell_line: Leiden-0002
+    sample_name: leiden_0002_in_vitro_DMS_odd_r1
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
     condition: treated
     replicate: 1
   - accession: GSM4892120
-    sample_name: in_vitro_DMS_odd_r2
-    cell_line: Leiden-0002
+    sample_name: leiden_0002_in_vitro_DMS_odd_r2
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
     condition: treated
     replicate: 2
   - accession: GSM4892118
-    sample_name: in_vitro_DMS_even_r1
-    cell_line: Leiden-0002
+    sample_name: leiden_0002_in_vitro_DMS_even_r1
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
     condition: treated
     replicate: 1
   - accession: GSM4892121
-    sample_name: in_vitro_DMS_even_r2
-    cell_line: Leiden-0002
+    sample_name: leiden_0002_in_vitro_DMS_even_r2
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
     condition: treated
     replicate: 2
   - accession: GSM4892119
-    sample_name: in_vitro_DMS_extra_r1
-    cell_line: Leiden-0002
+    sample_name: leiden_0002_in_vitro_DMS_extra_r1
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
     condition: treated
     replicate: 1
   - accession: GSM4892122
-    sample_name: in_vitro_DMS_extra_r2
-    cell_line: Leiden-0002
+    sample_name: leiden_0002_in_vitro_DMS_extra_r2
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
     condition: treated
     replicate: 2

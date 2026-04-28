@@ -39,6 +39,22 @@ def test_extract_ids_reads_raw_data_run_accessions_only():
     assert creating_ids.extract_ids(data) == EXPECTED_IDS
 
 
+def test_extract_ids_ignores_optional_top_level_strain():
+    data = {
+        "dataset_id": "rnastruct00014",
+        "organism": "Influenza A virus",
+        "strain": "A/Puerto Rico/8/1934(H1N1)",
+        "raw_data": {
+            "run_accessions": [
+                {"accession": "GSM3463231"},
+                {"accession": "GSM3463232"},
+            ]
+        },
+    }
+
+    assert creating_ids.extract_ids(data) == ["GSM3463231", "GSM3463232"]
+
+
 def test_main_writes_csv_and_returns_zero(tmp_path, monkeypatch, capsys):
     csv_path = tmp_path / "ids.csv"
 

@@ -22,7 +22,7 @@ To add a new dataset to this repository:
 
 2. Choose a dataset id that is a consecutive number from the last one in the repo (e.g. rnastruct00010). Check both DMS/ and SHAPE/ to find the latest id number.
 
-3. You must also include the organism in Latin name (e.g. Homo sapiens), the method (which can be SHAPE or DMS variants) and principal (RT-stop or MaP) of this experiement, a publication DOI, and fill out the raw_data section.
+3. You must also include the organism in Latin name (e.g. Homo sapiens), the method (which can be SHAPE or DMS variants) and principal (RT-stop or MaP) of this experiement, a publication DOI, and fill out the raw_data section. The strain field is also required for viral datasets only.
 
 4. Each sample listed under run_accessions should include a biologically meaningful and distinguishable sample_name, along with cell_line (no white spaces), condition (one of untreated, treated, or denatured), and replicate (just a number). The sample accession id must be supported by nf-core/fetchngs (e.g. SRA, ENA, DDBJ, GEO; [see the fetchngs documentation for the full list](https://nf-co.re/fetchngs/1.12.0/docs/usage)).
 
@@ -59,3 +59,4 @@ The required fields are:
 
 All other fields are optional and, if not known, can be `null`.
 The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, or `denatured`.
+For viral datasets the optional top-level field `strain` should be provided and should describe the strain hared by all samples in the dataset. This field is not required for non-viral datasets. If a viral study includes multiple strains create one YAML file per strain.

@@ -8,6 +8,7 @@ on:
       - "schema/*.yaml"
       - "scripts/creating_ids.py"
       - "scripts/check_metadata_uniqueness.py"
+      - "scripts/validate_obi_ids.py"
       - "scripts/validate_ncbi_taxonomy.py"
       - "requirements.txt"
       - ".github/workflows/validate-metadata.yml"
@@ -73,6 +74,14 @@ jobs:
             echo "Validating schema: ${yaml_file}"
             linkml-validate --schema schema/rnastruct.schema.yaml "${yaml_file}"
           done < changed_yamls.txt
+
+      - name: Validate OBI IDs
+        if: steps.changed-yamls.outputs.has_files == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t yaml_files < changed_yamls.txt
+          python scripts/validate_obi_ids.py "${yaml_files[@]}"
 
       - name: Validate viral NCBI taxonomy
         if: steps.changed-yamls.outputs.has_files == 'true'

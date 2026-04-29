@@ -26,7 +26,7 @@ To add a new dataset to this repository:
 
 4. Each sample listed under run_accessions should include a biologically meaningful and distinguishable sample_name, along with cell_line (no white spaces), condition (one of untreated, treated, or denatured), and replicate (just a number). The sample accession id must be supported by nf-core/fetchngs (e.g. SRA, ENA, DDBJ, GEO; [see the fetchngs documentation for the full list](https://nf-co.re/fetchngs/1.12.0/docs/usage)).
 
-5. If including an OBI id, use a valid term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi). If the experimental context is provided, it must be one of in_vivo, in_vitro, or denatured.
+5. If including an OBI id, use a valid term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi). If the experimental context is provided, it must be one of in_vivo, in_vitro, denatured, ex_vivo, in_virio or ex_virio.
 
 6. All other fields are optional and can be set to null if not available.
 
@@ -59,6 +59,6 @@ The required fields are:
   - `cell_line` must not contain white spaces — use underscores instead (e.g. `embryonic_cells`, not `embryonic cells`)
 
 All other fields are optional and, if not known, can be `null`.
-The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, or `denatured`.
+
 For viral datasets the optional top-level field `strain` should be provided and should describe the strain hared by all samples in the dataset. This field is not required for non-viral datasets. If a viral study includes multiple strains create one YAML file per strain.
 The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, `ex_vivo`, `in_virio`, `ex_virio`, or `denatured`.

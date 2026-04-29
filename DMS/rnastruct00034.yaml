@@ -21,29 +21,22 @@ raw_data:
   repository: GEO
   accession: GSE83617
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83617
+  # Excluded from this curation:
+  # - GSM2211022 (Yeast_untreated_Na): Na+ RT-cation control, not the selected K+ condition.
+  # - GSM2211024 (Yeast_DMS_vitro_K10): 10 mM K+ in vitro comparison without matched untreated control; selected curation uses K150.
   run_accessions:
   - accession: GSM2211021
-    sample_name: Yeast_untreated_K
-    cell_line: budding yeast
-    condition: untreated
-    replicate: 1
-  - accession: GSM2211022
-    sample_name: Yeast_untreated_Na
-    cell_line: budding yeast
+    sample_name: Yeast_untreated_K150
+    cell_line: Saccharomyces_cerevisiae_vitro
     condition: untreated
     replicate: 1
   - accession: GSM2211023
     sample_name: Yeast_DMS_vitro_K150
-    cell_line: budding yeast
-    condition: treated
-    replicate: 1
-  - accession: GSM2211024
-    sample_name: Yeast_DMS_vitro_K10
-    cell_line: budding yeast
+    cell_line: Saccharomyces_cerevisiae_vitro
     condition: treated
     replicate: 1
   - accession: GSM2211025
-    sample_name: Yeast_DMS_vivo
-    cell_line: budding yeast
+    sample_name: Yeast_DMS_vivo_K150
+    cell_line: Saccharomyces_cerevisiae_vivo
     condition: treated
     replicate: 1

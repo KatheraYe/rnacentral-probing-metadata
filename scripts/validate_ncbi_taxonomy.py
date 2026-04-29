@@ -8,6 +8,7 @@ import json
 import time
 from pathlib import Path
 from typing import Callable
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -31,11 +32,31 @@ NCBI_ORGANISM_ALIASES = {
 # separate taxonomy names. Still require strain metadata, but validate the
 # species-level taxon when exact strain candidates do not resolve.
 SPECIES_LEVEL_TAXONOMY_ORGANISMS = {
+    "HIV",
     "SARS-CoV-2",
+    "Zika virus",
 }
 
 NCBI_ESEARCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-NCBI_REQUEST_DELAY_SECONDS = 0.34
+NCBI_REQUEST_DELAY_SECONDS = 0.5
+NCBI_MAX_ATTEMPTS = 5
+NCBI_RETRY_STATUS_CODES = {429, 500, 502, 503, 504}
+
+
+class NcbiTaxonomyLookupError(RuntimeError):
+    """Raised when NCBI Taxonomy cannot be queried reliably."""
+
+
+def ncbi_retry_delay_seconds(exc: HTTPError | URLError | OSError, attempt: int) -> float:
+    """Return delay before retrying an NCBI request."""
+    if isinstance(exc, HTTPError):
+        retry_after = exc.headers.get("Retry-After")
+        if retry_after:
+            try:
+                return min(float(retry_after), 60.0)
+            except ValueError:
+                pass
+    return min(2.0**attempt, 30.0)
 
 
 def base_taxonomy_names(organism: str) -> list[str]:
@@ -80,7 +101,10 @@ def taxonomy_names_to_try(organism: str, strain: str) -> list[str]:
     """Return all exact NCBI Taxonomy names to try for one viral dataset."""
     candidates = candidate_taxonomy_names(organism, strain)
     if organism in SPECIES_LEVEL_TAXONOMY_ORGANISMS:
-        candidates.extend(base_taxonomy_names(organism))
+        if organism == "HIV":
+            candidates.append("Human immunodeficiency virus 1")
+        else:
+            candidates.extend(base_taxonomy_names(organism))
     return list(dict.fromkeys(candidates))
 
 
@@ -94,8 +118,26 @@ def search_ncbi_taxonomy(name: str) -> list[str]:
     }
     url = f"{NCBI_ESEARCH_URL}?{urlencode(query)}"
     request = Request(url, headers={"User-Agent": "rnacentral-probing-metadata-validator"})
-    with urlopen(request, timeout=30) as response:
-        data = json.loads(response.read().decode("utf-8"))
+
+    for attempt in range(1, NCBI_MAX_ATTEMPTS + 1):
+        try:
+            with urlopen(request, timeout=30) as response:
+                data = json.loads(response.read().decode("utf-8"))
+            break
+        except HTTPError as exc:
+            can_retry = exc.code in NCBI_RETRY_STATUS_CODES
+            if can_retry and attempt < NCBI_MAX_ATTEMPTS:
+                time.sleep(ncbi_retry_delay_seconds(exc, attempt))
+                continue
+            raise NcbiTaxonomyLookupError(
+                f"lookup for '{name}' failed with HTTP {exc.code}: {exc.reason}"
+            ) from exc
+        except (TimeoutError, URLError, OSError) as exc:
+            if attempt < NCBI_MAX_ATTEMPTS:
+                time.sleep(ncbi_retry_delay_seconds(exc, attempt))
+                continue
+            raise NcbiTaxonomyLookupError(f"lookup for '{name}' failed: {exc}") from exc
+
     result = data.get("esearchresult", {})
     return [str(taxon_id) for taxon_id in result.get("idlist", [])]
 
@@ -139,7 +181,14 @@ def validate_metadata_file(
     if not strain:
         return [f"{path}: viral organism '{organism}' requires top-level strain"]
 
-    resolved = resolve_viral_taxonomy(organism, strain, search=search)
+    try:
+        resolved = resolve_viral_taxonomy(organism, strain, search=search)
+    except NcbiTaxonomyLookupError as exc:
+        return [
+            f"{path}: NCBI Taxonomy lookup failed while validating organism "
+            f"'{organism}' with strain '{strain}': {exc}"
+        ]
+
     if resolved is None:
         tried = "; ".join(taxonomy_names_to_try(organism, strain))
         return [
@@ -163,8 +212,15 @@ def validate_metadata_files(
 ) -> list[str]:
     """Return validation issues across all provided YAML files."""
     issues: list[str] = []
+    cache: dict[str, list[str]] = {}
+
+    def cached_search(name: str) -> list[str]:
+        if name not in cache:
+            cache[name] = search(name)
+        return cache[name]
+
     for path in paths:
-        issues.extend(validate_metadata_file(path, search=search))
+        issues.extend(validate_metadata_file(path, search=cached_search))
     return issues
 
 

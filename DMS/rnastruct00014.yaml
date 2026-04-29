@@ -23,8 +23,6 @@ raw_data:
   accession: GSE122286
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE122286
   # Excluded from this curation:
-  # - GSM3463239/GSM3463240 (DMS_MaPseq_on_in_vivo_spliced_segment_7_8_Influenza_A_vmRNAs_r1/r2): targeted in-cell spliced M/NS vmRNA isoform amplicons, not part of the main vmRNA comparison set.
-  # - GSM3463241/GSM3463242 (DMS_MaPseq_on_in_vivo_Influenza_A_vmRNA_probe_pairing_regions_r1/r2): targeted amplicons covering capture-probe regions, not part of the main vmRNA comparison set.
   # - GSM3463243 (DMS_MaPseq_on_in_vivo_Influenza_A_vmRNA_mutated_structural_motifs): targeted motif-disruption validation sample, not part of the main wild-type vmRNA comparison set.
   run_accessions:
   - accession: GSM3463231
@@ -65,6 +63,26 @@ raw_data:
   - accession: GSM3463238
     sample_name: DMS_MaPseq_on_in_vitro-transcribed_and_refolded_Influenza_A_vmRNA_r2  # in vitro-transcribed vmRNA refolded before probing
     cell_line: IAV_PR8_in_vitro
+    condition: treated
+    replicate: 2
+  - accession: GSM3463239
+    sample_name: DMS_MaPseq_on_in_vivo_spliced_segment_7_8_Influenza_A_vmRNAs_r1  # targeted in-cell spliced M/NS vmRNA isoform amplicons
+    cell_line: IAV_PR8_in_vivo
+    condition: treated
+    replicate: 1
+  - accession: GSM3463240
+    sample_name: DMS_MaPseq_on_in_vivo_spliced_segment_7_8_Influenza_A_vmRNAs_r2  # targeted in-cell spliced M/NS vmRNA isoform amplicons
+    cell_line: IAV_PR8_in_vivo
+    condition: treated
+    replicate: 2
+  - accession: GSM3463241
+    sample_name: DMS_MaPseq_on_in_vivo_Influenza_A_vmRNA_probe_pairing_regions_r1  # targeted amplicons covering capture-probe regions
+    cell_line: IAV_PR8_in_vivo
+    condition: treated
+    replicate: 1
+  - accession: GSM3463242
+    sample_name: DMS_MaPseq_on_in_vivo_Influenza_A_vmRNA_probe_pairing_regions_r2  # targeted amplicons covering capture-probe regions
+    cell_line: IAV_PR8_in_vivo
     condition: treated
     replicate: 2
   - accession: GSM3463244

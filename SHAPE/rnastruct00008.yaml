@@ -1,6 +1,7 @@
 dataset_id: rnastruct00008
 
 organism: Zika virus
+strain: KJ776791_HPF2013  # Paper reports the French Polynesia ZIKV strain as KJ776791_HPF2013.
 
 experiment:
   method: NAI-MaP
@@ -23,12 +24,12 @@ raw_data:
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE106483
   run_accessions:
   - accession: GSM2838809
-    sample_name: Zika_French_Polynesia_IN_VITRO_NAI_Map_NAI
-    cell_line: Zika virus
+    sample_name: Zika_French_Polynesia_in_vitro_treated
+    cell_line: ZIKV_KJ776791_HPF2013
     condition: treated
     replicate: 1
   - accession: GSM2838810
-    sample_name: Zika_French_Polynesia_IN_VITRO_NAI_Map_DMSO
-    cell_line: Zika virus
+    sample_name: Zika_French_Polynesia_in_vitro_untreated
+    cell_line: ZIKV_KJ776791_HPF2013
     condition: untreated
     replicate: 1

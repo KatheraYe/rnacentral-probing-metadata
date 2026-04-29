@@ -1,13 +1,14 @@
 dataset_id: rnastruct00012
 
 organism: HIV
+strain: HIV-1_NL4-3  # SRA sample name reports HIV NL4-3 plus NMIA.
 
 experiment:
   method: SHAPE-MaP
   principle: MaP
   obi: OBI:0001026
   chemical: NMIA
-  context: [in_vivo]
+  context: [ex_virio]
   pH: 8.0
   adapter_3p: null
   adapter_5p: null
@@ -23,7 +24,7 @@ raw_data:
   landing_page: https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=248760
   run_accessions:
   - accession: SRX663476
-    sample_name: folded_NMIA
-    cell_line: Human immunodeficiency virus 1
+    sample_name: HIV-1_NL4-3_treated
+    cell_line: HIV-1_NL4-3
     condition: treated
     replicate: 1

@@ -1,13 +1,14 @@
 dataset_id: rnastruct00010
 
 organism: HIV
+strain: HIV-1_NL4-3  # SRA sample names report HIV NL4-3 folded and control viral RNA.
 
 experiment:
   method: SHAPE-MaP
   principle: MaP
   obi: OBI:0003885
   chemical: 1M7
-  context: [in_vivo]
+  context: [ex_virio]
   pH: 8.0
   adapter_3p: null
   adapter_5p: null
@@ -23,12 +24,12 @@ raw_data:
   landing_page: https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=248760
   run_accessions:
   - accession: SRX554885
-    sample_name: folded_1M7
-    cell_line: Human immunodeficiency virus 1
+    sample_name: HIV-1_NL4-3_treated
+    cell_line: HIV-1_NL4-3
     condition: treated
     replicate: 1
   - accession: SRX663477
-    sample_name: folded_DMSO
-    cell_line: Human immunodeficiency virus 1
+    sample_name: HIV-1_NL4-3_untreated
+    cell_line: HIV-1_NL4-3
     condition: untreated
     replicate: 1

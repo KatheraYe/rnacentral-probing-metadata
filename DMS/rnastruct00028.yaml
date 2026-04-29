@@ -1,0 +1,35 @@
+dataset_id: rnastruct00028
+
+organism: SARS-CoV-2
+strain: Leiden-0002  # GEO reports SARS-CoV-2/Leiden-0002, GenBank MT510999.
+
+experiment:
+  method: DMS-MaPseq
+  principle: MaP
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vitro]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41592-021-01075-w
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE158052
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE158052
+  run_accessions:
+  - accession: GSM4787260
+    sample_name: leiden_0002_in_vitro_treated_r1
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
+    condition: treated
+    replicate: 1
+  - accession: GSM4787261
+    sample_name: leiden_0002_in_vitro_treated_r2
+    cell_line: SARS-CoV-2_Leiden-0002_in_vitro
+    condition: treated
+    replicate: 2

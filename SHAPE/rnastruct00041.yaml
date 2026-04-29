@@ -1,0 +1,41 @@
+dataset_id: rnastruct00041
+
+organism: SARS-CoV-2
+strain: EPI_ISL_414378  # GEO reports the Delta382 SARS-CoV-2 background as EPI_ISL_414378.
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vivo, denatured]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41467-021-25357-1
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE165005
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165005
+  # Delta382 is a 382-nt deletion mutant.
+  run_accessions:
+  - accession: GSM5024395
+    sample_name: sars2_delta382_in_vivo_treated
+    cell_line: SARS-CoV-2_Delta382
+    condition: treated
+    replicate: 1
+  - accession: GSM5024396
+    sample_name: sars2_delta382_denatured
+    cell_line: SARS-CoV-2_Delta382
+    condition: denatured
+    replicate: 1
+  - accession: GSM5024397
+    sample_name: sars2_delta382_in_vivo_untreated
+    cell_line: SARS-CoV-2_Delta382
+    condition: untreated
+    replicate: 1

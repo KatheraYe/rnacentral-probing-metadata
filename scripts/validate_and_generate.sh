@@ -37,6 +37,9 @@ for yaml in "${yamls[@]}"; do
   echo "Validating ${yaml}"
   linkml-validate --schema "${schema}" "${yaml}"
 
+  echo "Validating OBI ID for ${yaml}"
+  python3 scripts/validate_obi_ids.py "${yaml}"
+
   echo "Generating ${output}"
   python3 scripts/creating_ids.py "${yaml}" "${output}"
 done

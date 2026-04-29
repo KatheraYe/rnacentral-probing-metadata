@@ -1,0 +1,35 @@
+dataset_id: rnastruct00033
+
+organism: Influenza A virus
+strain: A/Udorn/307/1972(H3N2)  # Udorn abbreviation for A/Udorn/307/1972(H3N2).
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003885
+  chemical: 1M7
+  context: [in_virio]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41564-019-0513-7
+  year: 2019
+
+raw_data:
+  repository: SRA
+  accession: SRP150677
+  landing_page: https://www.ncbi.nlm.nih.gov/sra?term=SRP150677
+  run_accessions:
+  - accession: SRX4223898
+    sample_name: Udorn_in_virio_treated
+    cell_line: IAV_Udorn
+    condition: treated
+    replicate: 1
+  - accession: SRX4223897
+    sample_name: Udorn_in_virio_untreated
+    cell_line: IAV_Udorn
+    condition: untreated
+    replicate: 1

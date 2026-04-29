@@ -47,6 +47,24 @@ def test_extract_run_metadata_map_includes_sample_fields():
     }
 
 
+def test_extract_organism_name_keeps_non_viral_organism_unchanged():
+    metadata = {"organism": "Homo sapiens", "strain": "not-used"}
+
+    assert merge_metadata.extract_organism_name(metadata) == "Homo sapiens"
+
+
+def test_extract_organism_name_adds_strain_for_viral_organism():
+    metadata = {
+        "organism": "Influenza A virus",
+        "strain": "A/Puerto Rico/8/1934(H1N1)",
+    }
+
+    assert (
+        merge_metadata.extract_organism_name(metadata)
+        == "Influenza A virus (A/Puerto Rico/8/1934(H1N1))"
+    )
+
+
 def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
     samplesheet_path = tmp_path / "fetchngs.csv"
     output_path = tmp_path / "merged.csv"
@@ -80,7 +98,7 @@ def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
     header = output_path.read_text(encoding="utf-8").splitlines()[0]
     assert header == (
         "sample,sample_id,fastq_1,fastq_2,method,principle,"
-        "cell_line,condition,replicate,organism,adapter_3p,adapter_5p,umi_pattern"
+        "cell_line,condition,replicate,organism,pH,adapter_3p,adapter_5p,umi_pattern"
     )
 
     with output_path.open(newline="", encoding="utf-8") as handle:
@@ -100,3 +118,53 @@ def test_main_writes_new_sample_metadata_columns(tmp_path, monkeypatch, capsys):
 
     out = capsys.readouterr().out
     assert f"Wrote 2 rows to {output_path}" in out
+
+
+def test_main_writes_viral_organism_with_strain(tmp_path, monkeypatch):
+    samplesheet_path = tmp_path / "fetchngs.csv"
+    metadata_path = tmp_path / "metadata.yaml"
+    output_path = tmp_path / "merged.csv"
+
+    samplesheet_path.write_text(
+        "sample_alias,fastq_1,fastq_2\nGSM3463235,s1_R1.fastq.gz,s1_R2.fastq.gz\n",
+        encoding="utf-8",
+    )
+    metadata_path.write_text(
+        (
+            "dataset_id: rnastruct00014\n"
+            "organism: Influenza A virus\n"
+            "strain: A/Puerto Rico/8/1934(H1N1)\n"
+            "experiment:\n"
+            "  chemical: DMS\n"
+            "  principle: MaP\n"
+            "raw_data:\n"
+            "  run_accessions:\n"
+            "  - accession: GSM3463235\n"
+            "    sample_name: PR8_treated\n"
+            "    cell_line: IAV_PR8_in_vivo\n"
+            "    condition: treated\n"
+            "    replicate: 1\n"
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "merge_metadata.py",
+            "--samplesheet",
+            str(samplesheet_path),
+            "--metadata",
+            str(metadata_path),
+            "--out",
+            str(output_path),
+        ],
+    )
+
+    rc = merge_metadata.main()
+    assert rc == 0
+
+    with output_path.open(newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+
+    assert rows[0]["organism"] == "Influenza A virus (A/Puerto Rico/8/1934(H1N1))"

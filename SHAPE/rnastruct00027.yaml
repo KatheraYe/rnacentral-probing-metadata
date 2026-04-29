@@ -1,0 +1,40 @@
+dataset_id: rnastruct00027
+
+organism: SARS-CoV-2
+strain: EPI_ISL_407987  # GEO reports the WT SARS-CoV-2 background as EPI_ISL_407987.
+
+experiment:
+  method: SHAPE-MaP
+  principle: MaP
+  obi: OBI:0003886
+  chemical: NAI
+  context: [in_vivo, denatured]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41467-021-25357-1
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE165005
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165005
+  run_accessions:
+  - accession: GSM5024392
+    sample_name: sars2_wt_in_vivo_treated
+    cell_line: SARS-CoV-2_WT
+    condition: treated
+    replicate: 1
+  - accession: GSM5024393
+    sample_name: sars2_wt_denatured
+    cell_line: SARS-CoV-2_WT
+    condition: denatured
+    replicate: 1
+  - accession: GSM5024394
+    sample_name: sars2_wt_in_vivo_untreated
+    cell_line: SARS-CoV-2_WT
+    condition: untreated
+    replicate: 1

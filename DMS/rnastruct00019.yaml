@@ -1,0 +1,42 @@
+dataset_id: rnastruct00019
+
+organism: Pseudomonas putida
+
+experiment:
+  method: DMS-seq
+  principle: RT-stop
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, in_vitro]
+  pH: 7.0
+  adapter_3p: TCGTATGCCGTCTTCTGCTTG
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1126/science.aaf5371
+  year: 2016
+
+raw_data:
+  repository: GEO
+  accession: GSE83617
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE83617
+  # Excluded from this curation:
+  # - GSM2211032 (Pputida_untreated_Na): Na+ RT-cation control, not the selected K+ condition.
+  # - GSM2211034 (Pputida_DMS_vitro_K0): 0 mM K+ comparison, not the selected K150 condition.
+  run_accessions:
+  - accession: GSM2211031
+    sample_name: Pputida_untreated_K150
+    cell_line: Pseudomonas_putida_in_vitro
+    condition: untreated
+    replicate: 1
+  - accession: GSM2211033
+    sample_name: Pputida_DMS_vitro_K150
+    cell_line: Pseudomonas_putida_in_vitro
+    condition: treated
+    replicate: 1
+  - accession: GSM2211035
+    sample_name: Pputida_DMS_vivo_K150
+    cell_line: Pseudomonas_putida_in_vivo
+    condition: treated
+    replicate: 1

@@ -1,0 +1,50 @@
+dataset_id: rnastruct00029
+
+organism: SARS-CoV-2
+strain: IPBCAMS-YL01/2020  # GEO reports SARS-CoV-2 isolate IPBCAMS-YL01/2020.
+
+experiment:
+  method: icSHAPE
+  principle: RT-stop
+  obi: OBI:0003887
+  chemical: NAI-N3
+  context: [in_vivo, in_vitro]
+  pH: 7.5
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1016/j.cell.2021.02.008
+  year: 2021
+
+raw_data:
+  repository: GEO
+  accession: GSE153984
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE153984
+  run_accessions:
+  - accession: GSM4661367
+    sample_name: ipbcams_yl01_in_vivo_untreated
+    cell_line: SARS-CoV-2_IPBCAMS-YL01_in_vivo
+    condition: untreated
+    replicate: 1
+  - accession: GSM4661368
+    sample_name: ipbcams_yl01_in_vivo_treated
+    cell_line: SARS-CoV-2_IPBCAMS-YL01_in_vivo
+    condition: treated
+    replicate: 1
+  - accession: GSM4661369
+    sample_name: ipbcams_yl01_in_vitro_treated
+    cell_line: SARS-CoV-2_IPBCAMS-YL01_in_vitro
+    condition: treated
+    replicate: 1
+  - accession: GSM4661376
+    sample_name: sars2_C241T_UTR_in_vitro_untreated
+    cell_line: SARS-CoV-2_C241T_UTR_in_vitro  # C241T is a C-to-T mutation at nt 241 in the 5' UTR.
+    condition: untreated
+    replicate: 1
+  - accession: GSM4661377
+    sample_name: sars2_C241T_UTR_in_vitro_treated
+    cell_line: SARS-CoV-2_C241T_UTR_in_vitro
+    condition: treated
+    replicate: 1

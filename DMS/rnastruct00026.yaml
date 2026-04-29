@@ -1,0 +1,47 @@
+dataset_id: rnastruct00026
+
+organism: SARS-CoV-2
+strain: USA-WA1/2020  # GEO reports SARS-CoV-2 strain USA-WA1/2020, passage 6.
+
+experiment:
+  method: DMS-MaPseq
+  principle: MaP
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, ex_virio]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/s41467-022-28603-2
+  year: 2022
+
+raw_data:
+  repository: GEO
+  accession: GSE153851
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE153851
+  # Excluded from this curation:
+  # - GSM4656063/GSM4656064: short in vitro-transcribed fragments, not full-genome infected-cell samples.
+  run_accessions:
+  - accession: GSM4656059
+    sample_name: usa_wa1_treated_r1
+    cell_line: SARS-CoV-2_USA-WA1
+    condition: treated
+    replicate: 1
+  - accession: GSM4656060
+    sample_name: usa_wa1_treated_r2
+    cell_line: SARS-CoV-2_USA-WA1
+    condition: treated
+    replicate: 2
+  - accession: GSM4656061
+    sample_name: usa_wa1_untreated
+    cell_line: SARS-CoV-2_USA-WA1
+    condition: untreated
+    replicate: 1
+  - accession: GSM4656062
+    sample_name: usa_wa1_ex_virio_treated  # genomic RNA extracted from virions and refolded before probing
+    cell_line: SARS-CoV-2_USA-WA1_ex_virio
+    condition: treated
+    replicate: 1

@@ -15,6 +15,15 @@ from pathlib import Path
 import yaml
 
 
+VIRAL_ORGANISMS = {
+    "Influenza A virus",
+    "SARS-CoV-2",
+    "Zika virus",
+    "HIV",
+    "Rotavirus A",
+}
+
+
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments for metadata merge inputs and output path."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -69,13 +78,19 @@ def normalize_method(chemical: str) -> str:
 
 
 def extract_organism_name(metadata: dict) -> str:
-    """Return organism name from either current string or legacy mapping metadata."""
+    """Return samplesheet organism name, including viral strain when present."""
     organism = metadata.get("organism")
     if isinstance(organism, str):
-        return organism.strip()
-    if isinstance(organism, dict):
-        return str(organism.get("name", "")).strip()
-    return ""
+        organism_name = organism.strip()
+    elif isinstance(organism, dict):
+        organism_name = str(organism.get("name", "")).strip()
+    else:
+        organism_name = ""
+
+    strain = str(metadata.get("strain", "")).strip()
+    if organism_name in VIRAL_ORGANISMS and strain:
+        return f"{organism_name} ({strain})"
+    return organism_name
 
 
 def main() -> int:

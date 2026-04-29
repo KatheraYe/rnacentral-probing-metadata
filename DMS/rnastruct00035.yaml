@@ -1,0 +1,54 @@
+dataset_id: rnastruct00035
+
+organism: Saccharomyces cerevisiae
+
+experiment:
+  method: DMS-MaPseq
+  principle: MaP
+  obi: OBI:0001015
+  chemical: DMS
+  context: [in_vivo, denatured]
+  pH: null
+  adapter_3p: null
+  adapter_5p: null
+  umi_pattern: null
+
+publication:
+  doi: 10.1038/nmeth.4057
+  year: 2017
+
+raw_data:
+  repository: GEO
+  accession: GSE84537
+  landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84537
+  # Excluded from this curation:
+  # - GSM2241647/GSM2241648 (SSii_DMSvivo_Rep1/Rep2): SSII/Mn reverse-transcriptase comparison libraries; paper selected TGIRT for higher signal and lower background.
+  # - GSM2241650 (SSii_Untreated): SSII/Mn untreated background library excluded with the SSII/Mn comparison set.
+  # - GSM2310332 (SSII_DMS_denatured): SSII/Mn denatured control excluded with the SSII/Mn comparison set.
+  # - GSM2310330/GSM2310331 (TGIRT_2andHalf_percent_DMS_vivo_MiSeq/TGIRT_5percent_DMS_vivo_MiSeq): MiSeq DMS-dose comparison libraries, not the main genome-wide HiSeq set.
+  run_accessions:
+  - accession: GSM2241644
+    sample_name: TGIRT_DMSvivo_Rep1  # TGIRT in vivo DMS genome-wide library
+    cell_line: BY4741
+    condition: treated
+    replicate: 1
+  - accession: GSM2241645
+    sample_name: TGIRT_DMSvivo_Rep2  # TGIRT in vivo DMS genome-wide library
+    cell_line: BY4741
+    condition: treated
+    replicate: 2
+  - accession: GSM2241646
+    sample_name: TGIRT_DMSvivo_Rep2_additionalSequencing  # extra sequencing for TGIRT replicate 2
+    cell_line: BY4741
+    condition: treated
+    replicate: 2
+  - accession: GSM2241649
+    sample_name: TGIRT_Untreated  # TGIRT untreated background library
+    cell_line: BY4741
+    condition: untreated
+    replicate: 1
+  - accession: GSM2310333
+    sample_name: TGIRT_DMS_denatured  # TGIRT denatured control
+    cell_line: BY4741
+    condition: denatured
+    replicate: 1

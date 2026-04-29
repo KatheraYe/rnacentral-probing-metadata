@@ -1,7 +1,7 @@
-dataset_id: rnastruct00015
+dataset_id: rnastruct00033
 
 organism: Influenza A virus
-strain: A/Puerto Rico/8/1934(H1N1)  # PR8 abbreviation for A/Puerto Rico/8/1934(H1N1).
+strain: A/Udorn/307/1972(H3N2)  # Udorn abbreviation for A/Udorn/307/1972(H3N2).
 
 experiment:
   method: SHAPE-MaP
@@ -23,13 +23,13 @@ raw_data:
   accession: SRP150677
   landing_page: https://www.ncbi.nlm.nih.gov/sra?term=SRP150677
   run_accessions:
-  - accession: SRX4223900
-    sample_name: PR8_in_virio_treated
-    cell_line: IAV_PR8
+  - accession: SRX4223898
+    sample_name: Udorn_in_virio_treated
+    cell_line: IAV_Udorn
     condition: treated
     replicate: 1
-  - accession: SRX4223899
-    sample_name: PR8_in_virio_untreated
-    cell_line: IAV_PR8
+  - accession: SRX4223897
+    sample_name: Udorn_in_virio_untreated
+    cell_line: IAV_Udorn
     condition: untreated
     replicate: 1

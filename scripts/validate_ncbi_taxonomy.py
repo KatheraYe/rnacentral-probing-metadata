@@ -19,7 +19,7 @@ VIRAL_ORGANISMS = {
     "SARS-CoV-2",
     "Zika virus",
     "HIV",
-    "Rotavirus",
+    "Rotavirus A",
 }
 
 NCBI_ORGANISM_ALIASES = {
@@ -52,6 +52,16 @@ def candidate_taxonomy_names(organism: str, strain: str) -> list[str]:
     strain = strain.strip()
     if organism == "Influenza A virus":
         return [f"{organism} ({strain})"]
+    if organism == "Rotavirus A":
+        return [
+            f"Bovine rotavirus strain {strain}",
+            f"Rotavirus A strain {strain}",
+            f"Rotavirus A {strain}",
+            f"{organism} {strain}",
+            f"{organism} ({strain})",
+            f"{organism} isolate {strain}",
+            f"{organism} strain {strain}",
+        ]
 
     candidates: list[str] = []
     for base in base_taxonomy_names(organism):

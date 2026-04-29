@@ -24,6 +24,13 @@ def test_candidate_taxonomy_names_formats_influenza_strain():
     ) == ["Influenza A virus (A/Puerto Rico/8/1934(H1N1))"]
 
 
+def test_candidate_taxonomy_names_formats_rotavirus_rf_strain():
+    assert "Bovine rotavirus strain RF" in validate_ncbi_taxonomy.candidate_taxonomy_names(
+        "Rotavirus A",
+        "RF",
+    )
+
+
 def test_candidate_taxonomy_names_includes_ncbi_aliases():
     assert (
         "Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1"

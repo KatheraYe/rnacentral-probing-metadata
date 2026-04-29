@@ -26,7 +26,7 @@ def test_organism_pattern_accepts_latin_names_and_curated_viral_names():
     assert pattern.fullmatch("SARS-CoV-2")
     assert pattern.fullmatch("Zika virus")
     assert pattern.fullmatch("HIV")
-    assert pattern.fullmatch("Rotavirus")
+    assert pattern.fullmatch("Rotavirus A")
 
 
 def test_organism_pattern_rejects_unstructured_names():

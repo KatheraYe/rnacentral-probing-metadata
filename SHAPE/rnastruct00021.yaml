@@ -21,14 +21,15 @@ raw_data:
   repository: GEO
   accession: GSE135711
   landing_page: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE135711
+  # Col-0 is the Columbia-0 Arabidopsis accession/ecotype; GEO reports 5-day seedlings.
   run_accessions:
   - accession: GSM4026531
-    sample_name: nuclear_mRNA_control
-    cell_line: seedling
+    sample_name: Col-0_seedling_nuclear_mRNA_untreated
+    cell_line: Col-0_nuclear_mRNA
     condition: untreated
     replicate: 1
   - accession: GSM4026532
-    sample_name: nuclear_mRNA_NAI_treatment
-    cell_line: seedling
+    sample_name: Col-0_seedling_nuclear_mRNA_treated
+    cell_line: Col-0_nuclear_mRNA
     condition: treated
     replicate: 1

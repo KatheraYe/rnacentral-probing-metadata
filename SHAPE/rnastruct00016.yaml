@@ -1,6 +1,7 @@
 dataset_id: rnastruct00016
 
 organism: Influenza A virus
+strain: A/WSN/1933(H1N1)  # Paper reports influenza A/WSN/33 (WSN).
 
 experiment:
   method: icSHAPE
@@ -23,12 +24,12 @@ raw_data:
   landing_page: https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA1080059
   run_accessions:
   - accession: SRX23731230
-    sample_name: SHAPE_in_vivo
-    cell_line: WSN
+    sample_name: WSN_in_vivo_treated
+    cell_line: IAV_WSN_in_vivo
     condition: treated
     replicate: 1
-  - accession: SRX23731231
-    sample_name: SHAPE_in_virio
-    cell_line: WSN
+  - accession: SRX23730931
+    sample_name: WSN_in_virio_treated
+    cell_line: IAV_WSN_in_virio
     condition: treated
     replicate: 1

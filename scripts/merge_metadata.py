@@ -20,7 +20,7 @@ VIRAL_ORGANISMS = {
     "SARS-CoV-2",
     "Zika virus",
     "HIV",
-    "Rotavirus",
+    "Rotavirus A",
 }
 
 

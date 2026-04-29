@@ -9,9 +9,9 @@ experiment:
   principle: RT-stop
   pH: 7.5
   context: [in_vivo]
-  adapter_3p: AGATCGGAAGAGCACACGTCT
+  adapter_3p: GGAAGAGCACACGTCTGAACTCCAGTCAC
   adapter_5p: null  # varies by sample; set when known
-  umi_pattern: DDDNNNNNNNNNN  # D=A/G/T, N=A/C/G/T
+  umi_pattern: NNNNNNNNNNNNN
 
 publication:
   doi: 10.1038/s41422-021-00476-y

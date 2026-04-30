@@ -1,6 +1,6 @@
 dataset_id: rnastruct00011
 
-organism: HIV
+organism: Lentivirus humimdef1 # The Latin name of HIV-1. The schema should be updated accordingly (to accept numbers in the second word).
 strain: HIV-1_NL4-3  # SRA sample name reports HIV NL4-3 plus 1M6.
 
 experiment:

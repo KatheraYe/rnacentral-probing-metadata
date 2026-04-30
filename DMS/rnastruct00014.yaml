@@ -1,6 +1,6 @@
 dataset_id: rnastruct00014
 
-organism: Influenza A virus
+organism: Alphainfluenzavirus influenzae # The latin name of Influenza A virus (IAV)
 strain: A/Puerto Rico/8/1934(H1N1)
 
 experiment:

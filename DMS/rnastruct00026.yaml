@@ -1,6 +1,6 @@
 dataset_id: rnastruct00026
 
-organism: SARS-CoV-2
+organism: Betacoronavirus pandemicum # The Latin name of SARS-CoV-2
 strain: USA-WA1/2020  # GEO reports SARS-CoV-2 strain USA-WA1/2020, passage 6.
 
 experiment:

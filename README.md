@@ -26,9 +26,12 @@ To add a new dataset to this repository:
 
 4. Each sample listed under run_accessions should include a biologically meaningful and distinguishable sample_name, along with cell_line (no white spaces), condition (one of untreated, treated, or denatured), and replicate (just a number). The sample accession id must be supported by nf-core/fetchngs (e.g. SRA, ENA, DDBJ, GEO; [see the fetchngs documentation for the full list](https://nf-co.re/fetchngs/1.12.0/docs/usage)).
 
-5. If including an OBI id, use a valid term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi). If the experimental context is provided, it must be one of in_vivo, in_vitro, denatured, ex_vivo, in_virio or ex_virio.
+5. The `cell_line` field is used as the per-sample grouping label in the final samplesheet, not only for literal cell lines. If samples differ by another biologically meaningful feature, include that feature in `cell_line`, such as tissue or developmental stage, genotype, `in_vivo`/`in_vitro`, viral context, drug treatment, or perturbation. Use underscores instead of whitespace.
+   - Examples from current metadata include `K562_in_vivo` and `K562_in_vitro` to distinguish sample context, and `embryonic_64c_CHX` or `embryonic_64c_PatA` to distinguish developmental stage and drug treatment.
 
-6. All other fields are optional and can be set to null if not available.
+6. If including an OBI id, use a valid term from the [Ontology for Biomedical Investigations](http://obi-ontology.org/) / [obi-ontology/obi](https://github.com/obi-ontology/obi). If the experimental context is provided, it must be one of in_vivo, in_vitro, denatured, ex_vivo, in_virio or ex_virio.
+
+7. All other fields are optional and can be set to null if not available.
 
 ## Installation
 
@@ -42,6 +45,22 @@ To run the tests:
 
 ```bash
 uv run pytest
+```
+
+## Running the Nextflow pipeline
+
+Before running the pipeline, make sure the paths in `nextflow.config` are set for your environment.
+
+To run `main.nf` for all metadata YAML files:
+
+```bash
+nextflow run main.nf -resume
+```
+
+To run `main.nf` for a single dataset, pass the dataset ID. This is the YAML filename without the `.yaml` extension, for example `rnastruct00001`:
+
+```bash
+nextflow run main.nf --dataset_id rnastruct00001 -resume
 ```
 
 ## Metadata schema checks
@@ -62,3 +81,12 @@ All other fields are optional and, if not known, can be `null`.
 
 For viral datasets the optional top-level field `strain` should be provided and should describe the strain hared by all samples in the dataset. This field is not required for non-viral datasets. If a viral study includes multiple strains create one YAML file per strain.
 The optional field `experiment.context`, when provided, must use one or more of: `in_vivo`, `in_vitro`, `ex_vivo`, `in_virio`, `ex_virio`, or `denatured`.
+
+## GitHub Actions checks
+
+The `Validate Metadata` GitHub Actions workflow validates metadata files with these checks:
+
+1. Validates each selected YAML file against the metadata schema.
+2. Checks uniqueness of dataset IDs and run accession IDs across all metadata files.
+3. Validates OBI IDs.
+4. Validates viral strains by checking if it exists in NCBI taxonomy.

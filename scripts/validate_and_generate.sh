@@ -7,6 +7,8 @@ cd "${repo_dir}"
 schema="schema/rnastruct.schema.yaml"
 # Allow callers (e.g. Slurm wrapper) to override where ID CSVs are written.
 output_dir="${IDS_DIR:-${repo_dir}/ids}"
+# Optional: restrict processing to a single dataset (e.g. DATASET_ID=rnastruct00001).
+dataset_filter="${DATASET_ID:-}"
 
 if ! command -v linkml-validate >/dev/null 2>&1; then
   echo "linkml-validate not found. Install with: pip install linkml" >&2
@@ -26,6 +28,20 @@ yamls=("${shape_yamls[@]}" "${dms_yamls[@]}")
 if [ ${#yamls[@]} -eq 0 ]; then
   echo "No YAML files found under SHAPE/ or DMS/." >&2
   exit 1
+fi
+
+if [ -n "${dataset_filter}" ]; then
+  filtered=()
+  for yaml in "${yamls[@]}"; do
+    if [ "$(basename "${yaml}" .yaml)" = "${dataset_filter}" ]; then
+      filtered+=("${yaml}")
+    fi
+  done
+  if [ ${#filtered[@]} -eq 0 ]; then
+    echo "No YAML file found for dataset_id: ${dataset_filter}" >&2
+    exit 1
+  fi
+  yamls=("${filtered[@]}")
 fi
 
 mkdir -p "${output_dir}"

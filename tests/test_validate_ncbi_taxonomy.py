@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import http.client
 from io import BytesIO
 import importlib.util
 from pathlib import Path
@@ -146,7 +147,7 @@ def test_validate_metadata_file_reports_unresolved_strain(tmp_path):
 def test_search_ncbi_taxonomy_retries_rate_limit(monkeypatch):
     calls = 0
 
-    def fake_urlopen(request, timeout):
+    def fake_urlopen(request, _timeout):
         nonlocal calls
         calls += 1
         if calls == 1:
@@ -154,7 +155,7 @@ def test_search_ncbi_taxonomy_retries_rate_limit(monkeypatch):
                 request.full_url,
                 429,
                 "Too Many Requests",
-                {},
+                http.client.HTTPMessage(),
                 BytesIO(b""),
             )
         return FakeResponse()

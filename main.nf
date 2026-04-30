@@ -8,14 +8,6 @@ params.fetchngs_profile = "slurm"
 params.nxf_singularity_cachedir = null
 params.dataset_id = null  // optional: process only this dataset (e.g. rnastruct00001)
 
-// Fail early with clear messages if required paths are not provided.
-def requiredParams = ["repo_dir", "ids_dir", "outdir", "nxf_singularity_cachedir"]
-requiredParams.each { param ->
-    if (!params[param]) {
-        error "Missing required parameter: --${param}. Copy nextflow.config.example to nextflow.config and fill in the paths."
-    }
-}
-
 process VALIDATE_AND_GENERATE {
   tag "validate-and-generate"
   executor "local"
@@ -116,6 +108,14 @@ process MERGE_FETCHNGS_METADATA {
 }
 
 workflow {
+  // Fail early with clear messages if required paths are not provided.
+  def requiredParams = ["repo_dir", "ids_dir", "outdir", "nxf_singularity_cachedir"]
+  requiredParams.each { param ->
+    if (!params[param]) {
+      error "Missing required parameter: --${param}. Copy nextflow.config.example to nextflow.config and fill in the paths."
+    }
+  }
+
   validate = VALIDATE_AND_GENERATE(params.repo_dir, params.ids_dir, params.dataset_id ?: "")
   fetch = RUN_FETCHNGS(
     validate.ids_manifest,

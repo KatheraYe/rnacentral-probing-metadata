@@ -1,6 +1,6 @@
 dataset_id: rnastruct00016
 
-organism: Alphainfluenzavirus influenzae # The latin name of Influenza A virus (IAV)
+organism: Influenza A virus
 strain: A/WSN/1933(H1N1)  # Paper reports influenza A/WSN/33 (WSN).
 
 experiment:

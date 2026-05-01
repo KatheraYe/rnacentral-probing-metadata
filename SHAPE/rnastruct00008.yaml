@@ -1,6 +1,6 @@
 dataset_id: rnastruct00008
 
-organism: Orthoflavivirus zikaense # The Latin name of Zika virus is Orthoflavivirus zikaense.
+organism: Zika virus
 strain: KJ776791_HPF2013  # Paper reports the French Polynesia ZIKV strain as KJ776791_HPF2013.
 
 experiment:

@@ -1,6 +1,6 @@
 dataset_id: rnastruct00033
 
-organism: Alphainfluenzavirus influenzae # The latin name of Influenza A virus (IAV)
+organism: Influenza A virus
 strain: A/Udorn/307/1972(H3N2)  # Udorn abbreviation for A/Udorn/307/1972(H3N2).
 
 experiment:

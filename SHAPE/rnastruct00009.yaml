@@ -1,6 +1,6 @@
 dataset_id: rnastruct00009
 
-organism: Orthoflavivirus zikaense # The Latin name of Zika virus.
+organism: Zika virus
 strain: MR766  # ENA sample reports Zika virus MR766, virus identifier AY632535.2.
 
 experiment:

@@ -1,6 +1,6 @@
 dataset_id: rnastruct00024
 
-organism: Rotavirus alphagastroenteritidis # The Latin name of rotavirus A.
+organism: Rotavirus A
 strain: RF  # Paper reports bovine rotavirus A strain RF, G6P6[1].
 
 experiment:

@@ -1,6 +1,6 @@
 dataset_id: rnastruct00041
 
-organism: Betacoronavirus pandemicum # The Latin name of SARS-CoV-2
+organism: SARS-CoV-2
 strain: EPI_ISL_414378  # GEO reports the Delta382 SARS-CoV-2 background as EPI_ISL_414378.
 
 experiment:
